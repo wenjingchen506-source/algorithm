@@ -25,6 +25,11 @@
 - [字典与频次统计](#note-tsingpigdadademoban-14)
 - [表达式与可迭代对象](#note-tsingpigdadademoban-39)
 - [字符串赋值与循环](#note-rthsrth-1)
+- [函数参数与运算符映射](#knowledge-params)
+- [月份与条件分支](#knowledge-season)
+- [矩阵遍历与网格模拟](#knowledge-matrix)
+- [字母表循环移位](#knowledge-rot)
+- [列表插入、排序与索引](#knowledge-sort)
 
 <a name="note-tsingpigdadademoban-7"></a>
 
@@ -46,6 +51,104 @@ s.find(obj)#找不到返回-1，不会报错
 ```python
 map(lambda x,y :x+y,[1,2],[3,4])
 ```
+
+反向切片与起止位置
+
+```python
+#反向输出################################################################
+a=input()
+print(a[::-1])
+#start:切片的起始位置（包含该位置）;步长为正:默认0；步长为负:默认 len (a)-1
+#end:切片的结束位置（不包含该位）;步长为正:默认len(a)；步长为负:默认-len(a)-1
+#等价于从头）
+#step:切片的步长（每次移动的步数）；正数 = 正向遍历，负数 = 反向遍历;默认 1
+```
+
+去掉末尾的 0，再倒序输出
+
+```python
+##41一行数除去最后一0其余倒序输出
+n=list(map(int ,input().split()))
+n.pop()
+n.reverse()
+print(' '.join(map(str , n)))
+```
+
+循环拼接、join 与预分配列表
+
+> 杀手三：+=拼接字符串；解药：列表拼接法
+
+```python
+s=''
+for i in range(100000):
+    s+=str(i)
+
+res=[]
+for i in range(100000):
+    res.append(str(i))append虽然是O(1)但要自己找地然后搬家
+s=''.join(res)
+```
+
+> 杀手四：当然这样也不好！解药：空间预分配
+
+```python
+res=[0]*100000
+for i in range(100000):
+    res[i]=i
+```
+
+把指定字符替换成星号
+
+```python
+print(input().replace('5','*'))
+```
+
+查找子串位置的速记
+
+```python
+s=input()
+print(s.find(Bob))
+```
+
+取各单词的首字母并转大写
+
+```python
+n = list(input().split())
+for i in range(len(n)):
+    n[i][0]=char(ord(n[i][0])+97-65)
+print(' '.join(n))
+
+n=input().split()
+ans=[w[0].upper() for w in n]
+print(''.join(ans))
+```
+
+对指定闭区间做替换，对照初稿与切片拼接版本
+
+> 错答
+
+```python
+n,m=map(int,input().split())
+a=input()
+for _ in range(m):
+    s=list(input().split())
+    s[0],s[1]=int(s[0]),int(s[1])
+    a[s[0]:s[1]].replace(s[2],s[3])
+print(a)
+
+n, m = map(int, input().split())
+a = input().strip()
+for _ in range(m):
+    # 读取一行操作指令
+    data = input().split()
+    l, r = int(data[0]), int(data[1])
+    c1, c2 = data[2], data[3]   
+    # 切片拼图魔法：左边原样 + 中间替换 + 右边原样
+    a = a[:l-1] + a[l-1:r].replace(c1, c2) + a[r:]
+print(a)
+```
+
+> 注意切片是左闭右开，是浅拷贝，是从0开始
 
 <a name="note-tsingpigdadademoban-14"></a>
 
@@ -71,6 +174,86 @@ c=Couter(arr)
 print(c.most_common(2))
 ```
 
+循环中使用 Counter 的笔记
+
+> 杀手六：Counter可以一次性用但别丢循环里
+
+根据四个选项的长度与极值出现次数作选择
+
+```python
+T=int(input())
+se={0:'A',1:'B',2:'C',3:'D'}
+for _ in range(T):
+    s=[0]*4
+    for i in range(4):
+        s[i]=len(input())
+    if s.count(max(s))==1 and s.count(min(s))!=1:
+        print(se[s.index(max(s))])
+    elif     s.count(min(s))==1 and s.count(max(s))!=1:
+        print(se[s.index(min(s))])
+    else:
+        print('C')
+```
+
+字典查询旧值、写入新值并累计加权结果
+
+```python
+import sys
+MOD=1<<64
+def solve():
+    da=iter(sys.stdin.read().split())
+    n=int(next(da))
+    f={}
+    s=0
+    for i in range(1,n+1):
+        x,y=int(next(da)),int(next(da))
+##        if x not in f:
+##            f[x]=0
+        v=f.get(x,0)
+        s=(s+v*i)%MOD
+        f[x]=y
+    print(s)        
+            
+if __name__ == "__main__":
+    solve()
+```
+
+用 Counter 判断两串的字符频次是否一致
+
+```python
+class Solution:
+    def isCongruent(self , s: str, c: str) -> int:
+        # 【架构升级】：O(1) 的极速前置拦截！
+        # 如果长度都不一样，连建字典的资格都没有，直接斩立决
+        if len(s) != len(c):
+            return -1
+            
+        from collections import Counter
+        # 【修复 2】：不要覆盖原变量，直接拿来比对
+        if Counter(s) == Counter(c):
+            # 【修复 1】：返回原字符串的长度
+            return len(s)
+            
+        return -1
+```
+
+按字符需求比较可用数量的草稿
+
+```python
+class Solution:
+    def canConstruct(self , ransomNote: str, magazine: str) -> bool:
+        from collections import Counter
+        rr=set(ransomNote)
+        r,m=Counter(ransomNote),Counter(magazine)
+        flag=0
+        for v in rr:
+            if r[v]>m[v]:
+                flag=1
+                return False
+        if flag==0:
+            return False
+```
+
 <a name="note-tsingpigdadademoban-39"></a>
 
 ### 表达式与可迭代对象
@@ -89,6 +272,80 @@ length=[(end-start)//step]针对range(start,end,step)
 a='\n'.join(map(str(x),filter(lambda x: x%4!=0 and '4' not in str(x)),range(1,n+1)))
 ```
 
+按平均分选择输出，比较条件表达式与 lambda
+
+```python
+##牛牛是否被叫家长
+l=list(map(int,input().split()))
+##法一
+##print("YES" if sum(l)/len(l)<60 else "NO")
+##法二 
+(lambda:print("NO"),lambda:print('YES'))[sum(l)/len(l)<60]()
+##4. (lambda: print("NO"), lambda: print("YES"))[(a + b + c) / 3 < 60]()
+##功能：根据平均值是否小于60，输出 "YES" 或 "NO"。
+##分解：
+##(lambda: print("NO"), lambda: print("YES"))：
+##创建一个包含两个匿名函数的元组，索引0的函数输出 "NO"，索引1的函数输出 "YES"。
+##[(a + b + c) / 3 < 60]：计算平均值并与60比较，得到布尔值。
+##在Python中，True 等价于整数 1，False 等价于 0，
+##因此该表达式的结果为 0 或 1，用作元组的索引。
+##选中对应的lambda函数后，末尾的 () 立即调用该函数，执行 print(...)。
+```
+
+过滤含 4 的数与 4 的倍数，比较循环与 filter
+
+```python
+##牛牛数数
+n=int(input())
+##print(i) if str(i).count(4)==0 and i%4!=0 for i in range(1,n+1)
+##str(i).count(4) 类型不匹配
+##if...else 三元表达式的格式是 值1 if 条件 else 值2
+##（只能返回 “值”，不能直接执行打印）
+# 先判断整除（更快），再判断数字（避免无效的字符串转换）
+for i in range(1,n+1):
+    if i%4!=0 and '4' not in str(i):
+        print(i)
+
+##法二
+##filter(function, iterable)
+##保留 function(x) 为 True 的元素
+##filter(lambda x:x%2==0, range(1,6))
+##lambda 参数:表达式
+##lambda x:x+1
+##def f(x):
+##    return x+1
+##map(function, iterable)对每个元素应用函数。
+n=int(input())
+a='\n'.join(map(str,filter(lambda x:x%4!=0 and '4' not in str(x),range(1,n+1))))
+print(a)
+```
+
+map 对象与常见迭代器
+
+```python
+s=[1,2,3,4]
+print(type(map(int,s[:2])))
+```
+
+> 最常用、最容易碰到的迭代器就是：
+> 👉 map /filter/zip /enumerate/reversed / 生成器表达式
+
+用字典映射和差值判断胜平负
+
+```python
+a = {'elephant': 4, 'tiger': 3, 'cat': 2, 'mouse': 1}
+s1, s2 = input().split()
+
+diff = a[s1] - a[s2]
+
+if diff == 1 or diff == -3:
+    print('win')
+elif diff == -1 or diff == 3:
+    print('lose')
+else:
+    print('tie')
+```
+
 <a name="note-rthsrth-1"></a>
 
 ### 字符串赋值与循环
@@ -104,6 +361,206 @@ while True:
     print('陈文静是大美女')
 ```
 
+<a name="knowledge-params"></a>
+
+### 函数参数与运算符映射
+
+位置参数和关键字参数的打包速记
+
+```python
+def hanshu(*args)#未知个参数打包成元组
+def han(**args)#未知个关键字参数打包成字典
+```
+
+通过字典按运算符取出函数的草稿
+
+```python
+op={'+':lambda a,b=a+b}
+op[key](a,b)
+```
+
+<a name="knowledge-season"></a>
+
+### 月份与条件分支
+
+从输入中取出月份，判断对应季节
+
+```python
+## 四季
+##法一
+a=input()
+# 提取月份
+num=int(a[-2:])
+####法二
+##a=int(input())
+##num=a%100
+if 3<=num<=5:
+    print('spring')
+elif 6<=num<=8:
+    print('summer')
+elif 9<=num<=11:
+    print('autumn')
+elif 1<=(num%12)<=2:
+    print('winter')
+```
+
+<a name="knowledge-matrix"></a>
+
+### 矩阵遍历与网格模拟
+
+按列输出矩阵转置，并记录运行时间
+
+```python
+import sys
+import time
+# 修正 1：正确的 readline 覆盖
+input = sys.stdin.readline
+def solve():
+    # 读取第一行的 n 和 m
+    n, m = map(int,input().split()) 
+    lst=[list(map(int,input().split())) for _ in range(n)]
+    for i in range(m):
+        for j in range(n):
+            print(lst[j][i],end=' ')
+        print()
+if __name__ == '__main__':
+    # 性能测试计时器完美应用
+    st = time.perf_counter()
+    solve()
+    ed = time.perf_counter()   
+    # 打印运行时长（记得加换行，以免和上面的输出粘在一起）
+    print(f"\n[性能测试] 运行耗时: {ed - st:.6f} 秒")
+```
+
+检查主对角线下方是否全为零
+
+```python
+import sys
+import time
+input=sys.stdin.readline
+def solve():
+    n=int(input())
+    flag=0
+    for i in range(n):
+        s=list(map(int,input().split()))
+        for j in range(0,i):
+            if s[j]!=0:
+                flag+=1
+                break
+    if flag==0:
+        print('YES')
+    else:
+        print('NO')
+if __name__ =='__main__':
+    st=time.perf_counter()
+    solve()
+    ed=time.perf_counter()
+    print(ed-st)
+```
+
+扫雷：填充边界后统计八邻域
+
+```python
+import sys
+import time
+input=sys.stdin.readline
+def solve():
+    n,m=map(int,input().split())
+    arr=[[0]*(m+2) for i in range(n+2)]
+    for i in range(n):
+        s=list(input())
+        for j in range(m):
+            arr[i+1][j+1]=s[j]
+    for i in range(1,n+1):
+        for j in range(1,m+1):
+            if arr[i][j]=='*':
+                print('*',end='')
+                continue
+            print([arr[i-1][j-1],arr[i-1][j],arr[i-1][j+1],arr[i][j-1],arr[i][j+1],arr[i+1][j-1],arr[i+1][j],arr[i+1][j+1]].count('*'),end='')
+            
+        print()
+        
+if __name__ =='__main__':
+    st=time.perf_counter()
+    solve()
+    ed=time.perf_counter()
+    print(ed-st)
+```
+
+<a name="knowledge-rot"></a>
+
+### 字母表循环移位
+
+字典映射的错误尝试
+
+> 错误
+
+```python
+a=list('abcdefghijklmnopqrstyvwxyz')
+s={a[i]:i+1  for i in range(26)}
+n=int(input())
+ss=list(input())
+for i in range(len(ss)):
+    ss[i]=s.value(s.value(ss[i])+n)
+```
+
+在字母表查索引，移位后按 26 取模
+
+```python
+n = int(input())
+ss = input().strip() # 加上 strip 防止末尾的回车符捣乱
+ 1. 准备标准参照表（这次别再拼错了哈哈）
+alpha = 'abcdefghijklmnopqrstuvwxyz'
+ans = []
+for char in ss:
+    # 2. 找到当前字母在表里的索引 (a是0, b是1... z是25)
+    current_idx = alpha.index(char)   
+    # 3. 核心密码学公式：(当前位置 + 偏移量) 对 26 取模
+    new_idx = (current_idx + n) % 26   
+    # 4. 把加密后的字母塞进结果列表
+    ans.append(alpha[new_idx])
+ 5. 拼接输出
+print("".join(ans))
+```
+
+用 ord 和 chr 转换字符
+
+```python
+n = int(input())
+ss = input().strip()
+ans=[]
+for x in ss:
+    ans.append(chr((ord(x)-ord('a')+n)%26+ord('a')))
+print(''.join(ans))
+```
+
+<a name="knowledge-sort"></a>
+
+### 列表插入、排序与索引
+
+插入元素、排序及列表输出格式
+
+```python
+s.insert(index=i+1,x)
+s=sorted(s)
+s.sort(reverse=True)
+print(*s)
+print(str(s).strip('[]').replace(',',''))#注意这里不要空格哈，因为元组字典列表啥的
+逗号后面自带一个空格
+```
+
+保留原下标排序与逗号分隔输出
+
+```python
+arr=list(enumerate(map(int, input().split())))
+arr.sort(key=lambda x:x[1])
+for i in range(len(arr)):
+    if arr[i][0]
+
+s=list(map(int,input().split()))
+print(str(s).strip('[]').replace(', ',','))
+```
+
 <a name="topic-io"></a>
 
 ## 竞赛输入输出与文件
@@ -113,6 +570,7 @@ while True:
 - [竞赛快读与输出](#note-tsingpigdadademoban-1)
 - [本地文件与标准流切换](#note-tsingpigdadademoban-882)
 - [文件题的读写方式](#note-tsingpigdadademoban-920)
+- [输出分隔符与数值格式](#knowledge-print)
 
 <a name="note-tsingpigdadademoban-1"></a>
 
@@ -154,6 +612,142 @@ DFS 练习文件中的输入骨架
 import sys
 def solve():
     da=iter(sys.stdin.read().split())
+if __name__=='__main__':
+    solve()
+```
+
+单行、多行、矩阵与多组测试的输入写法
+
+```python
+#快读模板:写在前面用于加速
+import sys
+input=sys.stdin.readline
+
+#一行多个整数
+a,b,c=map(int,input().split())
+nums=list(map(int,input().split()))
+
+#n+n行每行一个数
+n=int(input())
+for _ in range(n):
+    x=int(input())
+    
+#n+n行多个数
+n=int(input())
+for _ in range(n):
+    nums=list(map(int,input().split()))
+
+#n*m矩阵
+n,m=map(int,input().split())
+grid=[]
+for _ in range(n):
+    row=map(int,input().split())
+    grid.append(row)
+#or
+n,m=map(int,intput().split())
+grid=[list(map(int,input().split())) for _ in range(n)]
+
+##多组数据
+t=int(input())
+for _ in range(t):
+    n=int(input())
+    nums=list(map(int,input().split()))
+```
+
+一次性读取多组数据并移动游标
+
+```python
+##更快读取所有数据，一次性!!!!!!!!!!!!!!!
+import sys
+data=sys.stdin.read().split()
+t=int(data[0])
+index=1
+for _ in range(t):
+    n,k=data[index],data[index+1]
+    index+=2
+    a=list(map(int,data[index:index+n]))
+    index+=n
+```
+
+读入 T 组数据，用游标取出每组的整数
+
+```python
+##快速模板    
+import sys
+def solve():
+    d=sys.stdin.read().split()
+    T=int(d[0])
+    out=[]
+    id=1
+    for  _ in range(T):
+        n=int(d[id])
+        id+=1
+        a=[int(x) for x in d[id:id+n]]
+        id+=n
+        ans=sum(a)
+        out.append(str(ans))
+
+    sys.stdout.write('\n'.join(out)+'\n')
+if __name__ =='__main__':
+    solve()
+```
+
+补充空输入判断的多组求和版本
+
+```python
+import sys
+def solve():
+    d=sys.stdin.read().split()
+    if not d:return
+    T=int(d[0])
+    out=[]
+    id=1
+    for _ in range(T):
+        n=int(d[id])
+        id+=1
+        a=[int(x) for x in d[id:id+n]]
+        id+=n
+        ans=sum(a)
+        out.append(str(ans))
+
+    sys.stdout.write('\n'.join(out)+'\n')
+if __name__=='__main__':
+    solve()
+```
+
+持续按两个数一组读到输入末尾的草稿
+
+```python
+import sys
+def solve():
+    d=sys.stdin.read().split()
+    if not d:return
+    num=len(d)
+    id=0
+    out=[]
+    while id<len(d):
+        a,b=int(d[id]),int(d[id+1])
+        id+=2
+        ans=sum(a,b)
+        out.append(str(ans))
+    sys.stdout.write('\n'.join(out)+'\n')
+if __name__ =='__main__':
+    solve()
+```
+
+按行读取矩阵并累计元素和
+
+```python
+import sys
+def solve():
+    n,m=map(int,input().split())
+    ans=0
+    out=[]
+    for line in sys.stdin:
+        ans+=sum(map(int,line.split()))
+    out.append(str(ans))
+
+    sys.stdout.write('\n'.join(out)+'\n')
 if __name__=='__main__':
     solve()
 ```
@@ -307,6 +901,68 @@ with open('in.txt','r',encoding='utf-8') as fin,\
      open('out.txt','w',encoding='utf-8') as fout
 ```
 
+<a name="knowledge-print"></a>
+
+### 输出分隔符与数值格式
+
+print 的分隔符、结束符、列表展开与浮点精度
+
+```python
+print(value1,value2,value3,...,sep='分隔符')#自定义分隔符
+print(value1,value2,value3,...,end='结束符，默认是换行，换成空格就是不换行')
+#自定义结束符
+print(f'字符若干{占位对象变量}')
+print('{:格式}'.format(占位对象变量))#print("{:.3f}".format(x))
+print(format(变量名,'格式'))#print(format(x,'.3f'))
+print('%格式'%(变量名))##print('%.3f'%(x))
+print(*lst)#快速输出列表
+# 用f-string等价写法
+print(f"{d3:.9f}")         # 输出 3.141592654
+print(format(d3, ".9f"))
+#format() 函数本身有专属的格式语法（不用 %），正确写法是去掉 %，直接写 .9f
+```
+
+保留三位小数的三种写法
+
+```python
+##浮点数###################################################################
+x=float(input())
+##法一
+print('%.3f'%(x))
+
+##法二
+print(format(x,'.3f'))
+
+##法三
+print("{:.3f}".format(x))
+```
+
+复读机练习
+
+```python
+##复读机#######################################################################
+for i in range(5):
+    a=input()
+    if i==c:
+        print('.f'%(a))
+    else:
+        print(a)
+```
+
+手动插入千分位逗号与格式说明符
+
+```python
+N=list(input())
+a=len(N)//3
+flag=0
+for i in range(1,a+1):
+    N.insert(-i*3-flag,',')
+    flag+=1
+print(('').join(N))
+
+print(f'{N:,}')
+```
+
 <a name="topic-structure"></a>
 
 ## 数据结构与计数
@@ -316,6 +972,18 @@ with open('in.txt','r',encoding='utf-8') as fin,\
 - [多数元素与摩尔投票](#note-tsingpigdadademoban-95)
 - [哈希集合与连续序列](#note-tsingpigdadademoban-245)
 - [从双倍数组还原](#note-tsingpigdadademoban-263)
+- [并查集与连通分量](#knowledge-union)
+- [约瑟夫环与循环下标](#knowledge-joseph)
+- [集合查找、交集与去重](#knowledge-membership)
+- [栈与队列的基本操作](#knowledge-stack)
+- [优先队列与前 K 项](#knowledge-heap)
+- [栈与括号匹配](#knowledge-bracket)
+- [栈顶合并与字符消除](#knowledge-cancel)
+- [栈与表达式求值](#knowledge-expr)
+- [进栈与出栈顺序](#knowledge-stackseq)
+- [排队模拟与计数](#knowledge-queue)
+- [先进先出缓存](#knowledge-fifo)
+- [哈希配对与计数](#knowledge-pair)
 
 <a name="note-tsingpigdadademoban-95"></a>
 
@@ -431,6 +1099,794 @@ class Solution:
                 else:
                     y=4*y
         return ans
+```
+
+<a name="knowledge-union"></a>
+
+### 并查集与连通分量
+
+父节点、合并集合与路径压缩
+
+```python
+fa=list(range(n))
+#查x所在集合
+def find(x):
+    return x if fa[x]==x else find(fa[x])
+#把小并入大
+def union(da,xiao):
+    if find(da)!=find(xiao):
+        fa[find(xiao)]=find(da)
+#路径压缩，全指向根节点(不严格！不完全，可能会漏)
+def find(x):
+    if fa[x]==x:return x
+    fa[x]=find(fa[x])
+    return fa[x]
+```
+
+多组边输入，统计连通分量的练习草稿
+
+```python
+import sys
+input=lambda:sys.stdin.readline().strip()
+def solve():
+    while True:
+        s=input()
+        if s=='0':
+            break
+        m,n=map(int,s.split())
+        fa=list(range(n+1))
+        def find(x):
+            if fa[x]==x:return x
+            fa[x]=find(fa[x])
+            return find(fa[x])
+        def union(u,v):
+            if find(u)!=find(v):
+                fa[find(v)]=find(u)
+        for _ in range(m):
+            u,v=map(int,input().split())
+            union(u,v)
+        for _ in range(1,n+1):
+            f[i]=find(i)
+        cnt=len(set(fa))-1
+        print(cnt-1)
+```
+
+<a name="knowledge-joseph"></a>
+
+### 约瑟夫环与循环下标
+
+用列表移除当前下标对应的元素
+
+```python
+n,k,m=map(int,input().split())
+s=[i for i in range(n)]
+while len(s)>1:
+    s.remove(s[(k+m-1)%n])
+    k=k+m-1
+print(*s)
+```
+
+双端队列旋转与列表下标取模
+
+```python
+##法一约瑟夫环
+from collections import deque
+n,k,m=map(int,input().split())
+s=deque(range(n))
+s.rotate(-k)
+whlie len(s)>1:
+    s.rotate(-(m-1))
+    s.popleft()
+print(s[0])
+   
+n,k,m=map(int,input().split())
+s=list(range(n))
+while len(s)>1:
+    k=(k+m-1)%len(s)
+    s.pop(k)
+print(s[0])
+```
+
+按当前位置的步长循环跳转
+
+```python
+s=list(map(int,input().split()))
+m=s.pop()
+idx=0
+for i in range(m):
+    idx=(idx+s[idx])%len(s)
+print(idx+1)
+```
+
+<a name="knowledge-membership"></a>
+
+### 集合查找、交集与去重
+
+列表与集合查找的复杂度笔记
+
+> 警惕sum、min、max、insert、pop、remove、list.count：O(N)
+> in在列表找人:O(A*B),那In改成什么？列表转集合再用In在集合或字典找人
+> eg:
+
+```python
+mt=[1,2,...,100000]
+for target in qlist:
+    for target in mt:
+        pass:O(N**2)
+mt=set(mt)
+for target in qlist:
+    for target in mt:
+        pass:O(N)
+```
+
+用集合统计不同字符串的个数
+
+```python
+import sys
+from collections import Counter
+def solve():
+    da=iter(sys.stdin.read().split())
+    n=int(next(da))
+    s=[next(da) for _ in range(n)]
+    s=set(s)
+    print(len(s))
+    
+if __name__ == "__main__":
+    solve()
+```
+
+求两个数组的交集并排序
+
+```python
+class Solution:
+    def intersection(self , nums1: List[int], nums2: List[int]) -> List[int]:
+        i1=set(nums1)
+        i2=set(nums2)
+        i3=list(set.intersection(i1,i2))
+        i3.sort()
+        return i3
+```
+
+再写一遍字符串去重计数
+
+```python
+import sys
+from collections import Counter
+def solve():
+    da=iter(sys.stdin.read().split())
+    n=int(next(da))
+    s=[next(da) for _ in range(n)]
+    s=set(s)
+    print(len(s))
+    
+if __name__ == "__main__":
+    solve()
+```
+
+分组读取字符串再做去重的草稿
+
+```python
+import sys
+from collections import Counter
+def solve():
+    da=iter(sys.stdin.read().split())
+    n=int(next(da))
+    a=[]
+    for i in range(n):
+        nu=int(next(da))        
+        s=[next(da) for _ in range(nu)]
+        
+    s=set(s)
+    print(len(s))
+    
+if __name__ == "__main__":
+    solve()
+```
+
+<a name="knowledge-stack"></a>
+
+### 栈与队列的基本操作
+
+栈和队列的容器选择
+
+> 杀手五：致命Queue和LifoQueue(栈)；
+> 解药：栈用list.append()进栈，list.pop()出栈；
+> 队列只用collections.deque,append进队，popleft()出队
+
+预分配数组和栈顶指针处理 push、pop、query、size
+
+```python
+import sys
+def main() -> None:
+    data = sys.stdin.read().split()
+    ptr = 0
+    output = []
+
+    stack = [""] * 100000
+    s_ptr = -1
+
+    n = int(data[ptr])
+    ptr += 1
+
+    for _ in range(n):
+        command = data[ptr]
+        ptr += 1
+
+        if command == "push":
+            x = data[ptr]
+            ptr += 1
+
+            s_ptr += 1
+            stack[s_ptr] = x
+        elif command == "pop":
+            if s_ptr > -1:
+                s_ptr -= 1
+            else:
+                output.append("Empty")
+        elif command == "query":
+            output.append(stack[s_ptr] if s_ptr > -1 else "Empty")
+        elif command == "size":
+            output.append(f"{s_ptr + 1}")
+
+    sys.stdout.write("\n".join(output))
+
+if __name__ == "__main__":
+    main()
+```
+
+用 deque 实现队列命令与空队列提示
+
+```python
+import sys
+from collections import deque
+def solve():
+    data=sys.stdin.read().split()
+##    data='''7
+##1 10
+##1 20
+##3
+##4
+##2
+##3
+##2'''.split()
+    n=int(data[0])
+    idx=1
+    du=deque()
+    while idx<=len(data)-1:
+        op=data[idx]
+        if op=='1':
+            idx+=1
+            du.append(data[idx])
+            idx+=1
+        elif op=='2':
+            if du :
+                du.popleft()
+            else:
+                print('ERR_CANNOT_POP')
+            idx+=1
+
+        elif op=='3':
+            if du :
+                print(du[0])
+            else:
+                print('ERR_CANNOT_QUERY')
+            idx+=1
+                
+        else:
+            print(len(du))
+            idx+=1
+            
+if __name__ =='__main__':
+    solve()
+```
+
+从列表头删除元素的开销
+
+```python
+def pop(self):
+    re=self.stack[0]
+    del self.stack[0]  #del底层会把后面的数往前挪！！！！！
+    return re
+```
+
+<a name="knowledge-heap"></a>
+
+### 优先队列与前 K 项
+
+建堆、入堆、出堆与负数模拟最大堆
+
+> 杀手七：不要用bisect.insort(arr,x)维护动态有序列表；解药：import heapq
+> 建堆：heapify(arr)将一个无序列表转最小堆（不要用heappush一个个加进去建堆）O(N)
+> 入堆：heappush(arr,val)冒泡上去O(logN)
+> 出堆：heappop(arr)弹出并返回堆里最小元素（arr[0]）O(logN)
+> 动态获取最大值：
+
+```python
+import heapq
+nums=list(range(1000))
+nums1=[-x for x in nums]
+heapq.heapify(nums1)
+```
+
+用元组同时保存距离和节点
+
+> 注意heapq还支持元组！
+
+```python
+import heapq
+pq = []
+# 存储格式：(距离, 节点编号)
+heapq.heappush(pq, (10, 'A'))
+heapq.heappush(pq, (2, 'B'))
+heapq.heappush(pq, (5, 'C'))
+# 弹出的绝对是距离最短的节点 B
+distance, node = heapq.heappop(pq)
+print(f"最近的节点是 {node}，距离 {distance}")
+```
+
+nlargest 与 nsmallest 选取前 K 项
+
+> 如果题目是：“从 100 万个乱序数字中，找出最大的 5 个数”。不要去 sort()！
+> 排序是 $O(N \log N)$。直接用 heapq 的内建高级函数，
+> 时间复杂度降维至 $O(N \log K)$。Pythonimport heapq
+
+```python
+nums = [1, 8, 2, 23, 7, -4, 18, 23, 42, 37, 2]
+# 瞬间拿到最大的 3 个数，底层维护了一个大小只有 3 的小顶堆扫描全局！
+top3_max = heapq.nlargest(3, nums)
+print(top3_max)  # 输出: [42, 37, 23]
+# 瞬间拿到最小的 3 个数
+top3_min = heapq.nsmallest(3, nums)
+print(top3_min)  # 输出: [-4, 1, 2]
+```
+
+<a name="knowledge-bracket"></a>
+
+### 栈与括号匹配
+
+按右括号分别判断圆括号与方括号
+
+```python
+s=input()
+st=[]
+flag=0
+for x in s:
+    if x=='(' or x=='[':
+        st.append(x)
+    elif x==')':
+        if not st:
+            print('false')
+            flag=1
+            break
+        if st.pop()!='(':
+            print('false')
+            flag=1
+            break
+    elif x==']':
+        if not st:
+            print('false')
+            flag=1
+            break
+        if st.pop()!='[':
+            print('false')
+            flag=1
+            break
+if flag==0:
+    if not st:
+        print('true')
+    else:
+        print('false')
+```
+
+用字典保存两类括号的配对关系
+
+```python
+s=input()
+st=[]
+flag=0
+ma={')':'(',']':'['}
+for x in s:
+    if x=='(' or x=='[':
+        st.append(x)
+    elif x in ')]':
+        if not st or st.pop()!=ma[x]:
+            flag=1
+            break
+if flag == 0 and not st:
+    print('true')
+else:
+    print('false')
+```
+
+把字典配对扩展到三种括号
+
+```python
+s=input()
+st=[]
+flag=0
+ma={')':'(',']':'[','}':'{'}
+for x in s:
+    if x in '([{':
+        st.append(x)
+    elif x in ')]}':
+        if not st or st.pop()!=ma[x]:
+            flag=1
+            break
+if flag == 0 and not st:
+    print('true')
+else:
+    print('false')
+```
+
+<a name="knowledge-cancel"></a>
+
+### 栈顶合并与字符消除
+
+字符 o 与 O 的消除初稿
+
+> 错误
+
+```python
+s=input()
+st=[]
+flag=0
+for x in s:
+    if x=='o':
+        if not st or st[-1]=='O':
+            st.append(x)
+        else:
+            st.pop()
+            st.append('O')
+    else:
+        if not st or st[-1]=='o':
+            st.append(x)
+        else:
+            st.pop()
+print(*st,end='')
+```
+
+入栈后反复检查栈顶并合并
+
+> 无脑压栈+栈顶while循环消消乐
+
+```python
+s=input()
+st=[]
+for x in s:
+    st.append(x)
+    while len(st)>=2:
+        if st[-1]=='o' and st[-2]=='o':
+            st.pop()
+            st.pop()
+            st.append('O')
+        elif st[-1]=='O' and st[-2]=='O':
+            st.pop()
+            st.pop()
+        else:
+            break
+print(*st,end='')
+```
+
+<a name="knowledge-expr"></a>
+
+### 栈与表达式求值
+
+后缀表达式求值的初稿
+
+```python
+##错误
+s=input()
+st=[]
+for i in range(len(s)):
+    if s[i] not in '+-*':
+        st.append(s[i])
+        i+=2
+    else:
+        b=st.pop()
+        a=st.pop()
+##错误        st.append(eval(a s[i] b))
+print(*st)
+```
+
+以 # 结束一个整数，再按运算符弹出两个操作数
+
+```python
+str=input()
+st=[]
+nu=''
+for x in str:
+    if x.isdigit():
+        nu+=x
+    elif x=='#':
+        st.append(int(nu))
+        nu=''
+    elif x in '+-*':
+        b=st.pop()
+        a=st.pop()
+        if x == '+':
+            st.append(a + b)
+        elif x == '-':
+            st.append(a - b)
+        elif x == '*':
+            st.append(a * b)
+return st[0]
+```
+
+加减乘和括号的计算器速记
+
+```python
+##应对包含 + - * 和括号的计算器
+##“只把加法入栈，遇到乘法就吃掉栈顶，遇到括号就丢给递归！”
+print(eval(s))
+```
+
+<a name="knowledge-stackseq"></a>
+
+### 进栈与出栈顺序
+
+用后缀最大值决定何时弹出栈顶
+
+```python
+##只要我手里的牌（栈顶），
+##比桌面上所有剩下的牌（未来最大值）都要大，我就立刻打出！
+##否则，我就继续憋着抓牌。
+
+import sys
+def solve():
+    data=sys.stdin.read().split()
+    n=int(data[0])
+##    p=list(data[1:])
+    p=[int(x) for x in data[1:]]
+    ma=[0]*(n+1)
+    for i in range(n-1,-1,-1):
+        ma[i]=max(p[i],ma[i+1])
+    re=[]
+    st=[]
+    for i in range(n):
+        st.append(p[i])
+        while st and st[-1]>ma[i+1]:
+            re.append(str(st.pop()))
+    print(' '.join(re))
+if __name__ =='__main__':
+    solve()
+```
+
+给定入栈序列，模拟并验证出栈序列
+
+```python
+import sys
+def solve():
+    data=sys.stdin.read().split()
+##    data='''2
+##5
+##1 2 3 4 5
+##2 5 4 1 3
+##5
+##1 2 3 4 5
+##2 5 4 3 1'''.split()
+    q=int(data[0])
+    idx=1
+    for i in range(q):
+        n=int(data[idx])
+        idx+=1
+        pu=[int(x) for x in data[idx:idx+n]]
+        idx+=n
+        po=[int(x) for x in data[idx:idx+n]]
+        idx+=n
+        re=[]
+        p=0
+        for x in pu:
+            re.append(x)
+            while re and re[-1]==po[p]:
+                re.pop()
+                p+=1
+        if  not re:
+            print('Yes')
+        else:
+            print('No')
+if __name__ =='__main__':
+    solve()
+```
+
+<a name="knowledge-queue"></a>
+
+### 排队模拟与计数
+
+学生与三明治：队列轮转
+
+```python
+class Solution:
+    def countStudents(self , students: List[int], sandwiches: List[int]) -> int:
+        from collections import deque
+        q=deque(students)
+        for s in sandwiches:
+            re=0
+            while q and q[0]!=s:
+                if re == len(q):
+                    return len(q)
+                
+                q.append(q.popleft())
+                re+=1
+            if q:    
+                q.popleft()
+        return 0
+```
+
+学生与三明治：只维护两种偏好的剩余人数
+
+```python
+class Solution:
+    def countStudents(self , students: List[int], sandwiches: List[int]) -> int:
+        count={0:students.count(0),1:students.count(1)}
+        for s in sandwiches:
+            if count[s]>0:
+                count[s]-=1
+            else:
+                break
+        return count[0]+count[1]
+```
+
+买票耗时：队列记录位置与剩余票数
+
+```python
+class Solution:
+    def timeRequiredToBuy(self , tickets: List[int], k: int) -> int:
+        from collections import deque
+        q=deque((i,tickets) for i,tickets in enumerate(tickets))
+        ti=0
+        while q:
+            idx,cnt=q.popleft()
+            cnt-=1
+            ti+=1
+            if cnt==0 and idx==k:
+                return ti
+            if cnt>0:
+                q.append((idx,cnt))
+        return ti
+```
+
+买票耗时：逐人计算对总时间的贡献
+
+```python
+class Solution:
+    def timeRequiredToBuy(self , tickets: List[int], k: int) -> int:
+        t=tickets[k]
+        ti=0
+        for i in range(len(tickets)):
+            if i<=k:
+                ti+=min(tickets[i],t)
+            else:
+                ti+=min(tickets[i],t-1)
+        return ti
+```
+
+买票耗时：循环下标模拟
+
+```python
+class Solution:
+    def timeRequiredToBuy(self , tickets: List[int], k: int) -> int:
+        idx=0
+        ti=0
+        while tickets[k]!=0:
+            if tickets[idx]>0:
+                tickets[idx]-=1
+                ti+=1
+                idx+=1
+            else:
+                idx+=1
+            idx%=len(tickets)
+        return ti
+```
+
+买票耗时：按下标排队并扣减票数
+
+```python
+class Solution:
+    def timeRequiredToBuy(self , tickets: List[int], k: int) -> int:
+        from collections import deque
+        nu=deque(range(len(tickets)))
+        ti=0
+        while True:
+            ti+=1
+            i=nu.popleft()
+            if tickets[i]>1:
+                tickets[i]-=1
+                nu.append(i)
+            else:
+                if i==k:
+                    return ti
+```
+
+按阵营人数推演胜负的草稿
+
+```python
+class Solution:
+    def predictVictory(self , s: str) -> str:
+        r,d=s.count('R'),s.count('D')
+        for x in s:
+            if r==0:
+                return 'Dark'
+            elif d==0:
+                return 'Red'
+            if x=='D':
+                r-=1
+            else:
+                d-=1
+```
+
+<a name="knowledge-fifo"></a>
+
+### 先进先出缓存
+
+有限容量队列中统计缺失次数
+
+```python
+import sys
+from collections import deque
+def solve():
+    data=sys.stdin.read().split()
+    m=int(data[0])
+    n=int(data[1])
+    s=[int(x) for x in data[2:3+n]]
+    du=deque()
+    mi=0
+    for i in range(n):
+        if s[i] not in du:
+            if len(du)<m:
+                du.append(s[i])
+                mi+=1
+            else:
+                du.popleft()
+                du.append(s[i])
+                mi+=1
+    print(mi)
+            
+if __name__ =='__main__':
+    solve()
+```
+
+<a name="knowledge-pair"></a>
+
+### 哈希配对与计数
+
+用频次乘积统计差值等于 C 的数对
+
+```python
+import sys
+from collections import Counter
+def solve():
+    da=iter(sys.stdin.read().split())
+    n,c=int(next(da)),int(next(da))
+    s=[int(next(da)) for _ in range(n)]
+    ss=Counter(s)
+    ans=0
+##    for i in ss:
+##        for j in ss:
+##            if i-j==c:
+##                ans+=ss[i]+ss[j]
+##    print(ans)
+    for j in ss:
+        i=j+c
+        if i in ss:
+            ans+=ss[i]*ss[j]
+    print(ans)
+
+if __name__ == "__main__":
+    solve()
+```
+
+两数之和：查找补数并返回下标
+
+```python
+class Solution:
+    def twoSum(self , nums: List[int], target: int) -> List[int]:
+        re={}
+        for i,v in enumerate(nums,start=1):
+            j=target-v
+            if j not in re:
+                re[v]=i
+            else:
+                return [re[j],i]
 ```
 
 <a name="topic-greedy"></a>
@@ -684,6 +2140,9 @@ class Solution:
 
 - [区间覆盖与前缀和](#note-tsingpigdadademoban-350)
 - [二分定位与差分计数](#note-reshensaibaiduzhixing-1)
+- [三角数的前缀和](#knowledge-prefix)
+- [闭区间覆盖与剩余点数](#knowledge-interval)
+- [定长窗口的区间和](#knowledge-window)
 
 <a name="note-tsingpigdadademoban-350"></a>
 
@@ -764,6 +2223,172 @@ if __name__=='__main__':
     solve()
 ```
 
+<a name="knowledge-prefix"></a>
+
+### 三角数的前缀和
+
+生成器、前缀数组、求和公式与 accumulate 的四种写法
+
+```python
+##牛牛学数列4
+##法一：第一层用生成器
+n=int(input())
+s=sum(i*(i+1)//2 for i in range(1,n+1))
+print(s)
+
+##法二：基础前缀和
+n=int(input())
+prefix=[0]*(n+1)
+for i in range(1,n+1):
+    prefix[i]=prefix[i-1]+i
+ans=sum(prefix)
+print(ans)
+
+##法三：四面体数公式
+n=int(input())
+print(n*(n+1)*(n+2)//6)
+
+##法四：高效前缀和
+from itertools import accumulate
+n=int(input())
+ans=sum(accumulate(range(1,n+1)))
+```
+
+<a name="knowledge-interval"></a>
+
+### 闭区间覆盖与剩余点数
+
+方法一：集合记录被覆盖的点
+
+```python
+##法一：离散化点集合去重        
+import sys
+def solve():
+    d=sys.stdin.read().split()
+    if not d:return
+    L=int(d[0])
+    M=int(d[1])
+    out=[]
+    id=2
+    t=set()
+    for _ in range(M):
+        l,r=int(d[id]),int(d[id+1])
+        id+=2
+        t.update(range(l,r+1))
+    ans=L+1-len(t)        
+    out.append(str(ans))
+
+    sys.stdout.write('\n'.join(out)+'\n')
+if __name__=='__main__':
+    solve()
+```
+
+方法二：逐点修改状态数组
+
+```python
+##法二：开状态数组，0表示被挖        
+import sys
+def solve():
+    d=sys.stdin.read().split()
+    if not d:return
+    L=int(d[0])
+    M=int(d[1])
+    out=[]
+    id=2
+    t=[1]*(L+2)
+    for _ in range(M):
+        l,r=int(d[id]),int(d[id+1])
+        id+=2
+        for i in range(l,r+1):
+            t[i]=0
+    ans=sum(t)-1        
+    out.append(str(ans))
+
+    sys.stdout.write('\n'.join(out)+'\n')
+if __name__=='__main__':
+    solve()
+```
+
+方法三：差分数组统计覆盖次数
+
+```python
+##法三：差分数组-消除区间循环       
+import sys
+def solve():
+    d=sys.stdin.read().split()
+    if not d:return
+    L=int(d[0])
+    M=int(d[1])
+    out=[]
+    id=2
+    t=[0]*(L+2)    
+    for _ in range(M):
+        l,r=int(d[id]),int(d[id+1])
+        id+=2
+##        t[l]=-1
+##        t[r+1]=1
+        t[l]-=1
+        t[r+1]+=1
+    c=0
+    ans=0
+    for i in range(L+1):
+        c+=t[i]
+        if c==0:
+            ans+=1        
+    out.append(str(ans))
+
+    sys.stdout.write('\n'.join(out)+'\n')
+if __name__=='__main__':
+    solve()
+```
+
+方法四：排序并合并区间
+
+```python
+##法四：贪心归并区间      
+import sys
+def solve():
+    d=sys.stdin.read().split()
+    if not d:return
+    L=int(d[0])
+    M=int(d[1])
+    out=[]
+    id=2
+    ni=[]   
+    for _ in range(M):
+        ni.append([int(d[id]),int(d[id+1])])
+        id+=2
+    ni.sort()
+    me=[]
+    for nii in ni:
+        if not me or nii[0]>me[-1][1]:
+            me.append(nii)
+        else:
+            me[-1][1]=max(me[-1][1],nii[1])
+    ans=L+1-sum(r-l+1 for l,r in me)
+    out.append(str(ans))
+
+    sys.stdout.write('\n'.join(out)+'\n')
+if __name__=='__main__':
+    solve()
+```
+
+<a name="knowledge-window"></a>
+
+### 定长窗口的区间和
+
+每次切片求和与维护滑动窗口和
+
+> 杀手二：毫无节制的切片；解药：双指针Or前缀和
+
+```python
+for i in range(n-k):
+    currentsum=sum(arr[i:i+k])
+currentsum=sum(arr[:k])
+for i in range(1,n-k+1):
+    currentsum=currentsum-arr[i-1]+arr[i+k-1]
+```
+
 <a name="topic-binary"></a>
 
 ## 二分与答案边界
@@ -772,6 +2397,9 @@ if __name__=='__main__':
 
 - [冶炼金属的可行区间](#note-tsingpigdadademoban-366)
 - [二分答案分糖果](#note-tsingpigdadademoban-466)
+- [二分插入位置与比较键](#knowledge-bis)
+- [有序集合的前驱与后继](#knowledge-ordered)
+- [查找并删除最近元素](#knowledge-near)
 
 <a name="note-tsingpigdadademoban-366"></a>
 
@@ -908,6 +2536,279 @@ class Solution:
 #左闭右开模板，上界+1
 ```
 
+<a name="knowledge-bis"></a>
+
+### 二分插入位置与比较键
+
+按比较键寻找右侧插入位置
+
+```python
+def bisect(a,x,lo=0,hi=None,check=lambda x:x):
+    if hi is None:hi=len(a)
+    while lo<hi:
+        i=(lo+hi)>>1
+        if check(a[i])>x:
+            hi=i
+        else:
+            lo=i+1
+    return lo
+```
+
+<a name="knowledge-ordered"></a>
+
+### 有序集合的前驱与后继
+
+集合负责判重，有序列表负责定位邻居
+
+```python
+import bisect
+
+# 顶级设施：双轨制仓库
+ms = set()
+ml = []
+
+def insertValue(x):
+    if x not in ms:
+        ms.add(x)
+        bisect.insort(ml, x) # insort 内部自带二分插入，不用改
+
+def eraseValue(x):
+    if x in ms:
+        ms.remove(x)  # 【修复 1】：用 remove 而不是 pop
+        idx = bisect.bisect_left(ml, x) # 【修复 2】：精确找左边界
+        # 严格防御：虽然 ms 里有，但养成好习惯确认一下再 pop
+        if idx < len(ml) and ml[idx] == x: 
+            ml.pop(idx)
+
+def xInSet(x):
+    # 【修复 3】：只负责返回布尔值，不负责 print
+    return x in ms
+
+def sizeOfSet():
+    return len(ml)
+
+def getPre(x):
+    # 【修复 4】：正确调用函数并获取位置
+    pos = bisect.bisect_left(ml, x)
+    # 【修复 5】：边界拦截，如果是 0 说明左边没人了，返回题目要求的 -1
+    if pos == 0:
+        return -1
+    return ml[pos - 1]
+
+def getBack(x):
+    # 找后继必须用 bisect_right 找严格大于的第一个位置
+    pos = bisect.bisect_right(ml, x)
+    # 边界拦截：如果到了数组长度，说明右边没人了
+    if pos == len(ml):
+        return -1
+    return ml[pos]
+
+def main():
+    q = int(input())
+    for _ in range(q):
+        line = list(map(int, input().split()))
+        op = line[0]
+        x = line[1] if len(line) > 1 else 0
+        
+        # 网关层负责解析参数和调用服务
+        if op == 1:
+            insertValue(x)
+        elif op == 2:
+            eraseValue(x)
+        elif op == 3:
+            print("YES" if xInSet(x) else "NO")
+        elif op == 4:
+            print(sizeOfSet())
+        elif op == 5:
+            print(getPre(x))
+        elif op == 6:
+            print(getBack(x))
+
+if __name__ == "__main__":
+    main()
+```
+
+允许重复值的有序列表及计数接口
+
+```python
+import bisect
+ms=[]
+def insertValue(x):
+    bisect.insort_right(ms,x)
+    # TODO: 实现插入逻辑
+    pass
+
+def eraseValue(x):
+    idx=bisect.bisect_left(ms,x)
+    if idx<len(ms) and ms[idx]==x:
+        ms.pop(idx)
+    # TODO: 实现删除逻辑
+    pass
+
+def xCount(x):
+    i1=bisect.bisect_left(ms,x)
+    i2=bisect.bisect_right(ms,x)
+    return i2-i1
+    # TODO: 求x在集合中的个数
+    pass
+
+def sizeOfSet():
+    return len(ms)
+    # TODO: 返回集合大小
+    pass
+
+def getPre(x):#bisect.bisect_left:按升序找x插入的位置
+    idx=bisect.bisect_left(ms,x)
+    return ms[idx-1] if idx>0 else -1
+    # TODO: 实现找前驱
+    pass
+
+def getBack(x):#bisect.bisect_right:比x大的第一个位置
+    idx=bisect.bisect_right(ms,x)
+    return ms[idx] if idx<len(ms) else -1
+    
+    # TODO: 实现找后继
+    pass
+
+def main():
+    q = int(input())
+    for _ in range(q):
+        line = map(int,input().split())
+        cnt,op,x=0,0,0
+        for i in line:
+            if(cnt==0):
+                op=i
+            else:
+                x=i
+            cnt+=1
+        
+        if op == 1:
+            insertValue(x)
+        elif op == 2:
+            eraseValue(x)
+        elif op == 3:
+            print(xCount(x))
+        elif op == 4:
+            print(sizeOfSet())
+        elif op == 5:
+            print(getPre(x))
+        elif op == 6:
+            print(getBack(x))
+
+if __name__ == "__main__":
+    main()
+```
+
+<a name="knowledge-near"></a>
+
+### 查找并删除最近元素
+
+初稿：插入、寻找相邻值与删除
+
+```python
+##错误
+import sys
+import bisect
+def solve():
+    da=iter(sys.stdin.read().split())
+    q=int(next(da))
+    ms=set()
+    ml=[]
+    for _ in range(q):
+        a,b=int(next(da)),int(next(da))
+        if a==1:
+            if b not in ms:
+                ms.add(b)
+                bisect.insort_right(ml,x)
+            else:
+                print('Already Exist')
+        else:
+           if ms:
+               i1=bisect.bisect_left(ml,x)
+               i2=bisect.bisect_right(ml,x)
+               c1=ml[i1-1] if i1>0 else float(-inf)
+               c2=ml[i2] if i2<len(ml) else float(inf)
+               if c1<=c2:
+                   ml.pop(i1-1)
+                   ms.remove(ml[i1-1])
+               else:
+                   ml.pop(i2)
+                   ms.remove(ml[i2])
+            else:
+                print('Empty')
+if __name__ == "__main__":
+    solve()
+```
+
+对照写法：比较两侧距离，记录胜者后更新集合与列表
+
+```python
+import sys
+import bisect
+
+def solve():
+    da = iter(sys.stdin.read().split())
+    # 防御性判断：如果输入为空直接退出
+    try:
+        q_str = next(da)
+    except StopIteration:
+        return
+    q = int(q_str)
+    
+    ms = set()
+    ml = []
+    out = [] # 收集输出，统一打印
+    
+    for _ in range(q):
+        a = int(next(da))
+        b = int(next(da))  # 这里统一用 b 接收目标值
+        
+        if a == 1:
+            if b not in ms:
+                ms.add(b)
+                bisect.insort_left(ml, b)
+            else:
+                out.append('Already Exist')
+        else:
+            if ms:
+                # 只需要一个 bisect_left，就能囊括所有情况
+                idx = bisect.bisect_left(ml, b)
+                
+                # 候选人1：左侧邻居（注意加上单引号的 '-inf'）
+                c1 = ml[idx - 1] if idx > 0 else float('-inf')
+                
+                # 候选人2：右侧邻居（或者是 b 本身）
+                c2 = ml[idx] if idx < len(ml) else float('inf')
+                
+                # 算距离！这是核心！
+                d1 = abs(b - c1)
+                d2 = abs(c2 - b)
+                
+                # 如果左边距离更近，或者距离一样（取较小值，即左边）
+                if d1 <= d2:
+                    winner = c1
+                    win_idx = idx - 1
+                else:
+                    winner = c2
+                    win_idx = idx
+                
+                # 记录结果
+                out.append(str(winner))
+                
+                # 【关键操作】：一定是先在 set 里删掉 winner，再去动 list！
+                # 这样就不会有索引错乱的问题
+                ms.remove(winner)
+                ml.pop(win_idx)
+            else:
+                out.append('Empty')
+
+    # 最后一次性输出所有结果
+    sys.stdout.write('\n'.join(out) + '\n')
+
+if __name__ == "__main__":
+    solve() # 这里要调用 solve，而不是 main
+```
+
 <a name="topic-recurrence"></a>
 
 ## 递推与组合计数
@@ -915,6 +2816,9 @@ class Solution:
 同一道跳台阶题，从递归、滚动变量、特征方程和组合计数四个角度看。
 
 - [跳台阶](#note-dfs-9)
+- [线性递推与滚动变量](#knowledge-linear)
+- [格点路径与组合数](#knowledge-paths)
+- [杨辉三角](#knowledge-pascal)
 
 <a name="note-dfs-9"></a>
 
@@ -968,6 +2872,82 @@ if __name__=='__main__':
 > 法四：设走k个2级台阶，则走了2k步，剩下走n-2k个一级台阶，总共k+n-2k=n-k种选法，
 > c(k,n-k)且k<=[n/2]
 
+<a name="knowledge-linear"></a>
+
+### 线性递推与滚动变量
+
+三阶递推，比较递归与滑动更新
+
+```python
+##牛牛学数列6
+n=int(input())
+def a(n):
+    if n==1:
+        return 0
+    elif n==2 or n==3:
+        return 1
+    else:
+        return a(n-3)+2*a(n-2)+a(n-1)
+print(a(n))
+##法二：滑窗思想
+n=int(input())
+a,b,c=0,1,1
+for i in range(n-3):
+    a,b,c=b,c,(a+2*b+c)
+print(c)
+```
+
+<a name="knowledge-paths"></a>
+
+### 格点路径与组合数
+
+网格路径的组合数与一维滚动数组
+
+```python
+##二维斐波那契数列
+n,m=map(int,input().split())
+##法一：走到目的地方案数
+import math
+print(math.comb(n+m-2,n-1)%1000000007)
+##从（1，1）到（n,m）要往下走n-1步，往右m-1
+
+##法二：滑窗
+dp=[1]*m
+for _ in range(1,n):
+    for j in range(1,m):
+        dp[j]=dp[j]+dp[j-1]
+print(dp[-1]%1000000007)
+```
+
+<a name="knowledge-pascal"></a>
+
+### 杨辉三角
+
+逐行递推并打印杨辉三角
+
+```python
+import sys
+import time
+input = sys.stdin.readline
+def solve():
+    n=int(input())
+    dp=[[0]*n for i in range(n)]
+    for i in range(n):
+        dp[i][0]=dp[i][i]=1
+        for j in range(1,i):
+            dp[i][j]=dp[i-1][j-1]+dp[i-1][j]
+        row=dp[i][:i+1]
+        print(*row)
+
+if __name__ == '__main__':
+    # 性能测试计时器完美应用
+    st = time.perf_counter()
+    solve()
+    ed = time.perf_counter()   
+    # 打印运行时长（记得加换行，以免和上面的输出粘在一起）
+    print(f"\n[性能测试] 运行耗时: {ed - st:.6f} 秒")
+```
+
 <a name="topic-dfs"></a>
 
 ## DFS、枚举与回溯
@@ -987,6 +2967,7 @@ if __name__=='__main__':
 - [火星人与字典序后继](#note-dfs-356)
 - [火柴加法](#note-dfs-561)
 - [配料的酸度与苦度](#note-dfs-610)
+- [递归分支与终止条件](#knowledge-enum)
 
 <a name="note-tsingpigdadademoban-37"></a>
 
@@ -1001,6 +2982,13 @@ sys.setrecursionlimit(1000000)
 记忆化装饰器片段
 
 ```python
+@lru_cache(maxsize=None)
+```
+
+导入 functools 后使用 lru_cache
+
+```python
+from functools import *
 @lru_cache(maxsize=None)
 ```
 
@@ -1068,6 +3056,27 @@ def solve():
     
 if __name__=='__main__':
     solve()
+```
+
+用整数累积已经处理的数位
+
+```python
+import sys
+def solve():
+    da=iter(sys.stdin.read().split())
+    s,a,b=next(da),int(next(da)),int(next(da))
+    def dfs(i,n,a,b):
+        global res
+        while i>=len(s):
+            res=max(res,n)
+            return
+        x=int(s[i])
+        d=min(9-x,a)
+        dfs(i+1,n*10+(x+d),a-d,b)
+        if b>=x+1:
+            dfs(i+1,n*10+9,a,b-(x+1))
+    dfs(0,0,a,b)
+    print(res)
 ```
 
 <a name="note-tsingpigdadademoban-531"></a>
@@ -1840,6 +3849,32 @@ def solve():
 solve()
 ```
 
+<a name="knowledge-enum"></a>
+
+### 递归分支与终止条件
+
+逐个位置探索可行选择的 DFS 骨架
+
+```python
+ans=初始答案
+def dfs(i,其他状态):
+    global ans
+    #1.终止条件：所有位置处理完，返回上一层
+    if i==总长度：
+        当前结果更新 ans
+        return
+    #2.取出当前位置信息
+    cur=当前对象
+    #3.枚举当前位置可行选择
+    if 选择1可行：
+        dfs(i+1,选择1后的状态)
+    if 选择2可行：
+        dfs(i+1,选择2后的状态)
+    ...
+dfs(起点状态)
+print(ans)
+```
+
 <a name="topic-bfs"></a>
 
 ## BFS 与最短步数
@@ -1848,6 +3883,7 @@ solve()
 
 - [网格上的多源 BFS](#note-tsingpigdadademoban-595)
 - [开关谜题的状态空间 BFS](#note-tsingpigdadademoban-705)
+- [网格连通块与最大面积](#knowledge-area)
 
 <a name="note-tsingpigdadademoban-595"></a>
 
@@ -1968,6 +4004,37 @@ def solve():
 
 if __name__ == '__main__':
     solve()
+```
+
+长草练习中的建图、扩散与输出草稿
+
+```python
+import sys
+from collections import deque
+def solve():
+    da=iter(sys.stdin.read().split())
+    di=[(1,0),(-1,0),(0,1),(0,-1)]
+    n,m=int(next(da)),int(next(da))
+    q=deque()
+    g=[[0]*n for _ in range(m)]‘
+    rows=[list(next(da)) for _ in range(n)]
+    for i  in range(n):
+        for j in range(m):
+            if rows[i][j]=='g':
+                g[i][j]=1
+                q.append((i,j))
+    ans=0
+    k=int(next(da))
+    while q and k:
+        x,y=q.popleft()
+        for dx,dy in di:
+            nx,ny=x+dx,y+dy
+            if 0<=nx<m and 0<=ny<n and g[nx][ny]==0:
+                g[nx][ny]=1
+                q.append((nx,ny))
+        k-=1
+    for row in g:
+        ans=''.join('g' if x else '.' for x in row)     ''.join必须放可迭代对象       
 ```
 
 <a name="note-tsingpigdadademoban-705"></a>
@@ -2168,6 +4235,85 @@ if __name__=='__main__':
     solve()
 ```
 
+用 visited 与 cost 数组记录灯光状态及最少步数
+
+```python
+import sys
+def solve():
+    da=iter(sys.stdin.read().split())
+##    da=iter('''2
+##4 4
+##5 5'''.split())
+    
+    t=int(next(da))
+    def bfs(n,m):
+        visited=[False]*(1<<m)
+        cost=[float('inf')]*(1<<m)
+        cost[0]=0
+        from collections import deque
+        q=deque([0])
+        while q:
+            state=q.popleft()
+##            if cost[(1<<m)-1]!=float('inf'):
+##                break
+            for i in range(n):
+                d1=i%m
+                d2=2*i%m
+                if d1==d2:
+                    newstate=state^(1<<d1)
+                else:
+                    newstate=state^(1<<d1)
+                    newstate=newstate^(1<<d2)
+                if not visited[newstate]:
+                    visited[newstate]=True
+##                    q.append(newstate)
+                    cost[newstate]=cost[state]+1
+                    if newstate==(1<<m)-1:#
+                        print(cost[(1<<m)-1])#
+                        return # 找到答案，直接拔掉这台 BFS 机器的电源，让外面的 for 循环继续开下一局！
+                    q.append(newstate)#
+        print('-1')        
+##        print(cost[(1<<m)-1]) if not cost[(1<<m)-1]==float('inf') else print('-1')
+    for _ in range(t):
+##        n,m=int(next(da)),int(next(da))
+##        bfs(n,m)
+        bfs(int(next(da)),int(next(da)))#
+        
+if __name__=='__main__':
+    solve()
+```
+
+<a name="knowledge-area"></a>
+
+### 网格连通块与最大面积
+
+四邻域搜索，统计每个连通块的面积
+
+```python
+def solve(g):
+    n,m=len(g),len(g[0])
+    res=0
+    di=[(1,0),(-1,0),(0,1),(0,-1)]
+    def bfs(i,j):
+        ans=1
+        g[i][j]=0
+        q=deque([(i,j)])
+        while q:
+            x,y=q.popleft()
+            for dx,dy in di:
+                nx,ny=x+dx,y+dy
+                if 0<=nx<m and 0<=ny<n and g[nx][ny]:
+                    q.append((nx,ny))
+                    ans+=1
+                    g[nx][ny]=0
+        return ans                    
+    for i, row in enumerate(g):
+        for j,x in enumerate(row):
+            if x==1:
+                res=max(bfs(i,j),res)
+    return res                
+```
+
 <a name="topic-graph"></a>
 
 ## 图的表示与遍历
@@ -2206,6 +4352,46 @@ if __name__=='__main__':
     solve()
 ```
 
+用当前递归路径识别环的伪代码
+
+```python
+def dfs(u,d):
+    标记当前节点正在路径中
+    v=下一步
+    if v 没访问过：
+        dfs(v)
+    elif v 在当前路径：
+        找到环，更新答案
+    标记当前点处理完成
+```
+
+用路径深度差计算环长的草稿
+
+```python
+import sys
+def solve():
+    da=iter(sys.stdin.read().split())
+    sys.setrecursionlimit=10**5
+    n=int(next(da))
+    g=[0]+[int(next(da)) for _ in range(n)]
+    state=[0]*(n+1)
+    res=0
+    def dfs(i,idx,d):
+        global ans
+        if i in d:
+            ans=max(ans,idx-d[i])
+            return
+        if state[i]:
+            return
+        d[i]=idx
+        state[i]=1
+        dfs(g[u],idx+1,d)
+    for i in range(1,n+1):
+        if not state[i]:
+            d={}
+            dfs(i,1,d)
+```
+
 <a name="note-tsingpigdadademoban-1027"></a>
 
 ### 带权无向图与 DFS
@@ -2241,6 +4427,7 @@ def dfs(st):
 
 - [用整数表示集合](#note-tsingpigdadademoban-1002)
 - [按位枚举配料子集](#note-dfs-722)
+- [二进制取位与奇偶判断](#knowledge-bits)
 
 <a name="note-tsingpigdadademoban-1002"></a>
 
@@ -2318,6 +4505,23 @@ def solve():
 solve()
 ```
 
+<a name="knowledge-bits"></a>
+
+### 二进制取位与奇偶判断
+
+用按位与判断奇偶，并用右移读取第 k 位
+
+> 天下第一快的奇偶判断：
+> 判断一个数是奇数还是偶数，初学者都写 if n % 2 == 0:。
+> 奇数的二进制最后一位永远是 1，偶数的最后一位永远是 0。
+> 所以，真正的高手判断奇偶性，
+> 永远写 if n & 1: （说明是奇数）或者 if not (n & 1):（说明是偶数）。
+> 
+> 3. 联合终极公式：(n >> k) & 1
+> 功能： 这是计算机底层源码中最常见的公式，用于**“获取数字 $n$ 的第 $k$ 个二进制位的值”**。对比：
+> 它和十进制的 (n // (10 ** k)) % 10 在逻辑上完全对称，但在执行速度上快了无数倍。
+> & 1 等价于 % 2
+
 <a name="topic-math"></a>
 
 ## 数论与素数筛
@@ -2326,6 +4530,13 @@ solve()
 
 - [筛法与区间计数](#note-tsingpigdadademoban-50)
 - [素数判定与分解](#note-tsingpigdadademoban-80)
+- [整数拆位与数位和](#knowledge-digits)
+- [整数平方根](#knowledge-sqrt)
+- [坐标距离与三角形面积](#knowledge-geo)
+- [交错和与调和和](#knowledge-series)
+- [数位出现次数](#knowledge-countdig)
+- [模幂运算](#knowledge-pow)
+- [拼接整数序列的第 n 位](#knowledge-digitstr)
 
 <a name="note-tsingpigdadademoban-50"></a>
 
@@ -2504,6 +4715,287 @@ def ip(n):
             factors.append(minfactor)
             x//=minfactor
         return factors
+```
+
+平方根试除与 6k±1 的推导
+
+```python
+##素数判断
+##只要在 [2, √n] 中找到第一个因子（第二个自动会出来）
+##n 就不是素数
+##法一
+from math import isqrt
+T=int(input())
+for _ in range(T):
+    n=int(input())
+    print("Yes" if n>1 and all(n%i!=0 for i in range(2,isqrt(n)+1)) else "No")
+##法二
+##所有自然数都可以表示为 6k, 6k+1, 6k+2, 6k+3, 6k+4, 6k+5 （k>= 0）的形式。
+##6k, 6k+2, 6k+4 一定是偶数，能被 2 整除。6k, 6k+3 一定能被 3 整除。
+##因此，当 n >= 5 时，所有的素数必定分布在 6k+1 或 6k+5（即 6k-1）的形式中。
+##这步推导意味着什么？
+##意味着我们在写 for 循环找因子时，可以避开所有2和3的倍数，每次循环直接让步长跳跃 6！
+##这使得测试因子的数量直接缩小到原来的三分之一。
+```
+
+埃氏筛的循环边界草稿
+
+```python
+##挨氏筛
+import math
+isp=[True]*(n+1)
+isp[0]=isp[1]=False
+p=[]
+for i in range(2,math.isqrt(n)+1):
+    if isp[i]:
+        for j in range(i**2,i,m+1):
+            isp[j]=False
+for i in range(2,n+1):
+    if isp[i]:p.append(i)
+```
+
+<a name="knowledge-digits"></a>
+
+### 整数拆位与数位和
+
+用取余和整除提取个位、十位
+
+```python
+##带余除法####################################################################
+a=int(input())
+print(a%10)
+    
+##整数的十位########################################################################
+a=int(input())
+if a//10==0:
+    print('0')
+else:
+    a//=10
+    print(a%10)
+```
+
+对字符串中的各位求和
+
+```python
+#####位数和################################################################
+a=input()
+s=sum(int(i) for i in a)
+print(s)
+```
+
+把秒数拆为时、分、秒
+
+```python
+#####时间转换################################################################
+##a=int(input())
+##b=a//3600
+##c=(a-b*3600)//60
+##d=a-b*3600-c*60
+##print(b,c,d)
+#更好的方法
+a = int(input())
+# 只改2个 / 为 //，其余不变
+print("%d %d %d"%(a//3600, a%3600//60, a%60))#除余的概念
+```
+
+通过索引遍历数位并求和
+
+```python
+##数位之和
+n=input()
+print(sum(int(n[i]) for i in range(len(n))))
+```
+
+<a name="knowledge-sqrt"></a>
+
+### 整数平方根
+
+开平方并向下取整
+
+```python
+##平方根################################################################
+from  math import sqrt,floor
+a=int(input())
+print(floor(sqrt(a)))#a=int(n**0.5)orprint(int(sqrt(n)))
+```
+
+<a name="knowledge-geo"></a>
+
+### 坐标距离与三角形面积
+
+欧氏距离、曼哈顿距离及其差值
+
+```python
+###绕距################################################################
+from math import sqrt,fabs
+grid=[list(map(int,input().split())) for _ in range(2)]
+d1=sqrt((grid[0][0]-grid[1][0])**2+(grid[0][1]-grid[1][1])**2)
+d2=fabs(grid[0][0]-grid[1][0])+fabs(grid[0][1]-grid[1][1])
+d3=fabs(d1-d2)
+print(format(d3,".9f"))
+```
+
+用叉积表示三角形面积
+
+> 三角形已知三点坐标求面积：叉积绝对值的一半
+
+<a name="knowledge-series"></a>
+
+### 交错和与调和和
+
+交替加减与倒数求和
+
+```python
+##牛牛学数列
+n=int(input())
+##print(sum+=i if i%2!=0 else -i for i in range(1,n+1))语法错了
+s=sum(i if i%2!=0 else -i for i in range(1,n+1))
+print(s)
+
+##牛牛学数列2
+n=int(input())
+s=sum(1/i  for i in range(1,n+1))
+print(f"{s:.6f}")
+```
+
+<a name="knowledge-countdig"></a>
+
+### 数位出现次数
+
+用 Counter、字符串拼接或逐数扫描统计出现次数
+
+```python
+from collections import Counter
+a=[i for i in range(1,n+1)]
+a=str(a)
+c=Counter(a)
+print(c[str(x)])
+n,x=map(int,input().split())
+a=''.join(str(i) for i in range(1,n+1))
+##print(a.count('x'))
+print(a.count(str(x)))
+##更快
+for i in range(1,n+1):
+    ans+=str(i).count(str(x))
+```
+
+按高位、当前位、低位计数的第一版
+
+> 1到n有多少0   位数取数本质
+
+```python
+n,x=map(int,input().split())
+step=1
+while step<=n:
+    hs,ls=n//step,n%step
+    c=hs%10
+    if c>x:
+        ans+=(hs//10+1)*step
+    elif c==x:
+        ans+=(hs//10)*step+ls+1
+    else:
+        ans+=(hs//10)*step
+    if not x:
+        ans-=step
+    step*=10
+print(cnt)
+```
+
+第二次推演整除、取余与按位取数
+
+```python
+step=1
+while step<=n:
+    hs,ls=n//step,n%step
+    c=hs%10
+    if c>x:
+        ans+=(hs//10+1)*step
+    elif c==x:
+        ans+=(hs//10)*step+ls+1
+    else:
+        ans+=(hs//10)*step
+    if not x:
+        ans-=step
+    step*=10
+print(ans)
+```
+
+> 本质2：// 的本质是“向右推移并丢弃”。// (整除操作符：十进制右移器)
+> // 10的k次方 的物理意义就是**“抹掉数字最右边的 k 位”**。
+> 在十进制里，你把一个数整除 10（// 10），它的本质效果就是把整个数字向右推了一位，
+> 最右边的那位直接掉下悬崖摔碎了。
+> 除以 100，就是往右推两位，掉下去两个。
+> 本质3：% 的本质是“只保留最右边的尾巴”。
+> % 10的k次方 的物理意义就是**“只保留数字最右边的 k 位，左边的全部清零屏蔽”**。
+> 你对一个数取余 10（% 10），本质效果就是拿一把刀，贴着最后一位的左边切下去，
+> 左边的主体全扔掉，只保留切下来的最后一位。    
+> 合体必杀技： 如果我们想精准拿到某一位（比如百位），怎么做？
+> 第一步：用 // 100，把百位右边的数字全部推下悬崖，
+> 此时原来的“百位”就变成了新的“个位”（最后一位）。
+> 第二步：用 % 10，一刀切下去，把新个位左边的数字全扔掉。
+> 完美拿到了百位！
+
+<a name="knowledge-pow"></a>
+
+### 模幂运算
+
+内置 pow 的三参数形式
+
+> 杀手八：幂模运算只用内置pow(a,b,c)
+
+<a name="knowledge-digitstr"></a>
+
+### 拼接整数序列的第 n 位
+
+按位数划分区间的初稿
+
+```python
+n=int(input())
+if n<10:
+    print(n)
+elif 10<=n<180:
+    n-=9
+    n
+```
+
+用整除和取余定位两位数及其数位
+
+>  你正在尝试的数学解法（极其容易写错边界）
+
+```python
+n = int(input())
+if n <= 9:
+    print(n)
+elif n <= 189:
+    n -= 9  # 扣除掉1位数的9个字符
+    # 剩下的 n，是在 "10111213..." 这个纯2位数序列里的找第 n 个字符
+    # (n-1)//2 算出是第几个数字，(n-1)%2 算出是这个数字里的第几位
+    num = 10 + (n - 1) // 2 
+    digit_idx = (n - 1) % 2
+    print(str(num)[digit_idx])
+else:
+    # 还要继续写 3 位数的逻辑... (190 到 2889)
+    pass    
+```
+
+逐个拼接与一次 join 后按索引取位
+
+```python
+n = int(input())
+
+s = ""
+for i in range(1, 1001):
+    s += str(i)  # 暴力把数字转成字符串拼起来
+
+ 字符串的索引是从 0 开始的，所以第 n 个字符的索引是 n-1
+print(s[n-1])
+
+n = int(input())
+
+ 瞬间生成 "1234567891011..."
+s = "".join(map(str, range(1, 1001))) 
+
+print(s[n-1])
 ```
 
 编排参考 [开放 CS/AI 知识库的 Python 代码模板](https://wiki.dwj601.cn/ds-and-algo/templates-py/)。
