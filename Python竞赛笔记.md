@@ -39,16 +39,13 @@ list(map(s.index,s))  # 返回字符索引数组，返回的是第一次出现�
 c=[e for row in matrix for e in row]
 
 s.find(obj)#找不到返回-1，不会报错
-
 ```
 
 对两个序列逐项求和
 
 ```python
 map(lambda x,y :x+y,[1,2],[3,4])
-
 ```
-
 
 <a name="note-tsingpigdadademoban-14"></a>
 
@@ -72,10 +69,7 @@ for x in s:
 arr=[a,a,a,bdf,df,]
 c=Couter(arr)
 print(c.most_common(2))
-
-
 ```
-
 
 <a name="note-tsingpigdadademoban-39"></a>
 
@@ -87,17 +81,13 @@ range 长度与按条件调用 lambda 的速记
 length=[(end-start)//step]针对range(start,end,step)
 
 (lambda :print('no'),lambda :print('yes'))[sum(l)/len(l)<60]()末尾括号立马调用函数
-
 ```
 
 过滤含 4 的数和 4 的倍数。此行的 map 与 filter 括号仍是草稿
 
 ```python
 a='\n'.join(map(str(x),filter(lambda x: x%4!=0 and '4' not in str(x)),range(1,n+1)))
-
-
 ```
-
 
 <a name="note-rthsrth-1"></a>
 
@@ -145,7 +135,6 @@ if __name__=='__main__':
 grid=[int(next(da)) for _ in range(m) for _ in range(n)]
 
 sys.stdout.write('\n'.join(out)+'\n')
-
 ```
 
 逐行读取与 strip 的两次练习
@@ -157,7 +146,6 @@ for line in sys.stdin:
 
 for line in sys.stdin:
     line=line.strip()
-
 ```
 
 DFS 练习文件中的输入骨架
@@ -168,11 +156,7 @@ def solve():
     da=iter(sys.stdin.read().split())
 if __name__=='__main__':
     solve()
-
-
-
 ```
-
 
 <a name="note-tsingpigdadademoban-882"></a>
 
@@ -206,7 +190,6 @@ if __name__ == '__main__':
         sys.stdout = open('out.txt', 'w', encoding='utf-8')
     # --------------------------------------------------   
     solve()
-
 ```
 
 精简写法与文件名字符串的提醒
@@ -223,9 +206,7 @@ if __name__ =='__main__':
         sys.stdin=open('in.txt','r',encoding='utf-8')#是字符串！！！
         sys.stdout=open('out.txt','w',encoding='utf-8')
     solve()
-        
 ```
-
 
 <a name="note-tsingpigdadademoban-920"></a>
 
@@ -267,7 +248,6 @@ def solve():
 
 if __name__ == '__main__':
     solve()
-
 ```
 
 从文件读入并在终端输出
@@ -290,8 +270,6 @@ def solve():
 
 if __name__ == '__main__':
     solve()
-
-
 ```
 
 逐行处理并写到 out.txt
@@ -310,7 +288,6 @@ def solve():
 
 if __name__ == '__main__':
     solve()
-
 ```
 
 按逗号拆字段，末尾保留未完成的 with 语句
@@ -326,11 +303,8 @@ def solve():
             parts = line.strip().split(',')
             # 处理 parts...
 
-
 with open('in.txt','r',encoding='utf-8') as fin,\
      open('out.txt','w',encoding='utf-8') as fout
-
-
 ```
 
 <a name="topic-structure"></a>
@@ -369,9 +343,7 @@ def majorityElement(nums):
 　　　　　　count -= 1
 　　　　　　
 　　return candidate
-
 ```
-
 
 <a name="note-tsingpigdadademoban-245"></a>
 
@@ -397,9 +369,7 @@ def longestConsecutive(self, nums: List[int]) -> int:
             cur, y = cur + 1, y - 1
         res = max(res, cur)
     return res
-
 ```
-
 
 <a name="note-tsingpigdadademoban-263"></a>
 
@@ -426,7 +396,6 @@ class Solution:
             changed.remove(x)
             ans.append(x//2)
         return ans
-
 ```
 
 用 Counter 沿倍数链扣除配对次数，单独处理零
@@ -462,7 +431,6 @@ class Solution:
                 else:
                     y=4*y
         return ans
-
 ```
 
 <a name="topic-greedy"></a>
@@ -494,9 +462,7 @@ class Solution:
         for p in people:
             ans.insert(p[1],p)
         return ans
-
 ```
-
 
 <a name="note-tsingpigdadademoban-112"></a>
 
@@ -521,9 +487,7 @@ class Solution:
                     c-=1
                     if c==0:break
         return sum(ip)
-
 ```
-
 
 <a name="note-tsingpigdadademoban-129"></a>
 
@@ -557,9 +521,7 @@ def solve():
     print(ans)        
 if __name__=='__main__':
     solve()
-
 ```
-
 
 <a name="note-tsingpigdadademoban-155"></a>
 
@@ -570,9 +532,7 @@ if __name__=='__main__':
 ```python
 ##LeetCode 1834
 ##LeetCode 218
-
 ```
-
 
 <a name="note-tsingpigdadademoban-158"></a>
 
@@ -592,7 +552,6 @@ class Solution:
             if cur>l:
                 cur+=heappop(hq)
         return len(hq)
-
 ```
 
 魔塔。生命值不足时推迟已经遇到的伤害最大的一项
@@ -615,7 +574,6 @@ class Solution:
                 cur-= heappop(hq)
                 ans+=1
         return ans
-
 ```
 
 加油站。燃料不足时从已经过的站中补选油量最多的
@@ -643,7 +601,6 @@ class Solution:
         return ans
 ```
 
-
 <a name="note-tsingpigdadademoban-208"></a>
 
 ### 利润与类别数的权衡
@@ -670,9 +627,7 @@ class Solution:
                 vip.add(c)
             res=max(res,tot+len(vip)**2)###########
         return res
-
 ```
-
 
 <a name="note-tsingpigdadademoban-228"></a>
 
@@ -697,9 +652,7 @@ class Solution:
             if len(hp)==k:
                 ans=min(ans,ri*sq)#娶不到
         return ans
-
 ```
-
 
 <a name="note-tsingpigdadademoban-336"></a>
 
@@ -721,7 +674,6 @@ class Solution:
                 y-=1
             res+=1
         return res
-
 ```
 
 <a name="topic-difference"></a>
@@ -755,9 +707,7 @@ class Solution:
             cnt+=t[i]
             d[i]+=cnt
         return max(d)
-
 ```
-
 
 <a name="note-reshensaibaiduzhixing-1"></a>
 
@@ -849,11 +799,8 @@ def solve():
     m=bst(1,10**9,lambda v:all(c//v<=d for c,d in zip(a,b))
     M=bst(1,10**9,lambda v:any(c//v<d for c,d in zip(a,b))-1
         
-    
 if __name__=='__main__':
     solve()
-
-
 ```
 
 带判定方向讲解的左右边界模板
@@ -902,8 +849,6 @@ M_pos = bisect_right(1, 10**9, lambda v: all(A // v >= B for A, B in zip(a, b)))
 # 因为 bisect_right 返回的是第一个 False 的坐标，所以最大合法的 True 坐标需要减 1
 M = M_pos - 1
 print(m, M)
-
-
 ```
 
 快读版本，对比两个判定函数与返回边界
@@ -939,9 +884,7 @@ def solve():
     
 if __name__=='__main__':
     solve()
-
 ```
-
 
 <a name="note-tsingpigdadademoban-466"></a>
 
@@ -963,7 +906,6 @@ class Solution:
             return lo-1
         return br(0,max(candies)+1,lambda x:sum(i//x for i in candies)>=k)
 #左闭右开模板，上界+1
-
 ```
 
 <a name="topic-recurrence"></a>
@@ -1025,7 +967,6 @@ if __name__=='__main__':
 
 > 法四：设走k个2级台阶，则走了2k步，剩下走n-2k个一级台阶，总共k+n-2k=n-k种选法，
 > c(k,n-k)且k<=[n/2]
-> 
 
 <a name="topic-dfs"></a>
 
@@ -1055,18 +996,13 @@ if __name__=='__main__':
 
 ```python
 sys.setrecursionlimit(1000000)
-
 ```
 
 记忆化装饰器片段
 
 ```python
 @lru_cache(maxsize=None)
-
-
-
 ```
-
 
 <a name="note-tsingpigdadademoban-313"></a>
 
@@ -1097,9 +1033,7 @@ class Solution:
             cnt[cur]-=tasks[i]
         dfs(0,0)
         return res
-
 ```
-
 
 <a name="note-tsingpigdadademoban-480"></a>
 
@@ -1132,13 +1066,9 @@ def solve():
     dfs(0,a,b)
     print(res)
     
-            
 if __name__=='__main__':
     solve()
-
-
 ```
-
 
 <a name="note-tsingpigdadademoban-531"></a>
 
@@ -1180,7 +1110,6 @@ print(ans)         # 请问，现在打印 ans，结果是什么？
 > 
 > 而那句看似没道理的 path.pop()，就是你每次看完后续剧情回来后，
 > 必须把脑子里的杂念“清除”，才能继续看当下的剧情。
-> 
 
 把路径用 join 存成字符串的例子
 
@@ -1197,7 +1126,6 @@ print(ans)         # 请问，现在打印 ans，结果是什么？
 > 真相大白：
 > 在这段代码里，你根本没有把 arr 这个列表塞进结果集里！你是在每一次触底的时候，利用 join 自动把 arr 里的内容“冲洗成了一张固定的实物照片（字符串）”，
 > 然后把照片放进了相册 out 里！
-> 
 
 何时把当前路径记入答案
 
@@ -1210,7 +1138,6 @@ print(ans)         # 请问，现在打印 ans，结果是什么？
 > 
 > 如果不认（必须要固定长度，或者必须要全部选完），
 > 那就憋着，带着它继续往下走，直到满足条件（走到最后）了，再拍照。
-
 
 <a name="note-tsingpigdadademoban-558"></a>
 
@@ -1234,7 +1161,6 @@ class Solution:
             dfs(i+1)
         dfs(1)
         return ans
-            
 ```
 
 洛谷 P1157。从 start 向后选数，避免产生重复组合
@@ -1264,9 +1190,7 @@ def solve():
     sys.stdout.write('\n'.join(out)+'\n')                
 if __name__=='__main__':
     solve()
-    
 ```
-
 
 <a name="note-tsingpigdadademoban-574"></a>
 
@@ -1297,7 +1221,6 @@ class Solution:
         dfs(0,0)
         return ans
 ```
-
 
 <a name="note-dfs-39"></a>
 
@@ -1344,10 +1267,7 @@ def solve():
     sys.stdout.write('\n'.join(out)+'\n')
 if __name__=='__main__':
     solve()
-
-
 ```
-
 
 <a name="note-dfs-79"></a>
 
@@ -1389,7 +1309,6 @@ if __name__=='__main__':
     solve()
 ```
 
-
 <a name="note-dfs-158"></a>
 
 ### 选数与素数和
@@ -1408,7 +1327,6 @@ def solve():
     ans=0
     out=[]
     arr=[]
-    
 ```
 
 DFS 主干。到达 k 个数后按上面的素数表累计，保留 nonlocal 注解
@@ -1442,9 +1360,7 @@ DFS 主干。到达 k 个数后按上面的素数表累计，保留 nonlocal 注
     print(ans)                
 if __name__=='__main__':
     solve()
-
 ```
-
 
 <a name="note-dfs-294"></a>
 
@@ -1521,10 +1437,7 @@ def solve():
             sys.stdout.write('\n'.join(out)+'\n')    
 if __name__=='__main__':
     solve()
-
-
 ```
-
 
 <a name="note-dfs-356"></a>
 
@@ -1554,8 +1467,6 @@ def solve():
     print(*arr)    
 if __name__=='__main__':
     solve()
-
-
 ```
 
 带讲解的 DFS，贴着目标排列确定起点
@@ -1599,7 +1510,6 @@ def solve():
 ##这就是物理意义上的“拔掉主机电源”。                    
             return
                 
-            
 ##        for i in range(1,n+1):
 ##        step3-part2:改造循环的起点:如果被锁着，起点必须是 target[depth]；
 ##        如果自由了，起点才是 1
@@ -1626,7 +1536,6 @@ def solve():
     dfs(1,True)   
 if __name__=='__main__':
     solve()
-
 ```
 
 纠错笔记，重点检查贴边状态、递归终点和 visited 的恢复时机
@@ -1708,8 +1617,6 @@ def solve():
     
 if __name__=='__main__':
     solve()
-
-
 ```
 
 精简 DFS，保留注释掉的输入样例
@@ -1752,9 +1659,7 @@ def solve():
     dfs(1,True)
 if __name__=='__main__':
     solve()
-
 ```
-
 
 <a name="note-dfs-561"></a>
 
@@ -1810,10 +1715,7 @@ def solve():
             
 if __name__=='__main__':
     solve()
-
-
 ```
-
 
 <a name="note-dfs-610"></a>
 
@@ -1889,9 +1791,6 @@ def solve():
     print(minans)        
 if __name__=='__main__':
     solve()
-
-
-
 ```
 
 用路径标记选取哪些配料，叶节点计算酸苦差
@@ -1939,8 +1838,6 @@ def solve():
     print(ans)
 
 solve()
-
-
 ```
 
 <a name="topic-bfs"></a>
@@ -2012,7 +1909,6 @@ def solve():
         out.append(''.join(row))
     sys.stdout.write('\n'.join(out)+'\n')
     
-                
 if __name__=='__main__':
     solve()
 ```
@@ -2072,13 +1968,7 @@ def solve():
 
 if __name__ == '__main__':
     solve()
-
-
-
-
-    
 ```
-
 
 <a name="note-tsingpigdadademoban-705"></a>
 
@@ -2143,9 +2033,6 @@ for mask in unique_effects:
 > 
 > 只有当 next_state not in visited 成立
 > （这是一种全宇宙首次发现的全新灯光格局），你才被允许进入下一步。
-> 
-> 
-> 
 
 原稿对照表：网格上的坐标与灯光的位掩码
 
@@ -2161,7 +2048,6 @@ for mask in unique_effects:
 > 
 > 登记入队        grid[nx][ny] = 1        visited.add(next_state)         没来过！赶紧打上标记，塞进队列明天处理
 >                 q.append((nx, ny))      q.append(next_state)
->           
 
 完整讲解版，按层搜索最少按键次数
 
@@ -2232,7 +2118,6 @@ def solve():
 
 if __name__ == '__main__':
     solve()
-
 ```
 
 再写一遍。保留 op 的缩进与重复灯位的纠错记录
@@ -2281,7 +2166,6 @@ def solve():
         
 if __name__=='__main__':
     solve()
-
 ```
 
 <a name="topic-graph"></a>
@@ -2320,10 +2204,7 @@ def solve():
     print(res)
 if __name__=='__main__':
     solve()
-
-
 ```
-
 
 <a name="note-tsingpigdadademoban-1027"></a>
 
@@ -2350,8 +2231,6 @@ def dfs(st):
         if v not in s:
             dfs(v)
             s.add(v)
-
-
 ```
 
 <a name="topic-bits"></a>
@@ -2392,9 +2271,6 @@ def dfs(st):
 >                              
 > 技巧 6：改变状态
 > 代码：S^(1<<j)
-> 
-> 
-
 
 <a name="note-dfs-722"></a>
 
@@ -2440,24 +2316,6 @@ def solve():
     print(ans)
 
 solve()
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ```
 
 <a name="topic-math"></a>
@@ -2480,7 +2338,6 @@ import sys
 import math
 def solve():
     
-        
     n=10**7
     ip=[False]*(10**7+1)
     ip[0]=ip[1]=False
@@ -2502,9 +2359,7 @@ def solve():
     
 if __name__=='__main__':
     solve()    
-
 ```
-
 
 <a name="note-tsingpigdadademoban-80"></a>
 
@@ -2521,7 +2376,6 @@ def ip(n):
     for i in range(3,isqrt(n)+1,2):
         if n%i==0:return False
     return True#老是忘记
-
 ```
 
 选数题的三种判定需求与选型笔记
@@ -2537,7 +2391,6 @@ def ip(n):
 ##
 ##题目不仅要求素数，还让我疯狂给数字做“质因数分解”？每一个合数的“最小质因子”是什么。
 ##👉 被迫掏出欧拉线性筛。 （利用它的最小质因子特性）  
-    
 ```
 
 朴素埃氏筛。这里的 isp 表供选数题的 DFS 主干查询
@@ -2605,7 +2458,6 @@ def ip(n):
                 length=(n-i*i)//i+1
                 isprime[i*i,n+1,i]=bytearray([0])*length
         return [i for i,prime in enumerate(isprime) if prime]
-    
 ```
 
 欧拉筛与最小质因子表草稿。第 237 行判定要核对 spf 和 isp
@@ -2652,8 +2504,6 @@ def ip(n):
             factors.append(minfactor)
             x//=minfactor
         return factors
-
-
 ```
 
 编排参考 [开放 CS/AI 知识库的 Python 代码模板](https://wiki.dwj601.cn/ds-and-algo/templates-py/)。
