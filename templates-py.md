@@ -7,6 +7,8 @@ icon: material/language-python
 >
 > 本文记录 Python 语言的算法竞赛代码模板，全部使用 built-in 模块，有不严谨或错误的地方还望评论区斧正🤗。更好的阅读体验参见 [专题解析](./topic/index.md) 部分。
 
+自己的练习与不同解法见 [Python 竞赛笔记（按主题整理）](notes/python/README.md)。
+
 ## 常用数据结构 API
 
 ### 列表

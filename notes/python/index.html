@@ -1,0 +1,2098 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Python 竞赛笔记 · algorithm</title>
+<link rel="stylesheet" href="../../markdown-light-theme/code-light.css">
+<style>
+  :root { color-scheme: light; font-family: "Source Sans 3","Microsoft YaHei",system-ui,sans-serif; color: #293747; background: #fff; }
+  * { box-sizing: border-box; }
+  body { max-width: 82rem; margin: 0 auto; padding: 0 4vw; display: grid; grid-template-columns: 14rem minmax(0,1fr); gap: 4vw; }
+  nav { position: sticky; top: 0; align-self: start; max-height: 100vh; padding: 2rem 1.2rem 2rem 0; overflow: auto; border-right: 1px solid #dde4eb; }
+  nav strong { display: block; margin: 0 0 1rem; }
+  nav ul { list-style: none; margin: 0; padding: 0; }
+  nav a { display: block; padding: .35rem 0; }
+  a { color: #205c86; text-underline-offset: .2em; }
+  nav a:not(:hover) { text-decoration: none; }
+  main { min-width: 0; padding: 1.6rem 0 5rem; line-height: 1.7; }
+  h1,h2,h3,h4 { line-height: 1.4; }
+  h1 { margin: 0 0 .5rem; }
+  h2 { margin: 3rem 0 .3rem; padding-bottom: .5rem; border-bottom: 1px solid #dde4eb; }
+  h3 { margin: 2rem 0 .7rem; }
+  h4 { margin: 1.2rem 0 .3rem; font-size: 1rem; font-weight: 500; }
+  .local-nav { line-height: 2; font-size: .9rem; }
+  .source { color: #53657a; font-size: .82rem; overflow-wrap: anywhere; }
+  .original-prose { margin: .8rem 0 1.4rem; padding-left: 1rem; border-left: 2px solid #c9d7e4; white-space: pre-wrap; overflow-wrap: anywhere; }
+  .theme-default-content { --code-gutter-width: 4rem; }
+  .theme-default-content article > div[class*="language-"] { margin-top: .55rem; }
+  @media(max-width: 800px) {
+    body { display: block; }
+    nav { position: static; max-height: none; border: 0; border-bottom: 1px solid #dde4eb; padding: 1rem 0; }
+    nav ul { display: flex; flex-wrap: wrap; column-gap: 1rem; font-size: .85rem; }
+  }
+</style>
+</head>
+<body><nav aria-label="主题目录"><strong>主题目录</strong><ul><li><a href="#python">Python 基础与常用 API</a></li>
+<li><a href="#io">竞赛输入输出与文件</a></li>
+<li><a href="#structure">数据结构与计数</a></li>
+<li><a href="#greedy">贪心与堆</a></li>
+<li><a href="#difference">前缀和与差分</a></li>
+<li><a href="#binary">二分与答案边界</a></li>
+<li><a href="#recurrence">递推与组合计数</a></li>
+<li><a href="#dfs">DFS、枚举与回溯</a></li>
+<li><a href="#bfs">BFS 与最短步数</a></li>
+<li><a href="#graph">图的表示与遍历</a></li>
+<li><a href="#bits">位运算与子集</a></li>
+<li><a href="#math">数论与素数筛</a></li></ul></nav>
+<main class="theme-default-content"><h1>Python 竞赛笔记</h1>
+<p>按知识点查找例题与不同写法。代码块左侧的行号对应原始文件。</p>
+<section id="python"><h2>Python 基础与常用 API</h2><p>从字符串查找、字典计数到表达式，按操作查找原来的小实验。</p>
+<div class="local-nav"><a href="#python-字符串、列表与映射">字符串、列表与映射</a> · <a href="#python-字典与频次统计">字典与频次统计</a> · <a href="#python-表达式与可迭代对象">表达式与可迭代对象</a> · <a href="#python-字符串赋值与循环">字符串赋值与循环</a></div>
+<h3 id="python-字符串、列表与映射">字符串、列表与映射</h3>
+<article data-file="Tsingpigdadademoban.py" data-first="7" data-last="13"><h4>首次出现的位置、矩阵展平与 find</h4><a class="source" href="originals/Tsingpigdadademoban.py">Tsingpigdadademoban.py · L7–13</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token comment"># 返回 string 指定范围中 str 首次出现的位置</span>
+<span class="token builtin">list</span>(<span class="token builtin">map</span>(s.index,s))  <span class="token comment"># 返回字符索引数组，返回的是第一次出现的索引！如 &quot;abcba&quot;-&gt; [0,1,2,1,0]</span>
+
+c=[e <span class="token keyword">for</span> row <span class="token keyword">in</span> matrix <span class="token keyword">for</span> e <span class="token keyword">in</span> row]
+
+s.find(obj)<span class="token comment">#找不到返回-1，不会报错</span>
+
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">7<br>8<br>9<br>10<br>11<br>12<br>13</div></div></article>
+<article data-file="Tsingpigdadademoban.py" data-first="31" data-last="32"><h4>对两个序列逐项求和</h4><a class="source" href="originals/Tsingpigdadademoban.py">Tsingpigdadademoban.py · L31–32</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token builtin">map</span>(<span class="token keyword">lambda</span> x,y :x+y,[<span class="token number">1</span>,<span class="token number">2</span>],[<span class="token number">3</span>,<span class="token number">4</span>])
+
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">31<br>32</div></div></article>
+<h3 id="python-字典与频次统计">字典与频次统计</h3>
+<article data-file="Tsingpigdadademoban.py" data-first="14" data-last="30"><h4>默认值、字符权重与频次草稿。dict.get 的默认值应以位置参数传入，Couter 是原稿的拼写</h4><a class="source" href="originals/Tsingpigdadademoban.py">Tsingpigdadademoban.py · L14–30</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code>d.get(key,default_value=<span class="token keyword">None</span>)<span class="token comment"># 返回 key 对应的 value，不存在则返回 default_value</span>
+d.values()
+d.items()
+d=defaultdict(<span class="token builtin">list</span>)
+d=defaultdict(<span class="token builtin">int</span>)
+<span class="token builtin">dict</span>=[i-<span class="token builtin">ord</span>(<span class="token string">&#x27;a&#x27;</span>)+<span class="token number">1</span> <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span>(<span class="token builtin">ord</span>(<span class="token string">&#x27;a&#x27;</span>),<span class="token builtin">ord</span>(<span class="token string">&#x27;z&#x27;</span>)-<span class="token number">1</span>)]
+
+<span class="token comment">##2606牛客</span>
+dict1=<span class="token builtin">dict</span>(<span class="token builtin">zip</span>(chars,vals))
+<span class="token keyword">for</span> x <span class="token keyword">in</span> s:
+    y=dict1.get(x,default_value=<span class="token builtin">ord</span>(x)-<span class="token builtin">ord</span>(<span class="token string">&#x27;a&#x27;</span>)+<span class="token number">1</span>)
+
+arr=[a,a,a,bdf,df,]
+c=Couter(arr)
+<span class="token builtin">print</span>(c.most_common(<span class="token number">2</span>))
+
+
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30</div></div></article>
+<h3 id="python-表达式与可迭代对象">表达式与可迭代对象</h3>
+<article data-file="Tsingpigdadademoban.py" data-first="39" data-last="42"><h4>range 长度与按条件调用 lambda 的速记</h4><a class="source" href="originals/Tsingpigdadademoban.py">Tsingpigdadademoban.py · L39–42</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code>length=[(end-start)//step]针对range(start,end,step)
+
+(<span class="token keyword">lambda</span> :<span class="token builtin">print</span>(<span class="token string">&#x27;no&#x27;</span>),<span class="token keyword">lambda</span> :<span class="token builtin">print</span>(<span class="token string">&#x27;yes&#x27;</span>))[<span class="token builtin">sum</span>(l)/<span class="token builtin">len</span>(l)&lt;<span class="token number">60</span>]()末尾括号立马调用函数
+
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">39<br>40<br>41<br>42</div></div></article>
+<article data-file="Tsingpigdadademoban.py" data-first="77" data-last="79"><h4>过滤含 4 的数和 4 的倍数。此行的 map 与 filter 括号仍是草稿</h4><a class="source" href="originals/Tsingpigdadademoban.py">Tsingpigdadademoban.py · L77–79</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code>a=<span class="token string">&#x27;\n&#x27;</span>.join(<span class="token builtin">map</span>(<span class="token builtin">str</span>(x),<span class="token builtin">filter</span>(<span class="token keyword">lambda</span> x: x%<span class="token number">4</span>!=<span class="token number">0</span> <span class="token keyword">and</span> <span class="token string">&#x27;4&#x27;</span> <span class="token keyword">not</span> <span class="token keyword">in</span> <span class="token builtin">str</span>(x)),<span class="token builtin">range</span>(<span class="token number">1</span>,n+<span class="token number">1</span>)))
+
+
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">77<br>78<br>79</div></div></article>
+<h3 id="python-字符串赋值与循环">字符串赋值与循环</h3>
+<article data-file="rthsrth.py" data-first="1" data-last="6"><h4>变量重新绑定与持续输出实验。原稿的 while True 会一直打印</h4><a class="source" href="originals/rthsrth.py">rthsrth.py · L1–6</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code>a=<span class="token string">&#x27;abc&#x27;</span>
+
+b=a
+a=<span class="token string">&#x27;def&#x27;</span>
+<span class="token keyword">while</span> <span class="token keyword">True</span>:
+    <span class="token builtin">print</span>(<span class="token string">&#x27;陈文静是大美女&#x27;</span>)
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">1<br>2<br>3<br>4<br>5<br>6</div></div></article>
+</section>
+<section id="io"><h2>竞赛输入输出与文件</h2><p>先看标准输入的入口，再对照读文件、重定向和逐行解析的写法。</p>
+<div class="local-nav"><a href="#io-竞赛快读与输出">竞赛快读与输出</a> · <a href="#io-本地文件与标准流切换">本地文件与标准流切换</a> · <a href="#io-文件题的读写方式">文件题的读写方式</a></div>
+<h3 id="io-竞赛快读与输出">竞赛快读与输出</h3>
+<article data-file="Tsingpigdadademoban.py" data-first="1" data-last="6"><h4>读入整数的入口</h4><a class="source" href="originals/Tsingpigdadademoban.py">Tsingpigdadademoban.py · L1–6</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token keyword">import</span> sys
+<span class="token keyword">def</span> <span class="token function">solve</span>():
+    da=<span class="token builtin">iter</span>(sys.stdin.read().split())
+    n=<span class="token builtin">int</span>(<span class="token builtin">next</span>(da))
+<span class="token keyword">if</span> <span class="token builtin">__name__</span>==<span class="token string">&#x27;__main__&#x27;</span>:
+    solve()
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">1<br>2<br>3<br>4<br>5<br>6</div></div></article>
+<article data-file="Tsingpigdadademoban.py" data-first="33" data-last="36"><h4>依次读取网格元素与批量输出</h4><a class="source" href="originals/Tsingpigdadademoban.py">Tsingpigdadademoban.py · L33–36</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code>grid=[<span class="token builtin">int</span>(<span class="token builtin">next</span>(da)) <span class="token keyword">for</span> _ <span class="token keyword">in</span> <span class="token builtin">range</span>(m) <span class="token keyword">for</span> _ <span class="token keyword">in</span> <span class="token builtin">range</span>(n)]
+
+sys.stdout.write(<span class="token string">&#x27;\n&#x27;</span>.join(out)+<span class="token string">&#x27;\n&#x27;</span>)
+
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">33<br>34<br>35<br>36</div></div></article>
+<article data-file="Tsingpigdadademoban.py" data-first="43" data-last="49"><h4>逐行读取与 strip 的两次练习</h4><a class="source" href="originals/Tsingpigdadademoban.py">Tsingpigdadademoban.py · L43–49</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token keyword">import</span> sys
+<span class="token keyword">for</span> line <span class="token keyword">in</span> sys.stdin:
+    line=line.strip()
+
+<span class="token keyword">for</span> line <span class="token keyword">in</span> sys.stdin:
+    line=line.strip()
+
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">43<br>44<br>45<br>46<br>47<br>48<br>49</div></div></article>
+<article data-file="dfs.py" data-first="1" data-last="8"><h4>DFS 练习文件中的输入骨架</h4><a class="source" href="originals/dfs.py">dfs.py · L1–8</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token keyword">import</span> sys
+<span class="token keyword">def</span> <span class="token function">solve</span>():
+    da=<span class="token builtin">iter</span>(sys.stdin.read().split())
+<span class="token keyword">if</span> <span class="token builtin">__name__</span>==<span class="token string">&#x27;__main__&#x27;</span>:
+    solve()
+
+
+
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">1<br>2<br>3<br>4<br>5<br>6<br>7<br>8</div></div></article>
+<h3 id="io-本地文件与标准流切换">本地文件与标准流切换</h3>
+<article data-file="Tsingpigdadademoban.py" data-first="882" data-last="907"><h4>检测 in.txt 后重定向输入、输出</h4><a class="source" href="originals/Tsingpigdadademoban.py">Tsingpigdadademoban.py · L882–907</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token keyword">import</span> sys
+<span class="token keyword">import</span> os
+<span class="token keyword">def</span> <span class="token function">solve</span>():
+    <span class="token comment"># 这里的逻辑一行都不用改！</span>
+    da = <span class="token builtin">iter</span>(sys.stdin.read().split())
+    <span class="token keyword">try</span>:
+        n = <span class="token builtin">int</span>(<span class="token builtin">next</span>(da))
+        <span class="token comment"># ... 你的其他算法逻辑 ...</span>
+        
+        <span class="token comment"># 测试输出</span>
+        sys.stdout.write(<span class="token string">f&quot;成功读取了数字: {n}\n&quot;</span>)
+        
+    <span class="token keyword">except</span> <span class="token builtin">StopIteration</span>:
+        <span class="token keyword">return</span>
+<span class="token keyword">if</span> <span class="token builtin">__name__</span> == <span class="token string">&#x27;__main__&#x27;</span>:
+    <span class="token comment"># ---------------- 核心文件读写模板 ----------------</span>
+    <span class="token comment"># 极度严谨的“自动环境切换”逻辑：</span>
+    <span class="token comment"># 判断当前目录下是否存在名为 &#x27;in.txt&#x27; 的文件</span>
+    <span class="token keyword">if</span> os.path.exists(<span class="token string">&#x27;in.txt&#x27;</span>):
+        <span class="token comment"># 1. 劫持标准输入：让 sys.stdin 从控制台输入变成读取 in.txt</span>
+        sys.stdin = <span class="token builtin">open</span>(<span class="token string">&#x27;in.txt&#x27;</span>, <span class="token string">&#x27;r&#x27;</span>, encoding=<span class="token string">&#x27;utf-8&#x27;</span>)
+        <span class="token comment"># 2. 劫持标准输出：让所有的 print 和 sys.stdout.write 统统写入 out.txt</span>
+        sys.stdout = <span class="token builtin">open</span>(<span class="token string">&#x27;out.txt&#x27;</span>, <span class="token string">&#x27;w&#x27;</span>, encoding=<span class="token string">&#x27;utf-8&#x27;</span>)
+    <span class="token comment"># --------------------------------------------------   </span>
+    solve()
+
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">882<br>883<br>884<br>885<br>886<br>887<br>888<br>889<br>890<br>891<br>892<br>893<br>894<br>895<br>896<br>897<br>898<br>899<br>900<br>901<br>902<br>903<br>904<br>905<br>906<br>907</div></div></article>
+<article data-file="Tsingpigdadademoban.py" data-first="908" data-last="919"><h4>精简写法与文件名字符串的提醒</h4><a class="source" href="originals/Tsingpigdadademoban.py">Tsingpigdadademoban.py · L908–919</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token keyword">import</span> sys
+<span class="token keyword">import</span> os
+<span class="token keyword">def</span> <span class="token function">solve</span>():
+    da=<span class="token builtin">iter</span>(sys.stdin.read().split())
+    n=<span class="token builtin">int</span>(<span class="token builtin">next</span>(da))
+    sys.stdout.write(<span class="token string">&#x27;\n&#x27;</span>)
+<span class="token keyword">if</span> <span class="token builtin">__name__</span> ==<span class="token string">&#x27;__main__&#x27;</span>:
+    <span class="token keyword">if</span> os.path.exists(<span class="token string">&#x27;in.txt&#x27;</span>):
+        sys.stdin=<span class="token builtin">open</span>(<span class="token string">&#x27;in.txt&#x27;</span>,<span class="token string">&#x27;r&#x27;</span>,encoding=<span class="token string">&#x27;utf-8&#x27;</span>)<span class="token comment">#是字符串！！！</span>
+        sys.stdout=<span class="token builtin">open</span>(<span class="token string">&#x27;out.txt&#x27;</span>,<span class="token string">&#x27;w&#x27;</span>,encoding=<span class="token string">&#x27;utf-8&#x27;</span>)
+    solve()
+        
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">908<br>909<br>910<br>911<br>912<br>913<br>914<br>915<br>916<br>917<br>918<br>919</div></div></article>
+<h3 id="io-文件题的读写方式">文件题的读写方式</h3>
+<article data-file="Tsingpigdadademoban.py" data-first="920" data-last="953"><h4>用 with 同时管理输入输出，保留两种写答案的方法</h4><a class="source" href="originals/Tsingpigdadademoban.py">Tsingpigdadademoban.py · L920–953</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token keyword">def</span> <span class="token function">solve</span>():
+    <span class="token comment"># 1. 极其优雅的“双管齐下”写法</span>
+    <span class="token comment"># 用 with open 同时打开两个文件，保证程序结束或报错时，文件会自动安全关闭！</span>
+    <span class="token keyword">with</span> <span class="token builtin">open</span>(<span class="token string">&#x27;in.txt&#x27;</span>, <span class="token string">&#x27;r&#x27;</span>, encoding=<span class="token string">&#x27;utf-8&#x27;</span>) <span class="token keyword">as</span> fin, \
+         <span class="token builtin">open</span>(<span class="token string">&#x27;out.txt&#x27;</span>, <span class="token string">&#x27;w&#x27;</span>, encoding=<span class="token string">&#x27;utf-8&#x27;</span>) <span class="token keyword">as</span> fout:
+        
+        <span class="token comment"># 2. 继承我们的“快读”衣钵</span>
+        <span class="token comment"># 把 fin (文件对象) 里的内容瞬间全部吸干，切分并做成迭代器</span>
+        da = <span class="token builtin">iter</span>(fin.read().split())
+        
+        <span class="token keyword">try</span>:
+            <span class="token comment"># 假设题目第一行给了两个数 n 和 m</span>
+            n = <span class="token builtin">int</span>(<span class="token builtin">next</span>(da))
+            m = <span class="token builtin">int</span>(<span class="token builtin">next</span>(da))
+            
+            <span class="token comment"># --- 在这里写你的核心算法 ---</span>
+            <span class="token comment"># 假设答案是 n 和 m 的和</span>
+            ans = n + m
+            
+            <span class="token comment"># 3. 写入答案 (两种标准写法任选其一)</span>
+            
+            <span class="token comment"># 写法 A：用原生的 write（记得手动加换行符 \n）</span>
+            fout.write(<span class="token builtin">str</span>(ans) + <span class="token string">&#x27;\n&#x27;</span>)
+            
+            <span class="token comment"># 写法 B：极其推荐！借用 print 的力量，把输出重定向到 fout</span>
+            <span class="token comment"># 这种写法不用你自己转 str，也不用手动加 \n，非常舒服</span>
+            <span class="token comment"># print(ans, file=fout)</span>
+            
+        <span class="token keyword">except</span> <span class="token builtin">StopIteration</span>:
+            <span class="token keyword">pass</span>
+
+<span class="token keyword">if</span> <span class="token builtin">__name__</span> == <span class="token string">&#x27;__main__&#x27;</span>:
+    solve()
+
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">920<br>921<br>922<br>923<br>924<br>925<br>926<br>927<br>928<br>929<br>930<br>931<br>932<br>933<br>934<br>935<br>936<br>937<br>938<br>939<br>940<br>941<br>942<br>943<br>944<br>945<br>946<br>947<br>948<br>949<br>950<br>951<br>952<br>953</div></div></article>
+<article data-file="Tsingpigdadademoban.py" data-first="954" data-last="972"><h4>从文件读入并在终端输出</h4><a class="source" href="originals/Tsingpigdadademoban.py">Tsingpigdadademoban.py · L954–972</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token comment"># 模式一：读取文件，处理数据，最后print输出</span>
+<span class="token keyword">def</span> <span class="token function">solve</span>():
+    <span class="token comment"># 比赛中：如果是国赛文件题，直接读题目给的文件名</span>
+    <span class="token comment"># 本地刷题时：用你的模板保证 in.txt 存在即可</span>
+    filename = <span class="token string">&#x27;primes.txt&#x27;</span> 
+    
+    <span class="token keyword">with</span> <span class="token builtin">open</span>(filename, <span class="token string">&#x27;r&#x27;</span>, encoding=<span class="token string">&#x27;utf-8&#x27;</span>) <span class="token keyword">as</span> f:
+        <span class="token comment"># 建议根据数据量选择读取方式</span>
+        <span class="token comment"># 方式A（小数据）：content = f.readlines()</span>
+        <span class="token comment"># 方式B（大数据）：iter(f.read().split())</span>
+        data = <span class="token builtin">iter</span>(f.read().split())
+        
+        <span class="token comment"># 你的逻辑...</span>
+        <span class="token builtin">print</span>(ans)
+
+<span class="token keyword">if</span> <span class="token builtin">__name__</span> == <span class="token string">&#x27;__main__&#x27;</span>:
+    solve()
+
+
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">954<br>955<br>956<br>957<br>958<br>959<br>960<br>961<br>962<br>963<br>964<br>965<br>966<br>967<br>968<br>969<br>970<br>971<br>972</div></div></article>
+<article data-file="Tsingpigdadademoban.py" data-first="973" data-last="986"><h4>逐行处理并写到 out.txt</h4><a class="source" href="originals/Tsingpigdadademoban.py">Tsingpigdadademoban.py · L973–986</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token comment"># 模式二：读取 in.txt，处理后写入 out.txt</span>
+<span class="token keyword">def</span> <span class="token function">solve</span>():
+    <span class="token keyword">with</span> <span class="token builtin">open</span>(<span class="token string">&#x27;log.txt&#x27;</span>, <span class="token string">&#x27;r&#x27;</span>, encoding=<span class="token string">&#x27;utf-8&#x27;</span>) <span class="token keyword">as</span> fin, \
+         <span class="token builtin">open</span>(<span class="token string">&#x27;result.txt&#x27;</span>, <span class="token string">&#x27;w&#x27;</span>, encoding=<span class="token string">&#x27;utf-8&#x27;</span>) <span class="token keyword">as</span> fout:
+        
+        <span class="token comment"># 将处理逻辑直接关联到 fout</span>
+        <span class="token keyword">for</span> line <span class="token keyword">in</span> fin:
+            <span class="token comment"># 你的处理逻辑</span>
+            processed_data = line.strip() 
+            fout.write(processed_data + <span class="token string">&#x27;\n&#x27;</span>)
+
+<span class="token keyword">if</span> <span class="token builtin">__name__</span> == <span class="token string">&#x27;__main__&#x27;</span>:
+    solve()
+
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">973<br>974<br>975<br>976<br>977<br>978<br>979<br>980<br>981<br>982<br>983<br>984<br>985<br>986</div></div></article>
+<article data-file="Tsingpigdadademoban.py" data-first="987" data-last="1001"><h4>按逗号拆字段，末尾保留未完成的 with 语句</h4><a class="source" href="originals/Tsingpigdadademoban.py">Tsingpigdadademoban.py · L987–1001</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token comment"># 模式三：结构化解析</span>
+<span class="token keyword">import</span> re
+
+<span class="token keyword">def</span> <span class="token function">solve</span>():
+    <span class="token keyword">with</span> <span class="token builtin">open</span>(<span class="token string">&#x27;bill.txt&#x27;</span>, <span class="token string">&#x27;r&#x27;</span>, encoding=<span class="token string">&#x27;utf-8&#x27;</span>) <span class="token keyword">as</span> f:
+        <span class="token keyword">for</span> line <span class="token keyword">in</span> f:
+            <span class="token comment"># 常见技巧：split() 空格，或者用 re.split() 切割复杂字符串</span>
+            parts = line.strip().split(<span class="token string">&#x27;,&#x27;</span>)
+            <span class="token comment"># 处理 parts...</span>
+
+
+<span class="token keyword">with</span> <span class="token builtin">open</span>(<span class="token string">&#x27;in.txt&#x27;</span>,<span class="token string">&#x27;r&#x27;</span>,encoding=<span class="token string">&#x27;utf-8&#x27;</span>) <span class="token keyword">as</span> fin,\
+     <span class="token builtin">open</span>(<span class="token string">&#x27;out.txt&#x27;</span>,<span class="token string">&#x27;w&#x27;</span>,encoding=<span class="token string">&#x27;utf-8&#x27;</span>) <span class="token keyword">as</span> fout
+
+
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">987<br>988<br>989<br>990<br>991<br>992<br>993<br>994<br>995<br>996<br>997<br>998<br>999<br>1000<br>1001</div></div></article>
+</section>
+<section id="structure"><h2>数据结构与计数</h2><p>用集合删去已处理的元素，用频次表记录配对次数，或用抵消计数维护候选值。</p>
+<div class="local-nav"><a href="#structure-多数元素与摩尔投票">多数元素与摩尔投票</a> · <a href="#structure-哈希集合与连续序列">哈希集合与连续序列</a> · <a href="#structure-从双倍数组还原">从双倍数组还原</a></div>
+<h3 id="structure-多数元素与摩尔投票">多数元素与摩尔投票</h3>
+<article data-file="Tsingpigdadademoban.py" data-first="95" data-last="96"><h4>复杂度笔记</h4><a class="source" href="originals/Tsingpigdadademoban.py">Tsingpigdadademoban.py · L95–96</a><div class="original-prose">这道题的官方名字叫摩尔投票法。它把时间和空间复杂度压榨到了人类的物理极限：
+O(N)时间，O(1)空间。
+</div></article>
+<article data-file="Tsingpigdadademoban.py" data-first="97" data-last="111"><h4>计数抵消法，前提是多数元素存在。原稿缩进使用了全角空格</h4><a class="source" href="originals/Tsingpigdadademoban.py">Tsingpigdadademoban.py · L97–111</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token keyword">def</span> <span class="token function">majorityElement</span>(nums):
+　　candidate = <span class="token keyword">None</span>
+　　count = <span class="token number">0</span>
+　　
+　　<span class="token keyword">for</span> x <span class="token keyword">in</span> nums:
+　　　　<span class="token keyword">if</span> count == <span class="token number">0</span>:
+　　　　　　candidate = x
+　　　　　　count = <span class="token number">1</span>
+　　　　<span class="token keyword">elif</span> x == candidate:
+　　　　　　count += <span class="token number">1</span>
+　　　　<span class="token keyword">else</span>:
+　　　　　　count -= <span class="token number">1</span>
+　　　　　　
+　　<span class="token keyword">return</span> candidate
+
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">97<br>98<br>99<br>100<br>101<br>102<br>103<br>104<br>105<br>106<br>107<br>108<br>109<br>110<br>111</div></div></article>
+<h3 id="structure-哈希集合与连续序列">哈希集合与连续序列</h3>
+<article data-file="Tsingpigdadademoban.py" data-first="245" data-last="262"><h4>从未处理的数向两侧扩展，删除属于同一段的元素</h4><a class="source" href="originals/Tsingpigdadademoban.py">Tsingpigdadademoban.py · L245–262</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token keyword">def</span> <span class="token function">longestConsecutive</span>(self, nums: List[<span class="token builtin">int</span>]) -&gt; <span class="token builtin">int</span>:
+    s = <span class="token builtin">set</span>(nums)
+    res = <span class="token number">0</span>
+    <span class="token keyword">for</span> x <span class="token keyword">in</span> nums:
+        <span class="token keyword">if</span> x <span class="token keyword">not</span> <span class="token keyword">in</span> s: <span class="token keyword">continue</span>
+        cur = <span class="token number">1</span>
+        s.remove(x)
+        y = x + <span class="token number">1</span>
+        <span class="token keyword">while</span> y <span class="token keyword">in</span> s:
+            s.remove(y)
+            cur, y = cur + <span class="token number">1</span>, y + <span class="token number">1</span>
+        y = x - <span class="token number">1</span>
+        <span class="token keyword">while</span> y <span class="token keyword">in</span> s:
+            s.remove(y)
+            cur, y = cur + <span class="token number">1</span>, y - <span class="token number">1</span>
+        res = <span class="token builtin">max</span>(res, cur)
+    <span class="token keyword">return</span> res
+
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">245<br>246<br>247<br>248<br>249<br>250<br>251<br>252<br>253<br>254<br>255<br>256<br>257<br>258<br>259<br>260<br>261<br>262</div></div></article>
+<h3 id="structure-从双倍数组还原">从双倍数组还原</h3>
+<article data-file="Tsingpigdadademoban.py" data-first="263" data-last="281"><h4>排序后二分寻找一半，逐对移除</h4><a class="source" href="originals/Tsingpigdadademoban.py">Tsingpigdadademoban.py · L263–281</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token keyword">from</span> bisect <span class="token keyword">import</span> *
+<span class="token keyword">class</span> <span class="token class-name">Solution</span>:
+    <span class="token keyword">def</span> <span class="token function">findOriginalArray</span>(self, changed: List[<span class="token builtin">int</span>]) -&gt; List[<span class="token builtin">int</span>]:
+        n = <span class="token builtin">len</span>(changed)
+        <span class="token keyword">if</span> n &amp; <span class="token number">1</span>: <span class="token keyword">return</span> []
+        changed.sort()
+        ans=[]
+        <span class="token keyword">while</span> changed:
+            x=changed[-<span class="token number">1</span>]
+            <span class="token keyword">if</span> x&amp;<span class="token number">1</span>:
+                <span class="token keyword">return</span> []
+            idx=bisect(changed,x//<span class="token number">2</span>)-<span class="token number">1</span>
+            <span class="token keyword">if</span> idx==<span class="token builtin">len</span>(changed) <span class="token keyword">or</span> changed[idx]*<span class="token number">2</span>!=x:
+                <span class="token keyword">return</span> []
+            changed.remove(x//<span class="token number">2</span>)
+            changed.remove(x)
+            ans.append(x//<span class="token number">2</span>)
+        <span class="token keyword">return</span> ans
+
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">263<br>264<br>265<br>266<br>267<br>268<br>269<br>270<br>271<br>272<br>273<br>274<br>275<br>276<br>277<br>278<br>279<br>280<br>281</div></div></article>
+<article data-file="Tsingpigdadademoban.py" data-first="282" data-last="312"><h4>用 Counter 沿倍数链扣除配对次数，单独处理零</h4><a class="source" href="originals/Tsingpigdadademoban.py">Tsingpigdadademoban.py · L282–312</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token keyword">from</span> bisect <span class="token keyword">import</span> *
+<span class="token keyword">from</span> collections <span class="token keyword">import</span> *
+<span class="token keyword">class</span> <span class="token class-name">Solution</span>:
+    <span class="token keyword">def</span> <span class="token function">findOriginalArray</span>(self, changed: List[<span class="token builtin">int</span>]) -&gt; List[<span class="token builtin">int</span>]:
+        n = <span class="token builtin">len</span>(changed)
+        <span class="token keyword">if</span> n &amp; <span class="token number">1</span>: <span class="token keyword">return</span> []
+        cnt=Counter(changed)
+        ans=[]
+        <span class="token keyword">for</span> i ,x <span class="token keyword">in</span> <span class="token builtin">enumerate</span>(changed):
+            <span class="token keyword">if</span> cnt[x]==<span class="token number">0</span>:<span class="token keyword">continue</span><span class="token comment">#漏了，核心就是处理所有cnt，循环动力</span>
+            <span class="token keyword">if</span> x==<span class="token number">0</span>:
+                <span class="token keyword">if</span> cnt[x]&amp;<span class="token number">1</span> :<span class="token keyword">return</span> []
+                <span class="token keyword">else</span>:
+                    ans.extend([<span class="token number">0</span>]*(cnt[<span class="token number">0</span>]//<span class="token number">2</span>))
+                cnt[x]=<span class="token number">0</span>
+            <span class="token keyword">while</span> <span class="token keyword">not</span> x&amp;<span class="token number">1</span> <span class="token keyword">and</span> cnt[x//<span class="token number">2</span>]&gt;<span class="token number">0</span>:<span class="token comment">#cnt[x//2]&gt;0，腾都没了怎么摸瓜</span>
+                x//=<span class="token number">2</span>
+            y=x
+            <span class="token keyword">while</span> cnt[y]:<span class="token comment">#漏了，核心就是处理所有cnt，循环动力</span>
+                <span class="token keyword">if</span> cnt[<span class="token number">2</span>*y]&lt;cnt[y]:
+                    <span class="token keyword">return</span> []
+                ans.extend([y]*cnt[y])
+                cnt[y*<span class="token number">2</span>]-=cnt[y]
+                cnt[y]=<span class="token number">0</span>
+
+                <span class="token keyword">if</span> cnt[y*<span class="token number">2</span>]:
+                    y=<span class="token number">2</span>*y
+                <span class="token keyword">else</span>:
+                    y=<span class="token number">4</span>*y
+        <span class="token keyword">return</span> ans
+
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">282<br>283<br>284<br>285<br>286<br>287<br>288<br>289<br>290<br>291<br>292<br>293<br>294<br>295<br>296<br>297<br>298<br>299<br>300<br>301<br>302<br>303<br>304<br>305<br>306<br>307<br>308<br>309<br>310<br>311<br>312</div></div></article>
+</section>
+<section id="greedy"><h2>贪心与堆</h2><p>先确定处理顺序，再判断要保留哪项选择。反悔型题目用堆取出最值得撤回的一项。</p>
+<div class="local-nav"><a href="#greedy-排序与插入">排序与插入</a> · <a href="#greedy-区间任务调度">区间任务调度</a> · <a href="#greedy-分段计算训练成本">分段计算训练成本</a> · <a href="#greedy-堆相关练习题号">堆相关练习题号</a> · <a href="#greedy-反悔贪心与堆">反悔贪心与堆</a> · <a href="#greedy-利润与类别数的权衡">利润与类别数的权衡</a> · <a href="#greedy-工资比例与最大堆">工资比例与最大堆</a> · <a href="#greedy-双指针配对">双指针配对</a></div>
+<h3 id="greedy-排序与插入">排序与插入</h3>
+<article data-file="Tsingpigdadademoban.py" data-first="87" data-last="94"><h4>按身高降序、同身高按 k 升序重建队列</h4><a class="source" href="originals/Tsingpigdadademoban.py">Tsingpigdadademoban.py · L87–94</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token keyword">class</span> <span class="token class-name">Solution</span>:
+    <span class="token keyword">def</span> <span class="token function">reconstructQueue</span>(self, people: List[List[<span class="token builtin">int</span>]]) -&gt; List[List[<span class="token builtin">int</span>]]:
+        people.sort(key=<span class="token keyword">lambda</span> x:(-x[<span class="token number">0</span>],x[<span class="token number">1</span>]))
+        ans=[]
+        <span class="token keyword">for</span> p <span class="token keyword">in</span> people:
+            ans.insert(p[<span class="token number">1</span>],p)
+        <span class="token keyword">return</span> ans
+
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">87<br>88<br>89<br>90<br>91<br>92<br>93<br>94</div></div></article>
+<h3 id="greedy-区间任务调度">区间任务调度</h3>
+<article data-file="Tsingpigdadademoban.py" data-first="112" data-last="128"><h4>按结束时间排序，优先把开机时段安排在区间右端</h4><a class="source" href="originals/Tsingpigdadademoban.py">Tsingpigdadademoban.py · L112–128</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token keyword">class</span> <span class="token class-name">Solution</span>:
+    <span class="token keyword">def</span> <span class="token function">findMinimumTime</span>(self, tasks: List[List[<span class="token builtin">int</span>]]) -&gt; <span class="token builtin">int</span>:
+        tasks.sort(key=<span class="token keyword">lambda</span> x:x[<span class="token number">1</span>])        
+        n=<span class="token builtin">len</span>(tasks)
+        ed=tasks[-<span class="token number">1</span>][<span class="token number">1</span>]
+
+        ip=[<span class="token number">0</span>]*(ed+<span class="token number">1</span>)
+        <span class="token keyword">for</span> l,r,c <span class="token keyword">in</span> tasks:
+            c-=<span class="token builtin">sum</span>(ip[l:r+<span class="token number">1</span>])
+            <span class="token keyword">if</span> c&gt;<span class="token number">0</span>:
+                <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span>(r,l-<span class="token number">1</span>,-<span class="token number">1</span>):
+                    <span class="token keyword">if</span> ip[i]:<span class="token keyword">continue</span>
+                    ip[i]=<span class="token number">1</span>
+                    c-=<span class="token number">1</span>
+                    <span class="token keyword">if</span> c==<span class="token number">0</span>:<span class="token keyword">break</span>
+        <span class="token keyword">return</span> <span class="token builtin">sum</span>(ip)
+
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">112<br>113<br>114<br>115<br>116<br>117<br>118<br>119<br>120<br>121<br>122<br>123<br>124<br>125<br>126<br>127<br>128</div></div></article>
+<h3 id="greedy-分段计算训练成本">分段计算训练成本</h3>
+<article data-file="Tsingpigdadademoban.py" data-first="129" data-last="154"><h4>按所需次数分组，每段比较集训价格与剩余单价总和</h4><a class="source" href="originals/Tsingpigdadademoban.py">Tsingpigdadademoban.py · L129–154</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token keyword">import</span> sys
+<span class="token keyword">def</span> <span class="token function">solve</span>():
+    da=<span class="token builtin">iter</span>(sys.stdin.read().split())
+    n,s=<span class="token builtin">int</span>(<span class="token builtin">next</span>(da)),<span class="token builtin">int</span>(<span class="token builtin">next</span>(da))
+    p=[<span class="token number">0</span>]*n
+    c=[<span class="token number">0</span>]*n
+    sc=<span class="token number">0</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span>(n):
+        p[i],c[i]=<span class="token builtin">int</span>(<span class="token builtin">next</span>(da)),<span class="token builtin">int</span>(<span class="token builtin">next</span>(da))
+        sc+=p[i]
+    c,p=<span class="token builtin">zip</span>(*<span class="token builtin">sorted</span>(<span class="token builtin">zip</span>(c,p)))
+    tg=<span class="token number">0</span>
+    ans=<span class="token number">0</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span>(n):
+        <span class="token keyword">if</span> sc&gt;=s:
+            ans+=(c[i]-tg)*s
+            
+        <span class="token keyword">else</span>:
+            ans+=(c[i]-tg)*sc
+        tg=c[i]<span class="token comment">#处理了多少尸体</span>
+        sc-=p[i]
+
+    <span class="token builtin">print</span>(ans)        
+<span class="token keyword">if</span> <span class="token builtin">__name__</span>==<span class="token string">&#x27;__main__&#x27;</span>:
+    solve()
+
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">129<br>130<br>131<br>132<br>133<br>134<br>135<br>136<br>137<br>138<br>139<br>140<br>141<br>142<br>143<br>144<br>145<br>146<br>147<br>148<br>149<br>150<br>151<br>152<br>153<br>154</div></div></article>
+<h3 id="greedy-堆相关练习题号">堆相关练习题号</h3>
+<article data-file="Tsingpigdadademoban.py" data-first="155" data-last="157"><h4>原稿记下的 LeetCode 1834 与 218</h4><a class="source" href="originals/Tsingpigdadademoban.py">Tsingpigdadademoban.py · L155–157</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token comment">##LeetCode 1834</span>
+<span class="token comment">##LeetCode 218</span>
+
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">155<br>156<br>157</div></div></article>
+<h3 id="greedy-反悔贪心与堆">反悔贪心与堆</h3>
+<article data-file="Tsingpigdadademoban.py" data-first="158" data-last="169"><h4>课程安排。超过截止时间时撤回耗时最长的课</h4><a class="source" href="originals/Tsingpigdadademoban.py">Tsingpigdadademoban.py · L158–169</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token keyword">class</span> <span class="token class-name">Solution</span>:
+    <span class="token keyword">def</span> <span class="token function">scheduleCourse</span>(self, courses: List[List[<span class="token builtin">int</span>]]) -&gt; <span class="token builtin">int</span>:
+        courses.sort(key=<span class="token keyword">lambda</span> x:(x[<span class="token number">1</span>],x[<span class="token number">0</span>]))
+        hq=[]
+        cur=<span class="token number">0</span>
+        <span class="token keyword">for</span> d,l <span class="token keyword">in</span> courses:
+            cur+=d
+            heappush(hq,-d)
+            <span class="token keyword">if</span> cur&gt;l:
+                cur+=heappop(hq)
+        <span class="token keyword">return</span> <span class="token builtin">len</span>(hq)
+
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">158<br>159<br>160<br>161<br>162<br>163<br>164<br>165<br>166<br>167<br>168<br>169</div></div></article>
+<article data-file="Tsingpigdadademoban.py" data-first="170" data-last="187"><h4>魔塔。生命值不足时推迟已经遇到的伤害最大的一项</h4><a class="source" href="originals/Tsingpigdadademoban.py">Tsingpigdadademoban.py · L170–187</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token keyword">from</span> heapq <span class="token keyword">import</span> *
+<span class="token keyword">class</span> <span class="token class-name">Solution</span>:
+    <span class="token keyword">def</span> <span class="token function">magicTower</span>(self, nums: List[<span class="token builtin">int</span>]) -&gt; <span class="token builtin">int</span>:       
+        ans=<span class="token number">0</span>
+        <span class="token keyword">if</span> <span class="token builtin">sum</span>(nums)+<span class="token number">1</span>&lt;=<span class="token number">0</span>:
+            <span class="token keyword">return</span> -<span class="token number">1</span>
+        hq=[]
+        cur=<span class="token number">1</span>
+        <span class="token keyword">for</span> i,x <span class="token keyword">in</span> <span class="token builtin">enumerate</span>(nums):
+            cur+=x
+            <span class="token keyword">if</span> x&lt;<span class="token number">0</span>:
+                heappush(hq,x)
+            <span class="token keyword">if</span> cur&lt;=<span class="token number">0</span>:
+               
+                cur-= heappop(hq)
+                ans+=<span class="token number">1</span>
+        <span class="token keyword">return</span> ans
+
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">170<br>171<br>172<br>173<br>174<br>175<br>176<br>177<br>178<br>179<br>180<br>181<br>182<br>183<br>184<br>185<br>186<br>187</div></div></article>
+<article data-file="Tsingpigdadademoban.py" data-first="188" data-last="207"><h4>加油站。燃料不足时从已经过的站中补选油量最多的</h4><a class="source" href="originals/Tsingpigdadademoban.py">Tsingpigdadademoban.py · L188–207</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token keyword">from</span> heapq <span class="token keyword">import</span> *
+<span class="token keyword">class</span> <span class="token class-name">Solution</span>:
+    <span class="token keyword">def</span> <span class="token function">minRefuelStops</span>(self, target: <span class="token builtin">int</span>, startFuel: <span class="token builtin">int</span>, stations: List[List[<span class="token builtin">int</span>]]) -&gt; <span class="token builtin">int</span>:
+        
+        stations.append([target,<span class="token number">0</span>])
+        wz=<span class="token number">0</span>
+        hp=[]
+        curf=startFuel
+        ans=<span class="token number">0</span>
+        <span class="token keyword">for</span> p,f <span class="token keyword">in</span> stations:
+            cost=p-wz
+            curf-=cost
+            wz=p
+            <span class="token keyword">while</span> curf&lt;<span class="token number">0</span> <span class="token keyword">and</span> hp:
+                curf-=heappop(hp)
+                ans+=<span class="token number">1</span>
+            <span class="token keyword">if</span> curf&lt;<span class="token number">0</span>:<span class="token comment">#加完油还不够</span>
+                <span class="token keyword">return</span> -<span class="token number">1</span>
+            heappush(hp,-f)
+        <span class="token keyword">return</span> ans
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">188<br>189<br>190<br>191<br>192<br>193<br>194<br>195<br>196<br>197<br>198<br>199<br>200<br>201<br>202<br>203<br>204<br>205<br>206<br>207</div></div></article>
+<h3 id="greedy-利润与类别数的权衡">利润与类别数的权衡</h3>
+<article data-file="Tsingpigdadademoban.py" data-first="208" data-last="227"><h4>先选利润最高的 k 项，再用新类别替换重复类别</h4><a class="source" href="originals/Tsingpigdadademoban.py">Tsingpigdadademoban.py · L208–227</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token keyword">class</span> <span class="token class-name">Solution</span>:
+    <span class="token keyword">def</span> <span class="token function">findMaximumElegance</span>(self, items: List[List[<span class="token builtin">int</span>]], k: <span class="token builtin">int</span>) -&gt; <span class="token builtin">int</span>:
+        items.sort(reverse=<span class="token keyword">True</span>)
+        st=[]<span class="token comment">#返回站</span>
+        vip=<span class="token builtin">set</span>()<span class="token comment">#尊贵去</span>
+        tot=<span class="token number">0</span>
+        res=<span class="token number">0</span>
+        <span class="token keyword">for</span> i ,(p,c) <span class="token keyword">in</span> <span class="token builtin">enumerate</span>(items):
+            <span class="token keyword">if</span> i&lt;k:
+                tot+=p
+                <span class="token keyword">if</span> c <span class="token keyword">not</span> <span class="token keyword">in</span> vip:
+                    vip.add(c)
+                <span class="token keyword">else</span>:
+                    st.append(p)
+            <span class="token keyword">elif</span> st <span class="token keyword">and</span> c <span class="token keyword">not</span> <span class="token keyword">in</span> vip :
+                tot+=p-st.pop()
+                vip.add(c)
+            res=<span class="token builtin">max</span>(res,tot+<span class="token builtin">len</span>(vip)**<span class="token number">2</span>)<span class="token comment">###########</span>
+        <span class="token keyword">return</span> res
+
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">208<br>209<br>210<br>211<br>212<br>213<br>214<br>215<br>216<br>217<br>218<br>219<br>220<br>221<br>222<br>223<br>224<br>225<br>226<br>227</div></div></article>
+<h3 id="greedy-工资比例与最大堆">工资比例与最大堆</h3>
+<article data-file="Tsingpigdadademoban.py" data-first="228" data-last="244"><h4>按工资质量比排序，用堆维护 k 人的质量总和</h4><a class="source" href="originals/Tsingpigdadademoban.py">Tsingpigdadademoban.py · L228–244</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token keyword">from</span> heapq <span class="token keyword">import</span> *
+<span class="token keyword">class</span> <span class="token class-name">Solution</span>:
+    <span class="token keyword">def</span> <span class="token function">mincostToHireWorkers</span>(self, quality: List[<span class="token builtin">int</span>], wage: List[<span class="token builtin">int</span>], k: <span class="token builtin">int</span>) -&gt; <span class="token builtin">float</span>:
+        r=([wage[i]/quality[i] <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span>(<span class="token builtin">len</span>(wage))])
+        lst=<span class="token builtin">sorted</span>(<span class="token builtin">zip</span>(r,quality))
+        hp=[]
+        sq=<span class="token number">0</span>
+        ans=<span class="token builtin">float</span>(<span class="token string">&#x27;inf&#x27;</span>)
+        <span class="token keyword">for</span> i,(ri,qi) <span class="token keyword">in</span> <span class="token builtin">enumerate</span>(lst):
+            heappush(hp,(-qi,i))
+            sq+=qi
+            <span class="token keyword">if</span> <span class="token builtin">len</span>(hp)&gt;k:
+                sq+=heappop(hp)[<span class="token number">0</span>]
+            <span class="token keyword">if</span> <span class="token builtin">len</span>(hp)==k:
+                ans=<span class="token builtin">min</span>(ans,ri*sq)<span class="token comment">#娶不到</span>
+        <span class="token keyword">return</span> ans
+
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">228<br>229<br>230<br>231<br>232<br>233<br>234<br>235<br>236<br>237<br>238<br>239<br>240<br>241<br>242<br>243<br>244</div></div></article>
+<h3 id="greedy-双指针配对">双指针配对</h3>
+<article data-file="Tsingpigdadademoban.py" data-first="336" data-last="349"><h4>救生艇。让最重的人尝试与最轻的人同船</h4><a class="source" href="originals/Tsingpigdadademoban.py">Tsingpigdadademoban.py · L336–349</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token keyword">class</span> <span class="token class-name">Solution</span>:
+    <span class="token keyword">def</span> <span class="token function">numRescueBoats</span>(self, people: List[<span class="token builtin">int</span>], limit: <span class="token builtin">int</span>) -&gt; <span class="token builtin">int</span>:
+        n=<span class="token builtin">len</span>(people)
+        people.sort(reverse=<span class="token keyword">True</span>)
+        x,y=<span class="token number">0</span>,n-<span class="token number">1</span>
+        res=<span class="token number">0</span>
+        <span class="token keyword">while</span> x&lt;=y:
+            remain=limit-people[x]
+            x+=<span class="token number">1</span>
+            <span class="token keyword">if</span> remain &gt;=people[y]:
+                y-=<span class="token number">1</span>
+            res+=<span class="token number">1</span>
+        <span class="token keyword">return</span> res
+
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">336<br>337<br>338<br>339<br>340<br>341<br>342<br>343<br>344<br>345<br>346<br>347<br>348<br>349</div></div></article>
+</section>
+<section id="difference"><h2>前缀和与差分</h2><p>把一次区间更新记录在两个端点上，再通过前缀和恢复每个位置的覆盖次数。</p>
+<div class="local-nav"><a href="#difference-区间覆盖与前缀和">区间覆盖与前缀和</a> · <a href="#difference-二分定位与差分计数">二分定位与差分计数</a></div>
+<h3 id="difference-区间覆盖与前缀和">区间覆盖与前缀和</h3>
+<article data-file="Tsingpigdadademoban.py" data-first="350" data-last="365"><h4>把每个数可调整的范围视为区间，用差分求最大重叠数</h4><a class="source" href="originals/Tsingpigdadademoban.py">Tsingpigdadademoban.py · L350–365</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token keyword">class</span> <span class="token class-name">Solution</span>:
+    <span class="token keyword">def</span> <span class="token function">maximumBeauty</span>(self, nums: List[<span class="token builtin">int</span>], k: <span class="token builtin">int</span>) -&gt; <span class="token builtin">int</span>:
+        n=<span class="token builtin">len</span>(nums)
+        m=<span class="token builtin">max</span>(nums)
+        t=[<span class="token number">0</span>]*(m+<span class="token number">2</span>*k+<span class="token number">2</span>)
+        d=[<span class="token number">0</span>]*(m+<span class="token number">2</span>*k+<span class="token number">2</span>)
+        cnt=<span class="token number">0</span>
+        <span class="token keyword">for</span> i ,x <span class="token keyword">in</span> <span class="token builtin">enumerate</span>(nums):
+            a,b=x,x+<span class="token number">2</span>*k
+            t[a]+=<span class="token number">1</span>
+            t[b+<span class="token number">1</span>]-=<span class="token number">1</span>
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span>(m+<span class="token number">2</span>*k+<span class="token number">2</span>):
+            cnt+=t[i]
+            d[i]+=cnt
+        <span class="token keyword">return</span> <span class="token builtin">max</span>(d)
+
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">350<br>351<br>352<br>353<br>354<br>355<br>356<br>357<br>358<br>359<br>360<br>361<br>362<br>363<br>364<br>365</div></div></article>
+<h3 id="difference-二分定位与差分计数">二分定位与差分计数</h3>
+<article data-file="reshensaibaiduzhixing.py" data-first="1" data-last="46"><h4>百度之星热身赛。用左右二分定位闭区间，再按覆盖次数模 4 分组，含手写输入样例</h4><a class="source" href="originals/reshensaibaiduzhixing.py">reshensaibaiduzhixing.py · L1–46</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token comment">##import sys</span>
+<span class="token comment">##def solve():</span>
+<span class="token comment">##    da=iter(sys.stdin.read().split())</span>
+<span class="token comment">##    n=int(next(da)</span>
+<span class="token comment">##    </span>
+<span class="token comment">##if __name__==&#x27;__main__&#x27;:</span>
+<span class="token comment">##    solve()</span>
+
+
+<span class="token keyword">import</span> sys
+<span class="token keyword">import</span> bisect
+<span class="token keyword">def</span> <span class="token function">solve</span>():
+    da=<span class="token builtin">iter</span>(sys.stdin.read().split())
+<span class="token comment">##    da=iter(&#x27;&#x27;&#x27;3 4</span>
+<span class="token comment">##2 5 1</span>
+<span class="token comment">##1 3</span>
+<span class="token comment">##2 2</span>
+<span class="token comment">##2 2</span>
+<span class="token comment">##2 2</span>
+<span class="token comment">##&#x27;&#x27;&#x27;.split())</span>
+    n,m=<span class="token builtin">int</span>(<span class="token builtin">next</span>(da)),<span class="token builtin">int</span>(<span class="token builtin">next</span>(da))
+    si=[<span class="token builtin">int</span>(<span class="token builtin">next</span>(da)) <span class="token keyword">for</span> _ <span class="token keyword">in</span> <span class="token builtin">range</span>(n)]
+    s=[<span class="token builtin">float</span>(<span class="token string">&#x27;-inf&#x27;</span>)]+<span class="token builtin">sorted</span>(si)+[<span class="token builtin">float</span>(<span class="token string">&#x27;inf&#x27;</span>)]
+    deff=[<span class="token number">0</span>]*(n+<span class="token number">2</span>)
+    diff=[<span class="token number">0</span>]*(n+<span class="token number">2</span>)
+    <span class="token keyword">for</span> _ <span class="token keyword">in</span> <span class="token builtin">range</span>(m):
+        l,r=<span class="token builtin">int</span>(<span class="token builtin">next</span>(da)),<span class="token builtin">int</span>(<span class="token builtin">next</span>(da))
+        inl=bisect.bisect_left(s,l)
+        inr=bisect.bisect_right(s,r)
+        diff[inl]+=<span class="token number">1</span>
+        diff[inr]-=<span class="token number">1</span>
+<span class="token comment">##        print(inl,inr)</span>
+    d,nan,x,b=<span class="token number">0</span>,<span class="token number">0</span>,<span class="token number">0</span>,<span class="token number">0</span>
+    ls=<span class="token number">0</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span>(<span class="token number">1</span>,n+<span class="token number">1</span>):
+        ls+=diff[i]
+        deff[i]+=ls
+        <span class="token keyword">if</span> deff[i]%<span class="token number">4</span>==<span class="token number">0</span>:d+=<span class="token number">1</span>
+        <span class="token keyword">elif</span> deff[i]%<span class="token number">4</span>==<span class="token number">1</span>:nan+=<span class="token number">1</span>
+        <span class="token keyword">elif</span> deff[i]%<span class="token number">4</span>==<span class="token number">2</span>:x+=<span class="token number">1</span>
+        <span class="token keyword">elif</span> deff[i]%<span class="token number">4</span>==<span class="token number">3</span>:b+=<span class="token number">1</span>
+
+    
+    <span class="token builtin">print</span>(d,nan,x,b)
+<span class="token keyword">if</span> <span class="token builtin">__name__</span>==<span class="token string">&#x27;__main__&#x27;</span>:
+    solve()
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">1<br>2<br>3<br>4<br>5<br>6<br>7<br>8<br>9<br>10<br>11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23<br>24<br>25<br>26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35<br>36<br>37<br>38<br>39<br>40<br>41<br>42<br>43<br>44<br>45<br>46</div></div></article>
+</section>
+<section id="binary"><h2>二分与答案边界</h2><p>先写出候选值的可行条件，再判断要找第一个可行值还是最后一个可行值。</p>
+<div class="local-nav"><a href="#binary-冶炼金属的可行区间">冶炼金属的可行区间</a> · <a href="#binary-二分答案分糖果">二分答案分糖果</a></div>
+<h3 id="binary-冶炼金属的可行区间">冶炼金属的可行区间</h3>
+<article data-file="Tsingpigdadademoban.py" data-first="366" data-last="389"><h4>初稿。两处二分调用的括号未闭合</h4><a class="source" href="originals/Tsingpigdadademoban.py">Tsingpigdadademoban.py · L366–389</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token keyword">import</span> sys
+<span class="token keyword">def</span> <span class="token function">solve</span>():
+    da=<span class="token builtin">iter</span>(sys.stdin.read().split())
+    n=<span class="token builtin">int</span>(<span class="token builtin">next</span>(da))
+    a=[<span class="token number">0</span>]*n
+    b=[<span class="token number">0</span>]*n
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span>(n):
+        a[i],b[i]=<span class="token builtin">int</span>(<span class="token builtin">next</span>(da)),<span class="token builtin">int</span>(<span class="token builtin">next</span>(da))
+    <span class="token keyword">def</span> <span class="token function">bst</span>(lo,hi,check):
+        <span class="token keyword">while</span> lo&lt;hi:
+            mid=(lo+hi)&gt;&gt;<span class="token number">1</span>
+            <span class="token keyword">if</span> check(mid):
+                hi=mid
+            <span class="token keyword">else</span>:
+                lo=mid+<span class="token number">1</span>
+        <span class="token keyword">return</span> lo
+    m=bst(<span class="token number">1</span>,<span class="token number">10</span>**<span class="token number">9</span>,<span class="token keyword">lambda</span> v:<span class="token builtin">all</span>(c//v&lt;=d <span class="token keyword">for</span> c,d <span class="token keyword">in</span> <span class="token builtin">zip</span>(a,b))
+    M=bst(<span class="token number">1</span>,<span class="token number">10</span>**<span class="token number">9</span>,<span class="token keyword">lambda</span> v:<span class="token builtin">any</span>(c//v&lt;d <span class="token keyword">for</span> c,d <span class="token keyword">in</span> <span class="token builtin">zip</span>(a,b))-<span class="token number">1</span>
+        
+    
+<span class="token keyword">if</span> <span class="token builtin">__name__</span>==<span class="token string">&#x27;__main__&#x27;</span>:
+    solve()
+
+
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">366<br>367<br>368<br>369<br>370<br>371<br>372<br>373<br>374<br>375<br>376<br>377<br>378<br>379<br>380<br>381<br>382<br>383<br>384<br>385<br>386<br>387<br>388<br>389</div></div></article>
+<article data-file="Tsingpigdadademoban.py" data-first="390" data-last="434"><h4>带判定方向讲解的左右边界模板</h4><a class="source" href="originals/Tsingpigdadademoban.py">Tsingpigdadademoban.py · L390–434</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token keyword">import</span> sys
+<span class="token builtin">input</span> = <span class="token keyword">lambda</span>: sys.stdin.readline().strip()
+n = <span class="token builtin">int</span>(<span class="token builtin">input</span>())
+a, b = <span class="token builtin">zip</span>(*[<span class="token builtin">map</span>(<span class="token builtin">int</span>, <span class="token builtin">input</span>().split()) <span class="token keyword">for</span> _ <span class="token keyword">in</span> <span class="token builtin">range</span>(n)])
+<span class="token comment"># ==========================================</span>
+<span class="token comment"># 【抽象 1：标准的 bisect_left 模板】</span>
+<span class="token comment"># 功能：在 [False, ..., False, True, True] 阵列中寻找第一个 True</span>
+<span class="token comment"># ==========================================</span>
+<span class="token keyword">def</span> <span class="token function">bisect_left</span>(lo, hi, check_left):
+    <span class="token keyword">while</span> lo &lt; hi:
+        mid = (lo + hi) // <span class="token number">2</span>
+        <span class="token keyword">if</span> check_left(mid):
+            hi = mid       <span class="token comment"># 如果是 True，说明当前点可能是第一个，或者第一个在左边，收缩右边界</span>
+        <span class="token keyword">else</span>:
+            lo = mid + <span class="token number">1</span>   <span class="token comment"># 如果是 False，说明太小了，第一个 True 必然在右边，步进左边界</span>
+    <span class="token keyword">return</span> lo
+<span class="token comment"># ==========================================</span>
+<span class="token comment"># 【抽象 2：标准的 bisect_right 模板】</span>
+<span class="token comment"># 功能：在 [True, True, ..., True, False, False] 阵列中寻找第一个 False</span>
+<span class="token comment"># ==========================================</span>
+<span class="token keyword">def</span> <span class="token function">bisect_right</span>(lo, hi, check_right):
+    <span class="token keyword">while</span> lo &lt; hi:
+        mid = (lo + hi) // <span class="token number">2</span>
+        <span class="token keyword">if</span> check_right(mid):
+            <span class="token comment"># 语法规则：对应 Python 内置 bisect_right 的强盗逻辑。</span>
+            <span class="token comment"># 如果当前点是 True（合法），说明“第一个 False”必然在当前点的严格右侧！</span>
+            lo = mid + <span class="token number">1</span>   
+        <span class="token keyword">else</span>:
+            <span class="token comment"># 如果当前点是 False（不合法），说明它有可能是第一个 False，</span>
+            <span class="token comment"># 或者第一个 False 在它的左侧，因此收缩右边界。</span>
+            hi = mid       
+    <span class="token keyword">return</span> lo
+<span class="token comment"># --- 核心调用逻辑 ---</span>
+<span class="token comment"># 1. 求最小值 m：寻找第一个让产量“不超标”的 v</span>
+<span class="token comment"># 状态阵列形态：[太小(False), 太小(False), 刚好(True), 太大(True)...]</span>
+m = bisect_left(<span class="token number">1</span>, <span class="token number">10</span>**<span class="token number">9</span>, <span class="token keyword">lambda</span> v: <span class="token builtin">all</span>(A // v &lt;= B <span class="token keyword">for</span> A, B <span class="token keyword">in</span> <span class="token builtin">zip</span>(a, b)))
+<span class="token comment"># 2. 求最大值 M：寻找第一个让产量“缩水”的 v (即首个 False)</span>
+<span class="token comment"># 状态阵列形态：[太小(True), 刚好(True), 刚好(True), 太大(False), 太大(False)...]</span>
+<span class="token comment"># 这里的 check 条件变成了 &gt;= B </span>
+M_pos = bisect_right(<span class="token number">1</span>, <span class="token number">10</span>**<span class="token number">9</span>, <span class="token keyword">lambda</span> v: <span class="token builtin">all</span>(A // v &gt;= B <span class="token keyword">for</span> A, B <span class="token keyword">in</span> <span class="token builtin">zip</span>(a, b)))
+<span class="token comment"># 因为 bisect_right 返回的是第一个 False 的坐标，所以最大合法的 True 坐标需要减 1</span>
+M = M_pos - <span class="token number">1</span>
+<span class="token builtin">print</span>(m, M)
+
+
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">390<br>391<br>392<br>393<br>394<br>395<br>396<br>397<br>398<br>399<br>400<br>401<br>402<br>403<br>404<br>405<br>406<br>407<br>408<br>409<br>410<br>411<br>412<br>413<br>414<br>415<br>416<br>417<br>418<br>419<br>420<br>421<br>422<br>423<br>424<br>425<br>426<br>427<br>428<br>429<br>430<br>431<br>432<br>433<br>434</div></div></article>
+<article data-file="Tsingpigdadademoban.py" data-first="435" data-last="465"><h4>快读版本，对比两个判定函数与返回边界</h4><a class="source" href="originals/Tsingpigdadademoban.py">Tsingpigdadademoban.py · L435–465</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token keyword">import</span> sys
+<span class="token keyword">def</span> <span class="token function">solve</span>():
+    da=<span class="token builtin">iter</span>(sys.stdin.read().split())
+    n=<span class="token builtin">int</span>(<span class="token builtin">next</span>(da))
+    a=[<span class="token number">0</span>]*n
+    b=[<span class="token number">0</span>]*n
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span>(n):
+        a[i],b[i]=<span class="token builtin">int</span>(<span class="token builtin">next</span>(da)),<span class="token builtin">int</span>(<span class="token builtin">next</span>(da))
+    <span class="token keyword">def</span> <span class="token function">bl</span>(lo,hi,check):
+        <span class="token keyword">while</span> lo&lt;hi:
+            mid=(lo+hi)&gt;&gt;<span class="token number">1</span>
+            <span class="token keyword">if</span> check(mid):
+                hi=mid
+            <span class="token keyword">else</span>:
+                lo=mid+<span class="token number">1</span>
+        <span class="token keyword">return</span> lo
+    <span class="token keyword">def</span> <span class="token function">br</span>(lo,hi,check):
+        <span class="token keyword">while</span> lo&lt;hi:
+            mid=(lo+hi)&gt;&gt;<span class="token number">1</span>
+            <span class="token keyword">if</span> check(mid):
+                lo=mid+<span class="token number">1</span>
+            <span class="token keyword">else</span>:
+                hi=mid
+        <span class="token keyword">return</span> lo-<span class="token number">1</span>    
+    m=bl(<span class="token number">1</span>,<span class="token number">10</span>**<span class="token number">9</span>,<span class="token keyword">lambda</span> v:<span class="token builtin">all</span>(c//v&lt;=d <span class="token keyword">for</span> c,d <span class="token keyword">in</span> <span class="token builtin">zip</span>(a,b)))
+    M=br(<span class="token number">1</span>,<span class="token number">10</span>**<span class="token number">9</span>,<span class="token keyword">lambda</span> v:<span class="token builtin">all</span>(c//v&gt;=d <span class="token keyword">for</span> c,d <span class="token keyword">in</span> <span class="token builtin">zip</span>(a,b)))
+    <span class="token builtin">print</span>(m,M)    
+    
+<span class="token keyword">if</span> <span class="token builtin">__name__</span>==<span class="token string">&#x27;__main__&#x27;</span>:
+    solve()
+
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">435<br>436<br>437<br>438<br>439<br>440<br>441<br>442<br>443<br>444<br>445<br>446<br>447<br>448<br>449<br>450<br>451<br>452<br>453<br>454<br>455<br>456<br>457<br>458<br>459<br>460<br>461<br>462<br>463<br>464<br>465</div></div></article>
+<h3 id="binary-二分答案分糖果">二分答案分糖果</h3>
+<article data-file="Tsingpigdadademoban.py" data-first="466" data-last="479"><h4>枚举每人份量，按各堆能提供的份数判断可行性</h4><a class="source" href="originals/Tsingpigdadademoban.py">Tsingpigdadademoban.py · L466–479</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token keyword">class</span> <span class="token class-name">Solution</span>:
+    <span class="token keyword">def</span> <span class="token function">maximumCandies</span>(self, candies: List[<span class="token builtin">int</span>], k: <span class="token builtin">int</span>) -&gt; <span class="token builtin">int</span>:
+        <span class="token keyword">if</span> <span class="token builtin">sum</span>(candies)&lt;k:<span class="token keyword">return</span> <span class="token number">0</span>
+        <span class="token keyword">def</span> <span class="token function">br</span>(lo,hi,check):
+            <span class="token keyword">while</span> lo&lt;hi:
+                mid=(lo+hi)&gt;&gt;<span class="token number">1</span>
+                <span class="token keyword">if</span> check(mid):
+                    lo=mid+<span class="token number">1</span>
+                <span class="token keyword">else</span>:
+                    hi=mid
+            <span class="token keyword">return</span> lo-<span class="token number">1</span>
+        <span class="token keyword">return</span> br(<span class="token number">0</span>,<span class="token builtin">max</span>(candies)+<span class="token number">1</span>,<span class="token keyword">lambda</span> x:<span class="token builtin">sum</span>(i//x <span class="token keyword">for</span> i <span class="token keyword">in</span> candies)&gt;=k)
+<span class="token comment">#左闭右开模板，上界+1</span>
+
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">466<br>467<br>468<br>469<br>470<br>471<br>472<br>473<br>474<br>475<br>476<br>477<br>478<br>479</div></div></article>
+</section>
+<section id="recurrence"><h2>递推与组合计数</h2><p>同一道跳台阶题，从递归、滚动变量、特征方程和组合计数四个角度看。</p>
+<div class="local-nav"><a href="#recurrence-跳台阶">跳台阶</a></div>
+<h3 id="recurrence-跳台阶">跳台阶</h3>
+<article data-file="dfs.py" data-first="9" data-last="10"><h4>题目与第一种思路</h4><a class="source" href="originals/dfs.py">dfs.py · L9–10</a><div class="original-prose">##跳台阶https://www.acwing.com/problem/content/823/
+法一
+</div></article>
+<article data-file="dfs.py" data-first="11" data-last="23"><h4>递归求 f(n−1) 与 f(n−2) 的和</h4><a class="source" href="originals/dfs.py">dfs.py · L11–23</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token keyword">import</span> sys
+<span class="token keyword">def</span> <span class="token function">solve</span>():
+    da=<span class="token builtin">iter</span>(sys.stdin.read().split())
+    n=<span class="token builtin">int</span>(<span class="token builtin">next</span>(da))
+    <span class="token keyword">def</span> <span class="token function">check</span>(n):
+        <span class="token keyword">if</span> n==<span class="token number">0</span>:<span class="token keyword">return</span> <span class="token number">0</span>
+        <span class="token keyword">elif</span> n==<span class="token number">1</span>:<span class="token keyword">return</span> <span class="token number">1</span>
+        <span class="token keyword">elif</span> n==<span class="token number">2</span>:<span class="token keyword">return</span> <span class="token number">2</span>
+        <span class="token keyword">else</span>:
+            <span class="token keyword">return</span> check(n-<span class="token number">1</span>)+check(n-<span class="token number">2</span>)
+    <span class="token builtin">print</span>(check(n))
+<span class="token keyword">if</span> <span class="token builtin">__name__</span>==<span class="token string">&#x27;__main__&#x27;</span>:
+    solve()
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">11<br>12<br>13<br>14<br>15<br>16<br>17<br>18<br>19<br>20<br>21<br>22<br>23</div></div></article>
+<article data-file="dfs.py" data-first="24" data-last="25"><h4>特征方程与迭代法的过渡笔记</h4><a class="source" href="originals/dfs.py">dfs.py · L24–25</a><div class="original-prose">法二：特征方程求解（c1+c2*n）*r^n或c1*r1^n+c2*r2^n
+法三
+</div></article>
+<article data-file="dfs.py" data-first="26" data-last="35"><h4>用两个变量滚动更新相邻项</h4><a class="source" href="originals/dfs.py">dfs.py · L26–35</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token keyword">import</span> sys
+<span class="token keyword">def</span> <span class="token function">solve</span>():
+    da=<span class="token builtin">iter</span>(sys.stdin.read().split())
+    n=<span class="token builtin">int</span>(<span class="token builtin">next</span>(da))
+    a,b=<span class="token number">1</span>,<span class="token number">2</span>
+    <span class="token keyword">for</span> _ <span class="token keyword">in</span> <span class="token builtin">range</span>(n-<span class="token number">1</span>):
+        a,b=b,a+b<span class="token comment">#fk,fk+1=fk+1,fk+2而fk+2=fk+fk+1</span>
+    <span class="token builtin">print</span>(a)
+<span class="token keyword">if</span> <span class="token builtin">__name__</span>==<span class="token string">&#x27;__main__&#x27;</span>:
+    solve()
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">26<br>27<br>28<br>29<br>30<br>31<br>32<br>33<br>34<br>35</div></div></article>
+<article data-file="dfs.py" data-first="36" data-last="38"><h4>按走两级台阶的次数，枚举步序中的位置</h4><a class="source" href="originals/dfs.py">dfs.py · L36–38</a><div class="original-prose">法四：设走k个2级台阶，则走了2k步，剩下走n-2k个一级台阶，总共k+n-2k=n-k种选法，
+c(k,n-k)且k&lt;=[n/2]
+
+</div></article>
+</section>
+<section id="dfs"><h2>DFS、枚举与回溯</h2><p>从选或不选、排列和组合开始，再看怎样记录路径、限制下一层起点，以及何时恢复访问标记。</p>
+<div class="local-nav"><a href="#dfs-递归深度与缓存">递归深度与缓存</a> · <a href="#dfs-装箱与最少工作时段">装箱与最少工作时段</a> · <a href="#dfs-逐位搜索最大数">逐位搜索最大数</a> · <a href="#dfs-记录方案与恢复现场">记录方案与恢复现场</a> · <a href="#dfs-组合枚举">组合枚举</a> · <a href="#dfs-组合总和">组合总和</a> · <a href="#dfs-子集枚举">子集枚举</a> · <a href="#dfs-排列枚举">排列枚举</a> · <a href="#dfs-选数与素数和">选数与素数和</a> · <a href="#dfs-烤鸡的定长枚举">烤鸡的定长枚举</a> · <a href="#dfs-火星人与字典序后继">火星人与字典序后继</a> · <a href="#dfs-火柴加法">火柴加法</a> · <a href="#dfs-配料的酸度与苦度">配料的酸度与苦度</a></div>
+<h3 id="dfs-递归深度与缓存">递归深度与缓存</h3>
+<article data-file="Tsingpigdadademoban.py" data-first="37" data-last="38"><h4>调整解释器的递归上限</h4><a class="source" href="originals/Tsingpigdadademoban.py">Tsingpigdadademoban.py · L37–38</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code>sys.setrecursionlimit(<span class="token number">1000000</span>)
+
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">37<br>38</div></div></article>
+<article data-file="Tsingpigdadademoban.py" data-first="1047" data-last="1050"><h4>记忆化装饰器片段</h4><a class="source" href="originals/Tsingpigdadademoban.py">Tsingpigdadademoban.py · L1047–1050</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code>@lru_cache(maxsize=<span class="token keyword">None</span>)
+
+
+
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">1047<br>1048<br>1049<br>1050</div></div></article>
+<h3 id="dfs-装箱与最少工作时段">装箱与最少工作时段</h3>
+<article data-file="Tsingpigdadademoban.py" data-first="313" data-last="335"><h4>任务从大到小放入已有时段，或新开时段并回溯</h4><a class="source" href="originals/Tsingpigdadademoban.py">Tsingpigdadademoban.py · L313–335</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token keyword">class</span> <span class="token class-name">Solution</span>:
+    <span class="token keyword">def</span> <span class="token function">minSessions</span>(self, tasks: List[<span class="token builtin">int</span>], sessionTime: <span class="token builtin">int</span>) -&gt; <span class="token builtin">int</span>:
+        tasks.sort(reverse=<span class="token keyword">True</span>)
+        n=<span class="token builtin">len</span>(tasks)
+        cnt=[<span class="token number">0</span>]*n
+        res=<span class="token builtin">float</span>(<span class="token string">&#x27;inf&#x27;</span>)
+        <span class="token keyword">def</span> <span class="token function">dfs</span>(i,cur):
+            <span class="token keyword">nonlocal</span> res
+            <span class="token keyword">if</span> cur&gt;res:<span class="token keyword">return</span> 
+            <span class="token keyword">if</span> i==n:
+                res=cur
+                <span class="token keyword">return</span> 
+            <span class="token keyword">for</span> j <span class="token keyword">in</span> <span class="token builtin">range</span>(cur):
+                <span class="token keyword">if</span> tasks[i]&lt;=sessionTime-cnt[j]:
+                    cnt[j]+=tasks[i]
+                    dfs(i+<span class="token number">1</span>,cur)
+                    cnt[j]-=tasks[i]
+            cnt[cur]+=tasks[i]
+            dfs(i+<span class="token number">1</span>,cur+<span class="token number">1</span>)
+            cnt[cur]-=tasks[i]
+        dfs(<span class="token number">0</span>,<span class="token number">0</span>)
+        <span class="token keyword">return</span> res
+
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">313<br>314<br>315<br>316<br>317<br>318<br>319<br>320<br>321<br>322<br>323<br>324<br>325<br>326<br>327<br>328<br>329<br>330<br>331<br>332<br>333<br>334<br>335</div></div></article>
+<h3 id="dfs-逐位搜索最大数">逐位搜索最大数</h3>
+<article data-file="Tsingpigdadademoban.py" data-first="480" data-last="508"><h4>记录当前数位和两类剩余操作次数，探索各分支</h4><a class="source" href="originals/Tsingpigdadademoban.py">Tsingpigdadademoban.py · L480–508</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token keyword">import</span> sys
+<span class="token keyword">def</span> <span class="token function">solve</span>():
+    da=<span class="token builtin">iter</span>(sys.stdin.read().split())
+    N,a,b=<span class="token builtin">next</span>(da),<span class="token builtin">int</span>(<span class="token builtin">next</span>(da)),<span class="token builtin">int</span>(<span class="token builtin">next</span>(da))
+    n=<span class="token builtin">list</span>(<span class="token builtin">map</span>(<span class="token builtin">int</span>,N))
+    path=[]
+    l=<span class="token builtin">len</span>(n)
+    res=<span class="token number">0</span>
+    <span class="token keyword">def</span> <span class="token function">dfs</span>(i,ra,rb):
+        <span class="token keyword">nonlocal</span> res
+        <span class="token keyword">if</span> <span class="token builtin">len</span>(path)==l:
+            res=<span class="token builtin">max</span>(res,<span class="token builtin">int</span>(<span class="token string">&#x27;&#x27;</span>.join(<span class="token builtin">map</span>(<span class="token builtin">str</span>,path))))
+            <span class="token keyword">return</span> 
+        d=<span class="token builtin">min</span>(<span class="token number">9</span>-n[i],ra)
+        path.append(n[i]+d)
+        dfs(i+<span class="token number">1</span>,ra-d,rb)
+        path.pop()
+        <span class="token keyword">if</span> rb&gt;=n[i]+<span class="token number">1</span>:
+            path.append(<span class="token number">9</span>)
+            dfs(i+<span class="token number">1</span>,ra,rb-n[i]-<span class="token number">1</span>)
+            path.pop()
+    dfs(<span class="token number">0</span>,a,b)
+    <span class="token builtin">print</span>(res)
+    
+            
+<span class="token keyword">if</span> <span class="token builtin">__name__</span>==<span class="token string">&#x27;__main__&#x27;</span>:
+    solve()
+
+
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">480<br>481<br>482<br>483<br>484<br>485<br>486<br>487<br>488<br>489<br>490<br>491<br>492<br>493<br>494<br>495<br>496<br>497<br>498<br>499<br>500<br>501<br>502<br>503<br>504<br>505<br>506<br>507<br>508</div></div></article>
+<h3 id="dfs-记录方案与恢复现场">记录方案与恢复现场</h3>
+<article data-file="Tsingpigdadademoban.py" data-first="531" data-last="534"><h4>为什么可变路径要保存快照</h4><a class="source" href="originals/Tsingpigdadademoban.py">Tsingpigdadademoban.py · L531–534</a><div class="original-prose">带着 [1, 2] 进入下一层，立刻记录 [1, 2]。
+只要是把一个“会随着时间变化的数据容器（列表、字典、集合）”塞进结果集里，
+绝对、必须、永远要加上 .copy()！
+否则你塞进去的，只是一个会随时爆炸的定时炸弹。
+</div></article>
+<article data-file="Tsingpigdadademoban.py" data-first="535" data-last="540"><h4>列表引用的实验</h4><a class="source" href="originals/Tsingpigdadademoban.py">Tsingpigdadademoban.py · L535–540</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code>path = [<span class="token number">1</span>]         <span class="token comment"># 第一步：我有一个列表，里面装了 1</span>
+ans = []           <span class="token comment"># 第二步：我有一个空的结果集</span>
+ans.append(path)   <span class="token comment"># 第三步：我把 path 塞进了 ans</span>
+path.append(<span class="token number">2</span>)     <span class="token comment"># 第四步：我往 path 里又加了一个 2</span>
+
+<span class="token builtin">print</span>(ans)         <span class="token comment"># 请问，现在打印 ans，结果是什么？</span>
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">535<br>536<br>537<br>538<br>539<br>540</div></div></article>
+<article data-file="Tsingpigdadademoban.py" data-first="541" data-last="557"><h4>列表引用、递归返回与 pop 的原始笔记</h4><a class="source" href="originals/Tsingpigdadademoban.py">Tsingpigdadademoban.py · L541–557</a><div class="original-prose">按照人类的直觉，第三步塞进去的时候 path 是 [1]，所以最后 ans 应该是 [[1]]。
+
+但是！在 Python 里运行的结果是：[[1, 2]]
+
+为什么会发生这种“灵异事件”？
+因为在 Python 中，像列表（List）这种可以不断变化的数据结构，
+变量名其实只是一个“便利贴”（或者叫标签、指针），
+它贴在了一块内存空间上。
+
+递归的本质，就是“看剧时的暂停键”。
+当你在 dfs(0) 的循环里走到 dfs(1) 时，
+相当于你把正在看的《第一季》按下了暂停，跑去把《第二季》从头到尾全看完了，
+然后解除暂停，继续看《第一季》剩下的剧情。
+
+而那句看似没道理的 path.pop()，就是你每次看完后续剧情回来后，
+必须把脑子里的杂念“清除”，才能继续看当下的剧情。
+
+</div></article>
+<article data-file="dfs.py" data-first="110" data-last="123"><h4>把路径用 join 存成字符串的例子</h4><a class="source" href="originals/dfs.py">dfs.py · L110–123</a><div class="original-prose">回想一下我们之前聊过的“连线”灾难：
+如果你写的是 out.append(arr)，
+那你就是往 out 里塞了一根指向 arr 这个木箱子的红线（内存引用）。
+后续 arr.pop() 会把结果全毁掉。
+
+但是！请死死盯住你写的 join 操作到底干了什么：
+str(i) for i in arr：首先，它把篮子里的数字（比如 1 和 2），变成了字符 &#x27;1&#x27; 和 &#x27;2&#x27;。
+&#x27; &#x27;.join(...)：然后，它用空格把这两个字符拼接起来，
+在内存中凭空创造了一个全新的字符串对象：&quot;1 2&quot;。
+out.append(&quot;1 2&quot;)：最后，你把这个崭新的字符串，放进了 out 数组里。
+真相大白：
+在这段代码里，你根本没有把 arr 这个列表塞进结果集里！你是在每一次触底的时候，利用 join 自动把 arr 里的内容“冲洗成了一张固定的实物照片（字符串）”，
+然后把照片放进了相册 out 里！
+
+</div></article>
+<article data-file="dfs.py" data-first="149" data-last="157"><h4>何时把当前路径记入答案</h4><a class="source" href="originals/dfs.py">dfs.py · L149–157</a><div class="original-prose">当你以后在考场上面对一道回溯题，不知道 res.append 该写在哪里时，
+你只需要问自己一个问题：
+
+“我当前手里拿着的这个半截 path，题目认不认它是一个合法的答案？”
+
+如果认（比如求所有子集），那就一进函数，立刻拍照。
+
+如果不认（必须要固定长度，或者必须要全部选完），
+那就憋着，带着它继续往下走，直到满足条件（走到最后）了，再拍照。
+</div></article>
+<h3 id="dfs-组合枚举">组合枚举</h3>
+<article data-file="Tsingpigdadademoban.py" data-first="558" data-last="573"><h4>固定选 k 个数，按每个数选或不选递归</h4><a class="source" href="originals/Tsingpigdadademoban.py">Tsingpigdadademoban.py · L558–573</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token keyword">class</span> <span class="token class-name">Solution</span>:
+    <span class="token keyword">def</span> <span class="token function">combine</span>(self, n: <span class="token builtin">int</span>, k: <span class="token builtin">int</span>) -&gt; List[List[<span class="token builtin">int</span>]]:
+        ans=[]
+        path=[]
+        <span class="token keyword">def</span> <span class="token function">dfs</span>(i):
+            <span class="token keyword">if</span> <span class="token builtin">len</span>(path)==k:
+                ans.append(path.copy())
+                <span class="token keyword">return</span>
+            <span class="token keyword">if</span> i&gt;n:<span class="token keyword">return</span><span class="token comment">#背包没满也要返回</span>
+            path.append(i)
+            dfs(i+<span class="token number">1</span>)
+            path.pop()
+            dfs(i+<span class="token number">1</span>)
+        dfs(<span class="token number">1</span>)
+        <span class="token keyword">return</span> ans
+            
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">558<br>559<br>560<br>561<br>562<br>563<br>564<br>565<br>566<br>567<br>568<br>569<br>570<br>571<br>572<br>573</div></div></article>
+<article data-file="dfs.py" data-first="124" data-last="148"><h4>洛谷 P1157。从 start 向后选数，避免产生重复组合</h4><a class="source" href="originals/dfs.py">dfs.py · L124–148</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token comment">##递归实现组合型枚举https://www.luogu.com.cn/problem/P1157</span>
+<span class="token keyword">import</span> sys
+<span class="token keyword">def</span> <span class="token function">solve</span>():
+    da=<span class="token builtin">iter</span>(sys.stdin.read().split())
+    n,r=<span class="token builtin">int</span>(<span class="token builtin">next</span>(da)),<span class="token builtin">int</span>(<span class="token builtin">next</span>(da))
+<span class="token comment">##    通过引入 start 参数来限制每次 for 循环的起始位置，</span>
+<span class="token comment">##    强制序列单调递增，从而天然地消除重复组合并保证字典序。</span>
+<span class="token comment">##既然不回头，自然永远不会碰到之前用过的数字，也就不需要 visited 数组来防重了。    </span>
+    path=[]
+    out=[]
+    <span class="token keyword">def</span> <span class="token function">dfs</span>(st):
+        <span class="token keyword">if</span> n - start + <span class="token number">1</span> &lt; r - <span class="token builtin">len</span>(path):
+            <span class="token keyword">return</span>
+        <span class="token keyword">if</span> <span class="token builtin">len</span>(path)==r:
+            out.append(<span class="token string">&#x27;&#x27;</span>.join(<span class="token string">f&#x27;{i:&gt;3d}&#x27;</span> <span class="token keyword">for</span> i <span class="token keyword">in</span> path))
+            <span class="token keyword">return</span>
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span>(st,n+<span class="token number">1</span>):
+            path.append(i)
+            dfs(i+<span class="token number">1</span>)
+            path.pop()
+    dfs(<span class="token number">1</span>)
+    sys.stdout.write(<span class="token string">&#x27;\n&#x27;</span>.join(out)+<span class="token string">&#x27;\n&#x27;</span>)                
+<span class="token keyword">if</span> <span class="token builtin">__name__</span>==<span class="token string">&#x27;__main__&#x27;</span>:
+    solve()
+    
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">124<br>125<br>126<br>127<br>128<br>129<br>130<br>131<br>132<br>133<br>134<br>135<br>136<br>137<br>138<br>139<br>140<br>141<br>142<br>143<br>144<br>145<br>146<br>147<br>148</div></div></article>
+<h3 id="dfs-组合总和">组合总和</h3>
+<article data-file="Tsingpigdadademoban.py" data-first="574" data-last="594"><h4>排序后从当前下标继续选，允许重复使用候选数</h4><a class="source" href="originals/Tsingpigdadademoban.py">Tsingpigdadademoban.py · L574–594</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token keyword">class</span> <span class="token class-name">Solution</span>:
+    <span class="token keyword">def</span> <span class="token function">combinationSum</span>(self, candidates: List[<span class="token builtin">int</span>], target: <span class="token builtin">int</span>) -&gt; List[List[<span class="token builtin">int</span>]]:
+        candidates.sort()
+        n=<span class="token builtin">len</span>(candidates)
+        ans=[]
+        path=[]
+        <span class="token keyword">def</span> <span class="token function">dfs</span>(i,s):
+            <span class="token keyword">if</span> s==target:
+                ans.append(path.copy())
+                <span class="token keyword">return</span>
+                <span class="token comment">#re</span>
+            <span class="token keyword">for</span> j <span class="token keyword">in</span> <span class="token builtin">range</span>(i,n):
+                x=candidates[j]
+                <span class="token keyword">if</span> x+s&lt;=target:
+                    path.append(x)
+                    dfs(j,x+s)
+                    path.pop()
+                <span class="token keyword">else</span>:
+                    <span class="token keyword">break</span><span class="token comment">#</span>
+        dfs(<span class="token number">0</span>,<span class="token number">0</span>)
+        <span class="token keyword">return</span> ans
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">574<br>575<br>576<br>577<br>578<br>579<br>580<br>581<br>582<br>583<br>584<br>585<br>586<br>587<br>588<br>589<br>590<br>591<br>592<br>593<br>594</div></div></article>
+<h3 id="dfs-子集枚举">子集枚举</h3>
+<article data-file="dfs.py" data-first="39" data-last="78"><h4>指数型枚举。对照原稿中的递归树跟踪选与不选</h4><a class="source" href="originals/dfs.py">dfs.py · L39–78</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token comment">##指数型https://www.acwing.com/problem/content/94/</span>
+<span class="token keyword">import</span> sys
+<span class="token keyword">def</span> <span class="token function">solve</span>():
+    da=<span class="token builtin">iter</span>(sys.stdin.read().split())
+    n=<span class="token builtin">int</span>(<span class="token builtin">next</span>(da))
+    arr=[]
+    out=[]
+<span class="token comment">##这并非同时发生，而是顺序执行的“平行宇宙”：</span>
+<span class="token comment">##程序会先在选项A（不选）的分支里走到时间的尽头，</span>
+<span class="token comment">##然后再“时光倒流”（通过 return 回退到当前层），接着开启并探索选项B（选）的未来。</span>
+<span class="token comment">##                    root (state=[])</span>
+<span class="token comment">##                /                 \</span>
+<span class="token comment">##          (不选1)                   (选1, append(1))</span>
+<span class="token comment">##         dfs(2)                     dfs(2)</span>
+<span class="token comment">##        /      \                   /      \</span>
+<span class="token comment">##  (不选2)      (选2)         (不选2)       (选2)</span>
+<span class="token comment">##  dfs(3)       dfs(3)        dfs(3)        dfs(3)</span>
+<span class="token comment">##    |            |             |             |</span>
+<span class="token comment">## print([])    print([2])    print([1])   print([1, 2])</span>
+    <span class="token keyword">def</span> <span class="token function">f</span>(x):
+        <span class="token keyword">if</span> x&gt;n:
+
+            out.append(<span class="token string">&#x27; &#x27;</span>.join(<span class="token builtin">str</span>(i) <span class="token keyword">for</span> i <span class="token keyword">in</span> arr))
+            <span class="token keyword">return</span>
+<span class="token comment">##        不选</span>
+        f(x+<span class="token number">1</span>)
+        <span class="token comment"># 【核心逻辑】：一旦调用这个函数，当前这层代码就会被“冻结”。</span>
+    <span class="token comment"># 计算机在内存里保存了当前层走到了哪里，然后跳进 x+1 层去疯狂衍生。</span>
+    <span class="token comment"># 无论里面掀起多大波澜，只要它最终 return，就会解冻当前层，紧接着执行下一行。</span>
+        <span class="token comment">##        选</span>
+        arr.append(x)
+        f(x+<span class="token number">1</span>)
+        arr.pop()
+
+    f(<span class="token number">1</span>)
+    sys.stdout.write(<span class="token string">&#x27;\n&#x27;</span>.join(out)+<span class="token string">&#x27;\n&#x27;</span>)
+<span class="token keyword">if</span> <span class="token builtin">__name__</span>==<span class="token string">&#x27;__main__&#x27;</span>:
+    solve()
+
+
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">39<br>40<br>41<br>42<br>43<br>44<br>45<br>46<br>47<br>48<br>49<br>50<br>51<br>52<br>53<br>54<br>55<br>56<br>57<br>58<br>59<br>60<br>61<br>62<br>63<br>64<br>65<br>66<br>67<br>68<br>69<br>70<br>71<br>72<br>73<br>74<br>75<br>76<br>77<br>78</div></div></article>
+<h3 id="dfs-排列枚举">排列枚举</h3>
+<article data-file="dfs.py" data-first="79" data-last="109"><h4>洛谷 P1706。用访问标记与路径生成排列</h4><a class="source" href="originals/dfs.py">dfs.py · L79–109</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token comment">####排列型https://www.luogu.com.cn/problem/P1706</span>
+<span class="token comment">##排列型</span>
+<span class="token keyword">import</span> sys
+<span class="token keyword">def</span> <span class="token function">solve</span>():
+    da=<span class="token builtin">iter</span>(sys.stdin.read().split())
+    n=<span class="token builtin">int</span>(<span class="token builtin">next</span>(da))
+    used=[<span class="token keyword">False</span>]*(n+<span class="token number">1</span>)
+    arr=[]
+    out=[]
+<span class="token comment">##核心设计思想（一句话）：</span>
+<span class="token comment">##for 循环负责在“当前唯一的空位”上，横向枚举所有还没被用过的卡片；</span>
+<span class="token comment">##而 dfs() 负责纵向推进，把目光移动到“下一个空位”。    </span>
+    <span class="token keyword">def</span> <span class="token function">dfs</span>():
+<span class="token comment">##        step2</span>
+        <span class="token keyword">if</span> <span class="token builtin">len</span>(arr)==n:
+            out.append(<span class="token string">&#x27;&#x27;</span>.join(<span class="token string">f&#x27;{i:5d}&#x27;</span> <span class="token keyword">for</span> i <span class="token keyword">in</span> arr))
+            <span class="token keyword">return</span>
+<span class="token comment">##        step1</span>
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span>(<span class="token number">1</span>,n+<span class="token number">1</span>):
+            <span class="token keyword">if</span> <span class="token keyword">not</span> used[i]:
+                arr.append(i)
+                used[i]=<span class="token keyword">True</span>
+<span class="token comment">##dfs() 它连个参数都没有，怎么知道自己现在在第几层？怎么知道该排哪个格子？</span>
+<span class="token comment">##答案的核心只有四个字：全局变量（公共黑板）。               </span>
+                dfs()
+                arr.pop()
+                used[i]=<span class="token keyword">False</span>
+    dfs()
+    sys.stdout.write(<span class="token string">&#x27;\n&#x27;</span>.join(out)+<span class="token string">&#x27;\n&#x27;</span>)        
+<span class="token keyword">if</span> <span class="token builtin">__name__</span>==<span class="token string">&#x27;__main__&#x27;</span>:
+    solve()
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">79<br>80<br>81<br>82<br>83<br>84<br>85<br>86<br>87<br>88<br>89<br>90<br>91<br>92<br>93<br>94<br>95<br>96<br>97<br>98<br>99<br>100<br>101<br>102<br>103<br>104<br>105<br>106<br>107<br>108<br>109</div></div></article>
+<h3 id="dfs-选数与素数和">选数与素数和</h3>
+<p>关联知识点 · <a href="#math-素数判定与分解">素数判定与分解</a></p>
+<article data-file="dfs.py" data-first="158" data-last="167"><h4>洛谷 P1036。读入 n、k，准备结果与路径</h4><a class="source" href="originals/dfs.py">dfs.py · L158–167</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token comment">####选数https://www.luogu.com.cn/problem/P1036</span>
+<span class="token keyword">import</span> sys
+<span class="token keyword">def</span> <span class="token function">solve</span>():
+    da=<span class="token builtin">iter</span>(sys.stdin.read().split())
+    n,k=<span class="token builtin">int</span>(<span class="token builtin">next</span>(da)),<span class="token builtin">int</span>(<span class="token builtin">next</span>(da))
+    sz=[<span class="token builtin">int</span>(<span class="token builtin">next</span>(da)) <span class="token keyword">for</span> _ <span class="token keyword">in</span> <span class="token builtin">range</span>(n)]
+    ans=<span class="token number">0</span>
+    out=[]
+    arr=[]
+    
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">158<br>159<br>160<br>161<br>162<br>163<br>164<br>165<br>166<br>167</div></div></article>
+<article data-file="dfs.py" data-first="265" data-last="293"><h4>DFS 主干。到达 k 个数后按上面的素数表累计，保留 nonlocal 注解</h4><a class="source" href="originals/dfs.py">dfs.py · L265–293</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token comment">##    主干dfs</span>
+    <span class="token keyword">def</span> <span class="token function">dfs</span>(j):
+        
+<span class="token comment">##如果你没有用到函数嵌套（比如全局定义了 ans=0，然后直接并排定义了一个 def dfs():）：</span>
+<span class="token comment">##修改 ans 时，只能用 global。</span>
+<span class="token comment">##</span>
+<span class="token comment">##如果你用了函数嵌套（比如在 def solve(): 里面定义了 ans = 0，</span>
+<span class="token comment">##然后紧接着在它内部定义了 def dfs():）：修改 ans 时，必须用 nonlocal。</span>
+<span class="token comment">##</span>
+<span class="token comment">##在蓝桥杯 B 组 Python 的标准写法中，我们往往推荐把所有逻辑写在一个 def solve():里面</span>
+<span class="token comment">##（就像上一回合我给你纠错的代码一样）。</span>
+<span class="token comment">##这样不污染全局命名空间，因此 nonlocal 是 DFS 嵌套写法中的绝对主力。</span>
+        
+        <span class="token keyword">nonlocal</span> ans<span class="token comment"># 【修复2】Python闭包修改外部不可变变量(int)时，</span>
+<span class="token comment">##        必须声明 nonlocal，否则会报 UnboundLocalError</span>
+        <span class="token keyword">if</span> <span class="token builtin">len</span>(arr)==k:
+            su=<span class="token builtin">sum</span>(arr)
+            <span class="token keyword">if</span> isp[su]:
+                ans+=<span class="token number">1</span>
+            <span class="token keyword">return</span>
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span>(j,n):
+            arr.append(sz[i])
+            dfs(i+<span class="token number">1</span>)
+            arr.pop()
+    dfs(<span class="token number">0</span>)
+    <span class="token builtin">print</span>(ans)                
+<span class="token keyword">if</span> <span class="token builtin">__name__</span>==<span class="token string">&#x27;__main__&#x27;</span>:
+    solve()
+
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">265<br>266<br>267<br>268<br>269<br>270<br>271<br>272<br>273<br>274<br>275<br>276<br>277<br>278<br>279<br>280<br>281<br>282<br>283<br>284<br>285<br>286<br>287<br>288<br>289<br>290<br>291<br>292<br>293</div></div></article>
+<h3 id="dfs-烤鸡的定长枚举">烤鸡的定长枚举</h3>
+<article data-file="dfs.py" data-first="294" data-last="301"><h4>洛谷 P2089。十种配料的取值范围与方案总数</h4><a class="source" href="originals/dfs.py">dfs.py · L294–301</a><div class="original-prose">烤鸡https://www.luogu.com.cn/problem/P2089
+这道题的本质是把一个数字n拆分成10个数字的和，且每个数字只能取1,2,3。
+第一重识破（数学陷阱）：10种配料，每种最少1克，最多3克。
+这意味着美味程度的总和最小是10，最大是30！
+如果输入的n&lt;10或者n&gt;30，绝对不可能拼出来，直接输出0即可。
+第二重识破（暴力极限）：既然有10个坑位，每个坑位有3种选择，
+那么全宇宙的方案总数就是3^{10}=59049种。
+区区不到6万种状态，连给计算机塞牙缝都不够，直接无脑枚举！
+</div></article>
+<article data-file="dfs.py" data-first="302" data-last="317"><h4>用 itertools.product 枚举十个位置</h4><a class="source" href="originals/dfs.py">dfs.py · L302–317</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token comment">##法一：itertools.product 是处理“定长、多选一”组合问题的绝对真神</span>
+<span class="token keyword">import</span> sys
+<span class="token keyword">def</span> <span class="token function">solve</span>():
+    da=<span class="token builtin">iter</span>(sys.stdin.read().split())
+    n=<span class="token builtin">int</span>(<span class="token builtin">next</span>(da))
+    <span class="token keyword">from</span> itertools <span class="token keyword">import</span> product
+    <span class="token keyword">if</span> <span class="token keyword">not</span> <span class="token number">10</span>&lt;=n&lt;=<span class="token number">30</span>:
+        <span class="token builtin">print</span>(<span class="token number">0</span>)
+    <span class="token keyword">else</span>:
+        ans=[p <span class="token keyword">for</span> p <span class="token keyword">in</span> product(<span class="token builtin">range</span>(<span class="token number">1</span>,<span class="token number">4</span>),repeat=<span class="token number">10</span>) <span class="token keyword">if</span> <span class="token builtin">sum</span>(p)==n]
+        <span class="token builtin">print</span>(<span class="token builtin">len</span>(ans))
+        <span class="token keyword">for</span> p <span class="token keyword">in</span> ans:
+            <span class="token builtin">print</span>(*p)
+    
+<span class="token keyword">if</span> <span class="token builtin">__name__</span>==<span class="token string">&#x27;__main__&#x27;</span>:
+    solve()
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">302<br>303<br>304<br>305<br>306<br>307<br>308<br>309<br>310<br>311<br>312<br>313<br>314<br>315<br>316<br>317</div></div></article>
+<article data-file="dfs.py" data-first="318" data-last="355"><h4>用 DFS 枚举，并按剩余坑位剪枝</h4><a class="source" href="originals/dfs.py">dfs.py · L318–355</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token comment">##法二</span>
+<span class="token keyword">import</span> sys
+<span class="token keyword">def</span> <span class="token function">solve</span>():
+    da=<span class="token builtin">iter</span>(sys.stdin.read().split())
+    n=<span class="token builtin">int</span>(<span class="token builtin">next</span>(da))
+<span class="token comment">##    step2</span>
+    ans=<span class="token number">0</span>
+    path=[]
+    out=[]
+    <span class="token keyword">def</span> <span class="token function">dfs</span>(ceng,he):
+        <span class="token keyword">nonlocal</span> ans
+        <span class="token keyword">if</span> (<span class="token number">10</span>-ceng)*<span class="token number">3</span>&lt;n-he:<span class="token keyword">return</span>
+        <span class="token keyword">if</span> <span class="token number">10</span>-ceng&gt;n-he:<span class="token keyword">return</span>
+<span class="token comment">##        step4</span>
+<span class="token comment">##        if he==10:</span>
+        <span class="token keyword">if</span> ceng == <span class="token number">10</span>:
+            ans+=<span class="token number">1</span>
+            out.append(<span class="token string">&#x27; &#x27;</span>.join(<span class="token builtin">map</span>(<span class="token builtin">str</span>,path)))
+            <span class="token keyword">return</span>
+<span class="token comment">##        step3</span>
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span>(<span class="token number">1</span>,<span class="token number">4</span>):
+            path.append(i)
+            dfs(ceng+<span class="token number">1</span>,he+i)
+            path.pop()
+                    
+<span class="token comment">##    step1</span>
+    <span class="token keyword">if</span> <span class="token keyword">not</span> <span class="token number">10</span>&lt;=n&lt;=<span class="token number">30</span>:
+        <span class="token builtin">print</span>(<span class="token number">0</span>)
+    <span class="token keyword">else</span>:
+        dfs(<span class="token number">0</span>,<span class="token number">0</span>)
+        <span class="token builtin">print</span>(ans)
+        <span class="token keyword">if</span> ans&gt;<span class="token number">0</span>:
+<span class="token comment"># 【细节优化】如果 ans 为 0（即没有合法方案），题目要求只输出一个 0，不能再输出空行</span>
+            sys.stdout.write(<span class="token string">&#x27;\n&#x27;</span>.join(out)+<span class="token string">&#x27;\n&#x27;</span>)    
+<span class="token keyword">if</span> <span class="token builtin">__name__</span>==<span class="token string">&#x27;__main__&#x27;</span>:
+    solve()
+
+
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">318<br>319<br>320<br>321<br>322<br>323<br>324<br>325<br>326<br>327<br>328<br>329<br>330<br>331<br>332<br>333<br>334<br>335<br>336<br>337<br>338<br>339<br>340<br>341<br>342<br>343<br>344<br>345<br>346<br>347<br>348<br>349<br>350<br>351<br>352<br>353<br>354<br>355</div></div></article>
+<h3 id="dfs-火星人与字典序后继">火星人与字典序后继</h3>
+<article data-file="dfs.py" data-first="356" data-last="378"><h4>洛谷 P1088。交换升序断点并反转后缀，逐次得到下一排列</h4><a class="source" href="originals/dfs.py">dfs.py · L356–378</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token comment">####火星人https://www.luogu.com.cn/problem/P1088</span>
+<span class="token keyword">import</span> sys
+<span class="token keyword">def</span> <span class="token function">solve</span>():
+    da=<span class="token builtin">iter</span>(sys.stdin.read().split())
+    n,m=<span class="token builtin">int</span>(<span class="token builtin">next</span>(da)),<span class="token builtin">int</span>(<span class="token builtin">next</span>(da))
+    arr=[<span class="token builtin">int</span>(<span class="token builtin">next</span>(da)) <span class="token keyword">for</span> _ <span class="token keyword">in</span> <span class="token builtin">range</span>(n)]
+<span class="token comment">##摒弃计算阶乘的全局视角，通过从右向左寻找首个升序对、交换并翻转后缀的局部贪心策略，</span>
+<span class="token comment">##以 O(N) 的代价步进 M 次推导出目标排列。</span>
+    <span class="token keyword">for</span> _ <span class="token keyword">in</span> <span class="token builtin">range</span>(m):
+        i=n-<span class="token number">2</span>
+        <span class="token keyword">while</span> <span class="token keyword">not</span> arr[i]&lt;arr[i+<span class="token number">1</span>]:
+            i-=<span class="token number">1</span>
+        j=n-<span class="token number">1</span>
+        <span class="token keyword">while</span> <span class="token keyword">not</span> arr[j]&gt;arr[i]:
+            j-=<span class="token number">1</span>
+        arr[i],arr[j]=arr[j],arr[i]
+        arr[i+<span class="token number">1</span>:]=<span class="token builtin">reversed</span>(arr[i+<span class="token number">1</span>:])<span class="token comment">#快过 [::-1](完整拷贝一次切片并</span>
+<span class="token comment">##        生成一个全新的列表，然后再赋给原列表，存在大内存申请开销)</span>
+    <span class="token builtin">print</span>(*arr)    
+<span class="token keyword">if</span> <span class="token builtin">__name__</span>==<span class="token string">&#x27;__main__&#x27;</span>:
+    solve()
+
+
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">356<br>357<br>358<br>359<br>360<br>361<br>362<br>363<br>364<br>365<br>366<br>367<br>368<br>369<br>370<br>371<br>372<br>373<br>374<br>375<br>376<br>377<br>378</div></div></article>
+<article data-file="dfs.py" data-first="379" data-last="444"><h4>带讲解的 DFS，贴着目标排列确定起点</h4><a class="source" href="originals/dfs.py">dfs.py · L379–444</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token comment">##dfs版</span>
+<span class="token keyword">import</span> sys
+sys.setrecursionlimit(<span class="token number">20000</span>)
+<span class="token keyword">def</span> <span class="token function">solve</span>():
+    da=<span class="token builtin">iter</span>(sys.stdin.read().split())
+    n,m=<span class="token builtin">int</span>(<span class="token builtin">next</span>(da)),<span class="token builtin">int</span>(<span class="token builtin">next</span>(da))
+    target=[<span class="token number">0</span>]+[<span class="token builtin">int</span>(<span class="token builtin">next</span>(da)) <span class="token keyword">for</span> _ <span class="token keyword">in</span> <span class="token builtin">range</span>(n)]<span class="token comment">#为了让 target 的索引也从 1 开始</span>
+<span class="token comment">##    （避免后续烧脑的 -1 偏移量），我们在最前面垫一个 0</span>
+<span class="token comment">##    step2</span>
+    visited=[<span class="token keyword">False</span>]*(n+<span class="token number">1</span>)<span class="token comment">##怎么知道数字 i 之前有没有被用过？需要引入 visited 数组</span>
+    path=[<span class="token number">0</span>]*(n+<span class="token number">1</span>)<span class="token comment">#填进去的数字存哪？需要引入 path 数组。</span>
+<span class="token comment">##    step4:完善终点与计数器</span>
+<span class="token comment">##    step4-part1:引入计数变量</span>
+    foundstart =<span class="token keyword">False</span>
+    stepcount=<span class="token number">0</span>
+<span class="token comment">##    step1</span>
+<span class="token comment">##    def dfs(depth):</span>
+<span class="token comment">##    step3:注入灵魂（推导贴边锁 is_edge）第一步怎么才能直接跳到火星人给的那个数字？</span>
+<span class="token comment">##    step3-part1:引入状态锁参数:我们必须给 DFS 加上一把锁</span>
+    <span class="token keyword">def</span> <span class="token function">dfs</span>(depth,isedge):
+<span class="token comment">##    step4-part2:丰满递归终点</span>
+        <span class="token keyword">nonlocal</span> foundstart ,stepcount
+        <span class="token keyword">if</span> depth==n+<span class="token number">1</span>:
+<span class="token comment">##            return</span>
+            <span class="token keyword">if</span> <span class="token keyword">not</span> foundstart:
+                foundstart=<span class="token keyword">True</span><span class="token comment"># 第一次来，啥也不干，只把标记打上</span>
+            <span class="token keyword">else</span>:
+                stepcount+=<span class="token number">1</span>
+                <span class="token keyword">if</span> stepcount==m:
+                    <span class="token builtin">print</span>(<span class="token string">&#x27; &#x27;</span>.join(<span class="token builtin">map</span>(<span class="token builtin">str</span>,path[<span class="token number">1</span>:])))
+                    sys.<span class="token builtin">exit</span>(<span class="token number">0</span>)
+<span class="token comment">##sys.exit(0) 的作用：</span>
+<span class="token comment">##它是 Python 提供给操作系统的“自毁指令”。</span>
+<span class="token comment">##只要代码摸到这一句，管你现在嵌套了多少层函数，管你外面还有多少个 for 循环没跑完，</span>
+<span class="token comment">##程序瞬间死亡（正常终止），直接把结果扔给评测机。</span>
+<span class="token comment">##这就是物理意义上的“拔掉主机电源”。                    </span>
+            <span class="token keyword">return</span>
+                
+            
+<span class="token comment">##        for i in range(1,n+1):</span>
+<span class="token comment">##        step3-part2:改造循环的起点:如果被锁着，起点必须是 target[depth]；</span>
+<span class="token comment">##        如果自由了，起点才是 1</span>
+        start=target[depth] <span class="token keyword">if</span> isedge <span class="token keyword">else</span> <span class="token number">1</span>
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span>(start,n+<span class="token number">1</span>):
+<span class="token comment">##    step2</span>
+            <span class="token keyword">if</span> <span class="token keyword">not</span> visited[i]:
+                visited[i]=<span class="token keyword">True</span>
+                path[depth]=i
+
+<span class="token comment">##                step3-part3:推导下一层的锁状态:</span>
+<span class="token comment">##        要进入下一层 dfs(depth + 1, ???)。传给下一层的参数是 True 还是 False 呢？</span>
+<span class="token comment">##        我们严密思考：只有当前是被锁着的（is_edge == True） 且</span>
+<span class="token comment">##        你乖乖听话选了目标数字（i == target[depth]） 时，</span>
+<span class="token comment">##        下一层才继续被锁。否则，立刻自由！</span>
+                nextisedge=isedge <span class="token keyword">and</span> (i==target[depth])
+                
+<span class="token comment">##                dfs(depth+1)</span>
+                dfs(depth+<span class="token number">1</span>,nextisedge)
+
+                visited[i]=<span class="token keyword">False</span>
+<span class="token comment">##            pass#pass是空语句(等待完善)，for后面必须有循环体，否则会报错；</span>
+<span class="token comment">##     所以用pass意思是：这里暂时什么都不做只是占一个位置，保证代码语法合法。</span>
+    dfs(<span class="token number">1</span>,<span class="token keyword">True</span>)   
+<span class="token keyword">if</span> <span class="token builtin">__name__</span>==<span class="token string">&#x27;__main__&#x27;</span>:
+    solve()
+
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">379<br>380<br>381<br>382<br>383<br>384<br>385<br>386<br>387<br>388<br>389<br>390<br>391<br>392<br>393<br>394<br>395<br>396<br>397<br>398<br>399<br>400<br>401<br>402<br>403<br>404<br>405<br>406<br>407<br>408<br>409<br>410<br>411<br>412<br>413<br>414<br>415<br>416<br>417<br>418<br>419<br>420<br>421<br>422<br>423<br>424<br>425<br>426<br>427<br>428<br>429<br>430<br>431<br>432<br>433<br>434<br>435<br>436<br>437<br>438<br>439<br>440<br>441<br>442<br>443<br>444</div></div></article>
+<article data-file="dfs.py" data-first="445" data-last="522"><h4>纠错笔记，重点检查贴边状态、递归终点和 visited 的恢复时机</h4><a class="source" href="originals/dfs.py">dfs.py · L445–522</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token comment">##纯享dfs:1</span>
+<span class="token keyword">import</span> sys
+sys.setrecursionlimit(<span class="token number">20000</span>)
+<span class="token keyword">def</span> <span class="token function">solve</span>():
+    da=<span class="token builtin">iter</span>(sys.stdin.read().split())
+    n,m=<span class="token builtin">int</span>(<span class="token builtin">next</span>(da)),<span class="token builtin">int</span>(<span class="token builtin">next</span>(da))
+    target=[<span class="token number">0</span>]+[<span class="token builtin">int</span>(<span class="token builtin">next</span>(da)) <span class="token keyword">for</span> _ <span class="token keyword">in</span> <span class="token builtin">range</span>(n)]
+    path=[<span class="token number">0</span>]*(n+<span class="token number">1</span>)
+    visited=[<span class="token keyword">False</span>]*(n+<span class="token number">1</span>)
+<span class="token comment">##  isedge=False：不要放在这，况且一开始得默认是True，才能看后面打不打破，直接传参</span>
+    foundstart=<span class="token keyword">False</span>
+    stepcount=<span class="token number">0</span>
+    <span class="token keyword">def</span> <span class="token function">dfs</span>(depth,isedge):
+        <span class="token keyword">nonlocal</span> foundstart,stepcount<span class="token comment"># 【修复1：声明写权限】</span>
+<span class="token comment">##        if depth == n:</span>
+        <span class="token keyword">if</span> depth == n+<span class="token number">1</span>:<span class="token comment"># 【修复2：终点必须是越界的 n + 1】</span>
+            <span class="token comment">#已修：注意depth等于几代表准备填第几个坑；depth=n+1代表填完n个</span>
+        
+            <span class="token keyword">if</span> <span class="token keyword">not</span> foundstart:
+                foundstart=<span class="token keyword">True</span>
+            <span class="token keyword">else</span>:
+                stepcount+=<span class="token number">1</span>
+                <span class="token keyword">if</span> stepcount==m:
+                    <span class="token builtin">print</span>(<span class="token string">&#x27; &#x27;</span>.join(<span class="token builtin">map</span>(<span class="token builtin">str</span>,path[<span class="token number">1</span>:])))
+<span class="token comment">##                    exit(0)# 建议加上 sys.</span>
+                    sys.<span class="token builtin">exit</span>(<span class="token number">0</span>)
+            <span class="token keyword">return</span>
+<span class="token comment">##        if path[depth]==target[depth]:</span>
+<span class="token comment">##            isedge=True</span>
+<span class="token comment">##逻辑谬误： 你在这个时候，连 for 循环都还没进去，</span>
+<span class="token comment">##当前的坑位 path[depth] 里面还是个 0！你拿一个还没填入的空坑，去跟 target 比较，</span>
+<span class="token comment">##        这是典型的“用未来的果，倒推现在的因”。</span>
+<span class="token comment">##而且，isedge 是上一层传给你的既定事实，你绝对不能在这一层的开头强行篡改它。</span>
+<span class="token comment">##理顺意识： 当前层的 isedge 是历史的遗产，直接用它来决定 start 就行了。</span>
+<span class="token comment">##至于“下一步还不贴边”，那是你做出选择之后才能推算的事情！</span>
+        
+<span class="token comment">##        start=target[depth] if isedge==True else 1# 【修复3：删除时序错乱的判断，</span>
+<span class="token comment">##        直接使用祖先传下来的 isedge 决定起点】</span>
+        start=target[depth] <span class="token keyword">if</span> isedge <span class="token keyword">else</span> <span class="token number">1</span>
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span>(start,n+<span class="token number">1</span>):
+            <span class="token keyword">if</span> <span class="token keyword">not</span> visited[i]:
+                visited[i]=<span class="token keyword">True</span>
+                path[depth]=i
+<span class="token comment">##                nextisedge=True if path[depth]==target[depth] else False</span>
+<span class="token comment">##逻辑谬误： 假设火星人的目标是 [3, 1, 2]。</span>
+<span class="token comment">##你在第一坑填了 4，锁被打破了，传给第二坑的 isedge = False。</span>
+<span class="token comment">##你在第二坑获得了自由，于是你顺手挑了一个极小值 1。</span>
+<span class="token comment">##但根据你这句代码，它发现 path[2] (也就是1) == target[2]！</span>
+<span class="token comment">##于是它强行把 nextisedge 变成了 True！</span>
+<span class="token comment">##本来已经自由的时间线，竟然因为一次巧合，又被重新戴上了镣铐！</span>
+<span class="token comment">##理顺意识： 自由是不可逆的！下一层继续被锁的唯一充分必要条件是：</span>
+<span class="token comment">##上一层传给我的锁还在（isedge 为真） AND 我这一步乖乖走了原路（i == target[depth]）。</span>
+                nextisedge=isedge <span class="token keyword">and</span> (i==target[depth])<span class="token comment">#已修</span>
+                dfs(depth+<span class="token number">1</span>,nextisedge)
+                visited[i]=<span class="token keyword">False</span><span class="token comment">#已修</span>
+<span class="token comment">##            visited[i]=False</span>
+<span class="token comment">##visited 数组：这是图书馆的借书登记系统。</span>
+<span class="token comment">##visited[i] = True 表示第 $i$ 本书被借走了，False 表示书还在架子上。</span>
+<span class="token comment">##if not visited[i]:：这是图书管理员的结界（门禁）。</span>
+<span class="token comment">##只有当书在架子上时，才允许你走进去执行后续动作。</span>
+<span class="token comment">##visited[i] = True：你把书借走。</span>
+<span class="token comment">##visited[i] = False：你把书还回去。</span>
+<span class="token comment">##for i in range(1, 4):</span>
+<span class="token comment">##    if not visited[i]:         # 管理员：书在吗？</span>
+<span class="token comment">##        visited[i] = True      # 你：在，我借走了！</span>
+<span class="token comment">##        dfs(depth + 1)         # 你：拿着书走向下一层...</span>
+<span class="token comment">##        </span>
+<span class="token comment">##    visited[i] = False         # ⚠️ 致命错误：这行代码在结界外面！</span>
+<span class="token comment">##物理矛盾： 第 2 层的你，明明连门都没进，连书都没碰到，</span>
+<span class="token comment">##却在系统里强行登记了一笔：“书 1 已经归还”！                </span>
+
+<span class="token comment">##            path[depth]=0(这句其实可以省略，因为下次填入会直接覆盖)</span>
+    dfs(<span class="token number">1</span>,<span class="token keyword">True</span>)
+    
+<span class="token keyword">if</span> <span class="token builtin">__name__</span>==<span class="token string">&#x27;__main__&#x27;</span>:
+    solve()
+
+
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">445<br>446<br>447<br>448<br>449<br>450<br>451<br>452<br>453<br>454<br>455<br>456<br>457<br>458<br>459<br>460<br>461<br>462<br>463<br>464<br>465<br>466<br>467<br>468<br>469<br>470<br>471<br>472<br>473<br>474<br>475<br>476<br>477<br>478<br>479<br>480<br>481<br>482<br>483<br>484<br>485<br>486<br>487<br>488<br>489<br>490<br>491<br>492<br>493<br>494<br>495<br>496<br>497<br>498<br>499<br>500<br>501<br>502<br>503<br>504<br>505<br>506<br>507<br>508<br>509<br>510<br>511<br>512<br>513<br>514<br>515<br>516<br>517<br>518<br>519<br>520<br>521<br>522</div></div></article>
+<article data-file="dfs.py" data-first="523" data-last="560"><h4>精简 DFS，保留注释掉的输入样例</h4><a class="source" href="originals/dfs.py">dfs.py · L523–560</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token keyword">import</span> sys
+sys.setrecursionlimit(<span class="token number">20000</span>)
+<span class="token keyword">def</span> <span class="token function">solve</span>():
+    da=<span class="token builtin">iter</span>(sys.stdin.read().split())
+<span class="token comment">##    da=iter(&#x27;&#x27;&#x27;5</span>
+<span class="token comment">##3</span>
+<span class="token comment">##1 2 3 4 5</span>
+<span class="token comment">##&#x27;&#x27;&#x27;.split())</span>
+    
+    n,m=<span class="token builtin">int</span>(<span class="token builtin">next</span>(da)),<span class="token builtin">int</span>(<span class="token builtin">next</span>(da))
+    target=[<span class="token number">0</span>]+[<span class="token builtin">int</span>(<span class="token builtin">next</span>(da)) <span class="token keyword">for</span> _ <span class="token keyword">in</span> <span class="token builtin">range</span>(n)]
+    visited=[<span class="token keyword">False</span>]*(n+<span class="token number">1</span>)
+    path=[<span class="token number">0</span>]*(n+<span class="token number">1</span>)
+    foundstart=<span class="token keyword">False</span>
+    stepcount=<span class="token number">0</span>
+    <span class="token keyword">def</span> <span class="token function">dfs</span>(depth,isedge):
+        <span class="token keyword">nonlocal</span> foundstart,stepcount
+        <span class="token keyword">if</span> depth==n+<span class="token number">1</span>:
+            <span class="token keyword">if</span> <span class="token keyword">not</span> foundstart :
+                foundstart=<span class="token keyword">True</span>
+            <span class="token keyword">else</span>:
+                stepcount+=<span class="token number">1</span>
+                <span class="token keyword">if</span> stepcount==m:
+                    <span class="token builtin">print</span>(<span class="token string">&#x27; &#x27;</span>.join(<span class="token builtin">map</span>(<span class="token builtin">str</span>,path[<span class="token number">1</span>:])))
+                    sys.<span class="token builtin">exit</span>(<span class="token number">0</span>)
+            <span class="token keyword">return</span>
+        start=target[depth] <span class="token keyword">if</span> isedge <span class="token keyword">else</span> <span class="token number">1</span>
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span>(start,n+<span class="token number">1</span>):
+            <span class="token keyword">if</span> <span class="token keyword">not</span> visited[i]:
+                visited[i]=<span class="token keyword">True</span>
+                path[depth]=i
+                nextisedge=isedge <span class="token keyword">and</span>(i==target[depth])
+                dfs(depth+<span class="token number">1</span>,nextisedge)
+                visited[i]=<span class="token keyword">False</span>
+    dfs(<span class="token number">1</span>,<span class="token keyword">True</span>)
+<span class="token keyword">if</span> <span class="token builtin">__name__</span>==<span class="token string">&#x27;__main__&#x27;</span>:
+    solve()
+
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">523<br>524<br>525<br>526<br>527<br>528<br>529<br>530<br>531<br>532<br>533<br>534<br>535<br>536<br>537<br>538<br>539<br>540<br>541<br>542<br>543<br>544<br>545<br>546<br>547<br>548<br>549<br>550<br>551<br>552<br>553<br>554<br>555<br>556<br>557<br>558<br>559<br>560</div></div></article>
+<h3 id="dfs-火柴加法">火柴加法</h3>
+<article data-file="dfs.py" data-first="561" data-last="609"><h4>洛谷 P1149。预计算数字的火柴数，枚举加数并检查等式</h4><a class="source" href="originals/dfs.py">dfs.py · L561–609</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token comment">##火柴加法https://www.luogu.com.cn/problem/P1149</span>
+<span class="token keyword">import</span> sys
+<span class="token keyword">def</span> <span class="token function">solve</span>():
+    da=<span class="token builtin">iter</span>(sys.stdin.read().split())
+    n=<span class="token builtin">int</span>(<span class="token builtin">next</span>(da))
+    <span class="token keyword">if</span> n&lt;=<span class="token number">4</span>:
+        <span class="token builtin">print</span>(<span class="token string">&#x27;0&#x27;</span>)
+        <span class="token keyword">return</span>
+    path=[<span class="token number">0</span>]*<span class="token number">2</span>
+    ans=<span class="token number">0</span>
+    num=[<span class="token number">0</span>]*<span class="token number">2005</span><span class="token comment">#num[c]</span>
+<span class="token comment">##    num=[0]*1000</span>
+    num[<span class="token number">0</span>]=<span class="token number">6</span><span class="token comment">#</span>
+    m=[<span class="token number">6</span>,<span class="token number">2</span>,<span class="token number">5</span>,<span class="token number">5</span>,<span class="token number">4</span>,<span class="token number">5</span>,<span class="token number">6</span>,<span class="token number">3</span>,<span class="token number">7</span>,<span class="token number">6</span>]
+<span class="token comment">##    for i in range(2005):</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span>(<span class="token number">1</span>,<span class="token number">2005</span>):
+        t=i
+        c=<span class="token number">0</span>
+        <span class="token keyword">while</span> t&gt;<span class="token number">0</span>:
+            c+=m[t%<span class="token number">10</span>]
+            t//=<span class="token number">10</span>
+        num[i]=c
+            
+<span class="token comment">##        num[i]=m[i%10]+m[i//10%10]+m[i//100%10]+m[i//1000]  有前导0问题</span>
+        
+    <span class="token keyword">def</span> <span class="token function">dfs</span>(depth,used):
+        <span class="token keyword">nonlocal</span> ans
+        <span class="token keyword">if</span> used&gt;n-<span class="token number">4</span>:
+            <span class="token keyword">return</span>
+        
+        <span class="token keyword">if</span> depth==<span class="token number">2</span>:
+            c=path[<span class="token number">0</span>]+path[<span class="token number">1</span>]
+            <span class="token keyword">if</span> num[c]==n-used-<span class="token number">4</span>:
+                ans+=<span class="token number">1</span>
+<span class="token comment">##            return#校验失败： 此时程序进行校验 if num[c] == n - used - 4:。</span>
+<span class="token comment">##绝大多数情况下，随便凑出来的两个数 $A$ 和 $B$ 是不等于规定火柴数的。</span>
+<span class="token comment">##所以这个 if 语句不成立。</span>
+            <span class="token keyword">return</span><span class="token comment">#必须和if平级</span>
+            
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span>(<span class="token number">1000</span>):
+            path[depth]=i
+            dfs(depth+<span class="token number">1</span>,used+num[i])
+    dfs(<span class="token number">0</span>,<span class="token number">0</span>)
+    <span class="token builtin">print</span>(ans)         
+            
+<span class="token keyword">if</span> <span class="token builtin">__name__</span>==<span class="token string">&#x27;__main__&#x27;</span>:
+    solve()
+
+
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">561<br>562<br>563<br>564<br>565<br>566<br>567<br>568<br>569<br>570<br>571<br>572<br>573<br>574<br>575<br>576<br>577<br>578<br>579<br>580<br>581<br>582<br>583<br>584<br>585<br>586<br>587<br>588<br>589<br>590<br>591<br>592<br>593<br>594<br>595<br>596<br>597<br>598<br>599<br>600<br>601<br>602<br>603<br>604<br>605<br>606<br>607<br>608<br>609</div></div></article>
+<h3 id="dfs-配料的酸度与苦度">配料的酸度与苦度</h3>
+<p>关联知识点 · <a href="#bits-按位枚举配料子集">按位枚举配料子集</a></p>
+<article data-file="dfs.py" data-first="610" data-last="677"><h4>带 haschosen、参数与作用域讨论的调试草稿，保留报错写法</h4><a class="source" href="originals/dfs.py">dfs.py · L610–677</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token keyword">import</span> sys
+<span class="token keyword">def</span> <span class="token function">solve</span>():
+    da=<span class="token builtin">iter</span>(sys.stdin.read().split())
+    n=<span class="token builtin">int</span>(<span class="token builtin">next</span>(da))
+    s=[<span class="token number">0</span>]+[<span class="token number">0</span>]*n
+    b=[<span class="token number">0</span>]+[<span class="token number">0</span>]*n
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span>(<span class="token number">1</span>,n+<span class="token number">1</span>):<span class="token comment">#不能用_循环</span>
+        s[i],b[i]=<span class="token builtin">int</span>(<span class="token builtin">next</span>(da)),<span class="token builtin">int</span>(<span class="token builtin">next</span>(da))
+    minans=<span class="token builtin">float</span>(<span class="token string">&#x27;inf&#x27;</span>)
+    <span class="token keyword">def</span> <span class="token function">dfs</span>(i,suan,ku,haschosen):
+        <span class="token keyword">nonlocal</span> minans
+        【剪枝前置的贪心更新】
+        <span class="token keyword">if</span> haschosen:
+            minans=<span class="token builtin">min</span>(minans,<span class="token builtin">abs</span>(suan-ku))
+
+        <span class="token keyword">for</span> nexti <span class="token keyword">in</span> <span class="token builtin">range</span>(i,n+<span class="token number">1</span>):<span class="token comment">#不用path，for从i开始循环顶级自然去重不用路径</span>
+            <span class="token comment">#这个非常核心！！！！！！！！！！！！！！！！！</span>
+            dfs(nexti+<span class="token number">1</span>,suan*s[nexti],ku+b[nexti],<span class="token keyword">True</span>)
+    dfs(<span class="token number">1</span>,<span class="token number">1</span>,<span class="token number">0</span>)<span class="token comment">#【启动修复】：因为配料是从 1 开始的，所以起始游标 i 必须是 1</span>
+            
+    path=[<span class="token number">0</span>]+[<span class="token number">0</span>]*(n+<span class="token number">1</span>)
+    suan=<span class="token number">0</span>
+    ku=<span class="token number">0</span>
+    <span class="token keyword">def</span> <span class="token function">dfs</span>(depth,suan,ku,path):
+        <span class="token keyword">nonlocal</span> minans,suan,ku
+    <span class="token comment"># 💥 致命漏洞 2：参数与 nonlocal 的作用域冲突</span>
+    <span class="token comment"># 你把 suan 和 ku 既当成了函数参数，又在内部声明为 nonlocal。</span>
+    <span class="token comment"># Python 语法严禁此操作，直接抛出 SyntaxError 阻止运行。</span>
+        deff = <span class="token builtin">abs</span>(suan-ku)
+    <span class="token comment"># 💥 致命漏洞 3：时序错位</span>
+        <span class="token comment"># 在第 0 层刚进来，什么都没选，你就开始算差值了。此时初始值是错的。</span>
+        <span class="token keyword">if</span> depth==n+<span class="token number">1</span> <span class="token keyword">and</span> <span class="token builtin">sum</span>(path):
+            minans=<span class="token builtin">min</span>(minans,deff)
+        <span class="token comment"># 💥 致命漏洞 4：缩进刺客引发的逻辑截断</span>
+        <span class="token comment"># 你的 return 与 if 平级！这意味着哪怕 depth=0，</span>
+        <span class="token comment"># 函数走到这里就直接 return 了！后面的搜索代码 100% 无法执行。</span>
+        <span class="token keyword">return</span>
+
+        path[depth]=<span class="token number">1</span>
+        <span class="token keyword">if</span> <span class="token builtin">sum</span>(path):
+            suan*=s[depth]
+        <span class="token keyword">else</span>:
+            suan+=s[depth]
+        ku+=b[depth]
+        dfs(depth+<span class="token number">1</span>,suan,ku)
+<span class="token comment">##启示（状态的无损传递）：</span>
+<span class="token comment">##最高级的回溯，是不修改当前状态，而是将“计算后的新状态”直接作为参数传给下一层。</span>
+<span class="token comment">##例如：dfs(depth + 1, suan * s[depth])。下一层返回时，</span>
+<span class="token comment">##当前层的 suan 根本没变，完全不需要写恶心的 //=  逆运算。        </span>
+        <span class="token keyword">if</span> <span class="token builtin">sum</span>(path)==<span class="token number">1</span>:
+            suan-=s[depth]
+        <span class="token keyword">else</span>:
+            suan//=s[depth]
+        避坑指南（数学系特供）：不要用逆运算去回溯！
+你试图用 suan //= s[depth] 去撤销 suan *= s[depth]。
+虽然数学上 $A \times B \div B = A$，但在编程中这是一种极其脆弱的“破坏性回溯”。
+一旦涉及初始值 <span class="token number">0</span>、浮点精度或负数取整，必定崩盘。
+            
+        ku-=b[depth]
+        path[depth]=<span class="token number">0</span>
+        dfs(depth+<span class="token number">1</span>,suan,ku)
+    dfs(0,0,0,path)
+    print(minans)        
+if __name__==&#x27;__main__&#x27;:
+    solve()
+
+
+
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">610<br>611<br>612<br>613<br>614<br>615<br>616<br>617<br>618<br>619<br>620<br>621<br>622<br>623<br>624<br>625<br>626<br>627<br>628<br>629<br>630<br>631<br>632<br>633<br>634<br>635<br>636<br>637<br>638<br>639<br>640<br>641<br>642<br>643<br>644<br>645<br>646<br>647<br>648<br>649<br>650<br>651<br>652<br>653<br>654<br>655<br>656<br>657<br>658<br>659<br>660<br>661<br>662<br>663<br>664<br>665<br>666<br>667<br>668<br>669<br>670<br>671<br>672<br>673<br>674<br>675<br>676<br>677</div></div></article>
+<article data-file="dfs.py" data-first="678" data-last="721"><h4>用路径标记选取哪些配料，叶节点计算酸苦差</h4><a class="source" href="originals/dfs.py">dfs.py · L678–721</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token keyword">import</span> sys
+
+<span class="token keyword">def</span> <span class="token function">solve</span>():
+    data = <span class="token builtin">list</span>(<span class="token builtin">map</span>(<span class="token builtin">int</span>, sys.stdin.read().split()))
+    <span class="token keyword">if</span> <span class="token keyword">not</span> data: <span class="token keyword">return</span>
+    n = data[<span class="token number">0</span>]
+    s = [data[i] <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span>(<span class="token number">1</span>, <span class="token builtin">len</span>(data), <span class="token number">2</span>)]
+    b = [data[i] <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span>(<span class="token number">2</span>, <span class="token builtin">len</span>(data), <span class="token number">2</span>)]
+    
+    ans = <span class="token builtin">float</span>(<span class="token string">&#x27;inf&#x27;</span>)
+    path = [<span class="token number">0</span>] * n  <span class="token comment"># 0表示不选，1表示选</span>
+    
+    <span class="token keyword">def</span> <span class="token function">dfs</span>(depth):
+        <span class="token keyword">nonlocal</span> ans
+        <span class="token keyword">if</span> depth == n:
+            <span class="token comment"># 只有当 path 里有 1（至少选了一个）时才计算</span>
+            <span class="token keyword">if</span> <span class="token builtin">sum</span>(path) &gt; <span class="token number">0</span>:
+                cur_s = <span class="token number">1</span>
+                cur_b = <span class="token number">0</span>
+                <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span>(n):
+                    <span class="token keyword">if</span> path[i] == <span class="token number">1</span>:
+                        cur_s *= s[i]
+                        cur_b += b[i]
+                ans = <span class="token builtin">min</span>(ans, <span class="token builtin">abs</span>(cur_s - cur_b))
+            <span class="token keyword">return</span>
+            
+        <span class="token comment"># 尝试不选</span>
+        path[depth] = <span class="token number">0</span>
+        dfs(depth + <span class="token number">1</span>)
+        
+        <span class="token comment"># 尝试选</span>
+        path[depth] = <span class="token number">1</span>
+        dfs(depth + <span class="token number">1</span>)
+        
+        <span class="token comment"># 其实可以不用显式恢复 path[depth]=0，因为上层会被覆盖</span>
+        <span class="token comment"># 但写上是标准回溯的美学</span>
+        path[depth] = <span class="token number">0</span> 
+
+    dfs(<span class="token number">0</span>)
+    <span class="token builtin">print</span>(ans)
+
+solve()
+
+
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">678<br>679<br>680<br>681<br>682<br>683<br>684<br>685<br>686<br>687<br>688<br>689<br>690<br>691<br>692<br>693<br>694<br>695<br>696<br>697<br>698<br>699<br>700<br>701<br>702<br>703<br>704<br>705<br>706<br>707<br>708<br>709<br>710<br>711<br>712<br>713<br>714<br>715<br>716<br>717<br>718<br>719<br>720<br>721</div></div></article>
+</section>
+<section id="bfs"><h2>BFS 与最短步数</h2><p>网格扩散与开关谜题共用按层扩展的写法，队列分别存坐标和灯光状态。</p>
+<div class="local-nav"><a href="#bfs-网格上的多源-BFS">网格上的多源 BFS</a> · <a href="#bfs-开关谜题的状态空间-BFS">开关谜题的状态空间 BFS</a></div>
+<h3 id="bfs-网格上的多源-BFS">网格上的多源 BFS</h3>
+<article data-file="Tsingpigdadademoban.py" data-first="595" data-last="614"><h4>起点、分层、入队标记与边界检查</h4><a class="source" href="originals/Tsingpigdadademoban.py">Tsingpigdadademoban.py · L595–614</a><div class="original-prose">二、 遇到 BFS，脑子里必须过电的 4 个考量要素
+以后只要题目里出现“最短路径”、“最少步数”、“层层扩散”、
+“几天后蔓延到全图”这种字眼，立刻条件反射呼叫 BFS。
+动手写代码前，必须拷问自己这 4 个问题：
+1.起点是“单源”还是“多源”？
+    只有一个起点（走迷宫）：开局入队一个坐标。
+    有多个起点（病毒扩散、森林火灾）：开局遍历全图，把所有起点全部扔进队列！
+2.需要“分层（时间概念）”吗？
+    如果题目问“能不能走到终点”，不需要分层，直接 while q:
+        无脑拿出来扩散就行。
+    如果题目问“第 k 天的状态”或“最少走几步”，必须严格分层，
+        必须加上 for _ in range(len(q)):，
+        并且在 for 循环外面加上步数/天数递增（你的代码里是 k -= 1）。
+3.有没有严格的“入队即标记（判重）”？
+    绝对不能让同一个节点被重复扔进队列。
+    必须用一个 visited 集合，
+    或者像你这样直接修改原数组 g[nx][ny] = 1 来充当防重墙。
+4.越界与合法性检查是否前置？
+    永远在“准备往队列里塞”的时刻（nx, ny），
+    立刻检查是否越过了长宽边界，是否是墙壁。        
+</div></article>
+<article data-file="Tsingpigdadademoban.py" data-first="615" data-last="647"><h4>长草初稿。源点坐标、边界判断和输出括号都有待修处</h4><a class="source" href="originals/Tsingpigdadademoban.py">Tsingpigdadademoban.py · L615–647</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token keyword">import</span> sys
+<span class="token keyword">from</span> collections <span class="token keyword">import</span> deque
+<span class="token keyword">def</span> <span class="token function">solve</span>():
+    da=<span class="token builtin">iter</span>(sys.stdin.read().split())
+    n,k=<span class="token builtin">int</span>(<span class="token builtin">next</span>(da)),<span class="token builtin">int</span>(<span class="token builtin">next</span>(da))
+    grid=[<span class="token builtin">list</span>(<span class="token number">0</span> <span class="token keyword">if</span> x==<span class="token string">&#x27;.&#x27;</span> <span class="token keyword">else</span> <span class="token number">1</span> <span class="token keyword">for</span> x <span class="token keyword">in</span> <span class="token builtin">next</span>(da)) <span class="token keyword">for</span> _ <span class="token keyword">in</span> <span class="token builtin">range</span>(n)]
+    q=deque()
+    di=[(<span class="token number">0</span>,<span class="token number">1</span>),(<span class="token number">1</span>,<span class="token number">0</span>),(<span class="token number">0</span>,-<span class="token number">1</span>),(-<span class="token number">1</span>,<span class="token number">0</span>)]
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span>(n):
+        <span class="token keyword">for</span> j <span class="token keyword">in</span> <span class="token builtin">range</span>(m):
+            <span class="token keyword">if</span> grid[x][y]==<span class="token number">1</span>:
+                q.append((x,y))
+    <span class="token keyword">def</span> <span class="token function">bfs</span>():
+        <span class="token keyword">nonlocal</span> k
+        <span class="token keyword">while</span> q <span class="token keyword">and</span> k:
+            <span class="token keyword">for</span> _ <span class="token keyword">in</span> <span class="token builtin">range</span>(<span class="token builtin">len</span>(q)):
+                x,y=q.popleft()
+                <span class="token keyword">for</span> dx,dy <span class="token keyword">in</span> di:
+                    nx,ny=x+dx,y+dy
+                    <span class="token keyword">if</span> grid[nx][ny]==<span class="token number">0</span> <span class="token keyword">and</span> <span class="token number">0</span>&lt;=nx&lt;n <span class="token keyword">and</span> <span class="token number">0</span>&lt;=ny&lt;y:
+                        grid[nx][ny]=<span class="token number">1</span>
+                        q.append((nx,ny))
+            k-=<span class="token number">1</span>
+    bfs()
+    out=[]
+    <span class="token keyword">for</span> x <span class="token keyword">in</span> <span class="token builtin">range</span>(n):
+        row=[<span class="token string">&#x27;.&#x27;</span> <span class="token keyword">if</span> grid[x][y]==<span class="token number">0</span> <span class="token keyword">else</span> <span class="token string">&#x27;g&#x27;</span>  <span class="token keyword">for</span> y <span class="token keyword">in</span> <span class="token builtin">range</span>(m))]
+        out.append(<span class="token string">&#x27;&#x27;</span>.join(row))
+    sys.stdout.write(<span class="token string">&#x27;\n&#x27;</span>.join(out)+<span class="token string">&#x27;\n&#x27;</span>)
+    
+                
+<span class="token keyword">if</span> <span class="token builtin">__name__</span>==<span class="token string">&#x27;__main__&#x27;</span>:
+    solve()
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">615<br>616<br>617<br>618<br>619<br>620<br>621<br>622<br>623<br>624<br>625<br>626<br>627<br>628<br>629<br>630<br>631<br>632<br>633<br>634<br>635<br>636<br>637<br>638<br>639<br>640<br>641<br>642<br>643<br>644<br>645<br>646<br>647</div></div></article>
+<article data-file="Tsingpigdadademoban.py" data-first="648" data-last="704"><h4>长草修订版。收集所有初始草格，同时扩展 k 层</h4><a class="source" href="originals/Tsingpigdadademoban.py">Tsingpigdadademoban.py · L648–704</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token keyword">import</span> sys
+<span class="token keyword">from</span> collections <span class="token keyword">import</span> deque
+
+<span class="token keyword">def</span> <span class="token function">solve</span>():
+    <span class="token comment"># 1. 初始化迭代器</span>
+    da = <span class="token builtin">iter</span>(sys.stdin.read().split())
+    <span class="token keyword">try</span>:
+        n = <span class="token builtin">int</span>(<span class="token builtin">next</span>(da))
+        m = <span class="token builtin">int</span>(<span class="token builtin">next</span>(da)) <span class="token comment"># 修复 1：读取 m</span>
+    <span class="token keyword">except</span> <span class="token builtin">StopIteration</span>:
+        <span class="token keyword">return</span>
+        
+    <span class="token comment"># 2. 读取网格</span>
+    grid = [[<span class="token number">0</span> <span class="token keyword">if</span> x == <span class="token string">&#x27;.&#x27;</span> <span class="token keyword">else</span> <span class="token number">1</span> <span class="token keyword">for</span> x <span class="token keyword">in</span> <span class="token builtin">next</span>(da)] <span class="token keyword">for</span> _ <span class="token keyword">in</span> <span class="token builtin">range</span>(n)]
+    
+    <span class="token comment"># 3. 读取天数 k</span>
+    k = <span class="token builtin">int</span>(<span class="token builtin">next</span>(da))
+    
+    q = deque()
+    di = [(<span class="token number">0</span>,<span class="token number">1</span>), (<span class="token number">1</span>,<span class="token number">0</span>), (<span class="token number">0</span>,-<span class="token number">1</span>), (-<span class="token number">1</span>,<span class="token number">0</span>)]
+    
+    <span class="token comment"># 4. 收集源点 (修复 2：变量名 i, j)</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span>(n):
+        <span class="token keyword">for</span> j <span class="token keyword">in</span> <span class="token builtin">range</span>(m):
+            <span class="token keyword">if</span> grid[i][j] == <span class="token number">1</span>:
+                q.append((i, j))
+                
+    <span class="token keyword">def</span> <span class="token function">bfs</span>():
+        <span class="token keyword">nonlocal</span> k
+        <span class="token keyword">while</span> q <span class="token keyword">and</span> k &gt; <span class="token number">0</span>:
+            <span class="token keyword">for</span> _ <span class="token keyword">in</span> <span class="token builtin">range</span>(<span class="token builtin">len</span>(q)):
+                x, y = q.popleft()
+                <span class="token keyword">for</span> dx, dy <span class="token keyword">in</span> di:
+                    nx, ny = x + dx, y + dy
+                    <span class="token comment"># 修复 3：边界判定必须放在前面！且列的边界是 m</span>
+                    <span class="token keyword">if</span> <span class="token number">0</span> &lt;= nx &lt; n <span class="token keyword">and</span> <span class="token number">0</span> &lt;= ny &lt; m <span class="token keyword">and</span> grid[nx][ny] == <span class="token number">0</span>:
+                        grid[nx][ny] = <span class="token number">1</span>
+                        q.append((nx, ny))
+            k -= <span class="token number">1</span>
+            
+    bfs()
+    
+    <span class="token comment"># 5. 输出结果 (修复 4：去掉了多余的括号)</span>
+    out = []
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span>(n):
+        row = [<span class="token string">&#x27;.&#x27;</span> <span class="token keyword">if</span> grid[i][j] == <span class="token number">0</span> <span class="token keyword">else</span> <span class="token string">&#x27;g&#x27;</span> <span class="token keyword">for</span> j <span class="token keyword">in</span> <span class="token builtin">range</span>(m)]
+        out.append(<span class="token string">&#x27;&#x27;</span>.join(row))
+        
+    sys.stdout.write(<span class="token string">&#x27;\n&#x27;</span>.join(out) + <span class="token string">&#x27;\n&#x27;</span>)
+
+<span class="token keyword">if</span> <span class="token builtin">__name__</span> == <span class="token string">&#x27;__main__&#x27;</span>:
+    solve()
+
+
+
+
+    
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">648<br>649<br>650<br>651<br>652<br>653<br>654<br>655<br>656<br>657<br>658<br>659<br>660<br>661<br>662<br>663<br>664<br>665<br>666<br>667<br>668<br>669<br>670<br>671<br>672<br>673<br>674<br>675<br>676<br>677<br>678<br>679<br>680<br>681<br>682<br>683<br>684<br>685<br>686<br>687<br>688<br>689<br>690<br>691<br>692<br>693<br>694<br>695<br>696<br>697<br>698<br>699<br>700<br>701<br>702<br>703<br>704</div></div></article>
+<h3 id="bfs-开关谜题的状态空间-BFS">开关谜题的状态空间 BFS</h3>
+<p>关联知识点 · <a href="#bits-用整数表示集合">用整数表示集合</a></p>
+<article data-file="Tsingpigdadademoban.py" data-first="705" data-last="709"><h4>用异或产生下一状态，入队前判重</h4><a class="source" href="originals/Tsingpigdadademoban.py">Tsingpigdadademoban.py · L705–709</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token keyword">for</span> mask <span class="token keyword">in</span> unique_effects:
+    next_state = curr_state ^ mask
+    <span class="token keyword">if</span> next_state <span class="token keyword">not</span> <span class="token keyword">in</span> visited:
+        visited.add(next_state)
+        q.append(next_state)
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">705<br>706<br>707<br>708<br>709</div></div></article>
+<article data-file="Tsingpigdadademoban.py" data-first="710" data-last="757"><h4>逐行推演开关动作与异或结果</h4><a class="source" href="originals/Tsingpigdadademoban.py">Tsingpigdadademoban.py · L710–757</a><div class="original-prose">第一句：for mask in unique_effects:
+物理映射：你面前的桌子上，
+摆着你在第一步预处理时提炼出来的所有“不重复的魔法面具（开关操作）”。
+这行代码的意思是：“我要把桌子上的每一个按钮，全都试按一遍。”
+
+深度逻辑：在走迷宫时，这一步相当于 for dx, dy in 方向数组
+（尝试上下左右四个方向）。而在状态空间里，你的“方向”就是这些面具。
+每一个 mask，代表着向一个全新的灯光状态迈进的可能。
+
+第二句：next_state = curr_state ^ mask
+物理映射：按下按钮，见证奇迹！
+
+深度逻辑：这是最绝妙的一行位运算代码。^ 是异或符号，
+它的铁律是：相同为 0，不同为 1。
+
+假设你摸到了一个 mask = 2（二进制 00010，代表翻转灯 1）。
+
+现在的房间 curr_state 是 00110。
+
+发生异或碰撞：
+00110 (当前房间)
+00010 (魔法面具)
+------- (异或)
+00100 (新房间 next_state)
+
+结果：原本亮着的灯 1（第 1 位）被面具里的 1 给“异或”成了 0（灭了）；
+原本亮着的灯 2（第 2 位）碰到了面具里的 0，
+保留了 1（继续亮着）。这行代码瞬间完成了多个灯泡的同时翻转，
+并计算出了按完之后的新格局 next_state。
+
+第三句：if next_state not in visited:
+物理映射：查验生死簿，防止死循环。
+
+深度逻辑：按完开关，房间变成了 next_state。
+这时候你必须立刻停下来，翻开你手里的 visited 集合，
+问自己一个问题：“这种灯光亮暗的组合，我以前是不是曾经踩出来过？”
+
+如果你在第 1 层就踩出过 00100，现在你到了第 5 层，
+一顿操作后又搞出了 00100。
+
+这说明你刚才的操作纯属绕远路（脱裤子放屁）！
+别人按 1 次就能达到的状态，你按了 5 次才达到，这绝对不可能是“最短路径”。
+
+只有当 next_state not in visited 成立
+（这是一种全宇宙首次发现的全新灯光格局），你才被允许进入下一步。
+
+
+
+</div></article>
+<article data-file="Tsingpigdadademoban.py" data-first="758" data-last="770"><h4>原稿对照表：网格上的坐标与灯光的位掩码</h4><a class="source" href="originals/Tsingpigdadademoban.py">Tsingpigdadademoban.py · L758–770</a><div class="original-prose">概念            长草问题（物理网格 BFS）	开关谜题（状态空间 BFS）	         它的物理意义是什么？
+当前位置        x, y = q.popleft()	curr_state = q.popleft()	我现在站在哪里？（现在的局面是什么）
+                  
+尝试动作        for dx, dy in di:	for mask in unique_effects:	我下一步可以往哪走？（我可以按哪个开关）
+
+产生变化        nx = x + dx             next_state = curr_state ^ mask  执行动作后，到达的新地点 / 产生的新局面
+                ny = y + dy
+
+防止回头        if grid[nx][ny] == 0:	if next_state not in visited:	这个新地点/新局面，我以前来过吗？
+
+登记入队        grid[nx][ny] = 1        visited.add(next_state)         没来过！赶紧打上标记，塞进队列明天处理
+                q.append((nx, ny))      q.append(next_state)
+          
+</div></article>
+<article data-file="Tsingpigdadademoban.py" data-first="771" data-last="837"><h4>完整讲解版，按层搜索最少按键次数</h4><a class="source" href="originals/Tsingpigdadademoban.py">Tsingpigdadademoban.py · L771–837</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token keyword">import</span> sys
+<span class="token keyword">from</span> collections <span class="token keyword">import</span> deque
+
+<span class="token keyword">def</span> <span class="token function">solve</span>():
+    <span class="token comment"># 使用快读</span>
+    da = <span class="token builtin">iter</span>(sys.stdin.read().split())
+    <span class="token keyword">try</span>:
+        t = <span class="token builtin">int</span>(<span class="token builtin">next</span>(da))
+    <span class="token keyword">except</span> <span class="token builtin">StopIteration</span>:
+        <span class="token keyword">return</span>
+        
+    out = []
+    <span class="token keyword">for</span> _ <span class="token keyword">in</span> <span class="token builtin">range</span>(t):
+        n = <span class="token builtin">int</span>(<span class="token builtin">next</span>(da))
+        m = <span class="token builtin">int</span>(<span class="token builtin">next</span>(da))
+        
+        <span class="token comment"># 1. 预处理：提取所有【本质独特】的开关面具</span>
+        unique_effects = <span class="token builtin">set</span>()
+        <span class="token keyword">for</span> r <span class="token keyword">in</span> <span class="token builtin">range</span>(<span class="token builtin">min</span>(n, m)):
+            lamp1 = r
+            lamp2 = (<span class="token number">2</span> * r) % m
+            
+            effect_mask = <span class="token number">1</span> &lt;&lt; lamp1
+            <span class="token keyword">if</span> lamp1 != lamp2:
+                effect_mask ^= (<span class="token number">1</span> &lt;&lt; lamp2)
+                
+            unique_effects.add(effect_mask)
+            
+        goal_state = (<span class="token number">1</span> &lt;&lt; m) - <span class="token number">1</span>
+        
+        <span class="token comment"># 2. 核心：将 BFS 逻辑完美打包成独立函数</span>
+        <span class="token keyword">def</span> <span class="token function">bfs</span>():
+            <span class="token comment"># 队列和记忆化集合放在函数内部，确保每次调用都是干净的</span>
+            q = deque([<span class="token number">0</span>])
+            visited = {<span class="token number">0</span>} 
+            step = <span class="token number">0</span>
+            
+            <span class="token keyword">while</span> q:
+                <span class="token comment"># 锁定当前层的快照长度</span>
+                <span class="token keyword">for</span> _ <span class="token keyword">in</span> <span class="token builtin">range</span>(<span class="token builtin">len</span>(q)):
+                    curr_state = q.popleft()
+                    
+                    <span class="token comment"># 【神级优化】：一旦触底，直接 return 答案！</span>
+                    <span class="token comment"># 彻底消灭了 found 变量和两层 break！</span>
+                    <span class="token keyword">if</span> curr_state == goal_state:
+                        <span class="token keyword">return</span> step
+                        
+                    <span class="token keyword">for</span> mask <span class="token keyword">in</span> unique_effects:
+                        next_state = curr_state ^ mask
+                        <span class="token keyword">if</span> next_state <span class="token keyword">not</span> <span class="token keyword">in</span> visited:
+                            visited.add(next_state)
+                            q.append(next_state)
+                            
+                step += <span class="token number">1</span> <span class="token comment"># 这一层（按键次数）探索完毕，步数加 1</span>
+                
+            <span class="token comment"># 如果 while 循环自然结束（队列空了），说明无解</span>
+            <span class="token keyword">return</span> -<span class="token number">1</span>
+            
+        <span class="token comment"># 3. 直接调用函数，接收结果并转成字符串存入 out</span>
+        ans = bfs()
+        out.append(<span class="token builtin">str</span>(ans))
+            
+    sys.stdout.write(<span class="token string">&#x27;\n&#x27;</span>.join(out) + <span class="token string">&#x27;\n&#x27;</span>)
+
+<span class="token keyword">if</span> <span class="token builtin">__name__</span> == <span class="token string">&#x27;__main__&#x27;</span>:
+    solve()
+
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">771<br>772<br>773<br>774<br>775<br>776<br>777<br>778<br>779<br>780<br>781<br>782<br>783<br>784<br>785<br>786<br>787<br>788<br>789<br>790<br>791<br>792<br>793<br>794<br>795<br>796<br>797<br>798<br>799<br>800<br>801<br>802<br>803<br>804<br>805<br>806<br>807<br>808<br>809<br>810<br>811<br>812<br>813<br>814<br>815<br>816<br>817<br>818<br>819<br>820<br>821<br>822<br>823<br>824<br>825<br>826<br>827<br>828<br>829<br>830<br>831<br>832<br>833<br>834<br>835<br>836<br>837</div></div></article>
+<article data-file="Tsingpigdadademoban.py" data-first="838" data-last="881"><h4>再写一遍。保留 op 的缩进与重复灯位的纠错记录</h4><a class="source" href="originals/Tsingpigdadademoban.py">Tsingpigdadademoban.py · L838–881</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token keyword">import</span> sys
+<span class="token keyword">from</span> collections <span class="token keyword">import</span> deque
+<span class="token keyword">def</span> <span class="token function">solve</span>():
+    da=<span class="token builtin">iter</span>(sys.stdin.read().split())
+    t=<span class="token builtin">int</span>(<span class="token builtin">next</span>(da))
+    out=[]
+    <span class="token keyword">for</span> _ <span class="token keyword">in</span> <span class="token builtin">range</span>(t):
+        n,m=<span class="token builtin">int</span>(<span class="token builtin">next</span>(da)),<span class="token builtin">int</span>(<span class="token builtin">next</span>(da))
+<span class="token comment">##        move=[]</span>
+        move=<span class="token builtin">set</span>()
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span>(<span class="token builtin">min</span>(n,m)):
+            lamp1=i
+            lamp2=(<span class="token number">2</span>*i)%m
+<span class="token comment">##            mv=1&lt;&lt;lamp1</span>
+<span class="token comment">##            if lamp1 != lamp2:</span>
+<span class="token comment">##                mvm=1&lt;&lt;lamp2</span>
+<span class="token comment">##                op=mv^mvm</span>
+<span class="token comment">##“你让我把 op 加进集合里，可是如果你不进 if，这个 op 根本就没被创建出来啊！</span>
+<span class="token comment">##            move.add(op)#缩进</span>
+            op=<span class="token number">1</span>&lt;&lt;lamp1
+            <span class="token keyword">if</span> lamp1 != lamp2:
+                op^=(<span class="token number">1</span>&lt;&lt;lamp2)
+            move.add(op)           
+        <span class="token keyword">def</span> <span class="token function">bfs</span>():
+            q=deque([<span class="token number">0</span>])<span class="token comment">#状态待处理</span>
+            visited={<span class="token number">0</span>}<span class="token comment">#状态一出戏那</span>
+            step=<span class="token number">0</span>
+            <span class="token keyword">while</span> q:
+                <span class="token keyword">for</span> _ <span class="token keyword">in</span> <span class="token builtin">range</span>(<span class="token builtin">len</span>(q)):
+                    cur_st=q.popleft()
+                    <span class="token keyword">if</span> cur_st==(<span class="token number">1</span>&lt;&lt;m)-<span class="token number">1</span>:<span class="token keyword">return</span> step
+                    <span class="token keyword">for</span> op <span class="token keyword">in</span> move:
+                        new_st=cur_st^op
+                        <span class="token keyword">if</span> new_st <span class="token keyword">not</span> <span class="token keyword">in</span> visited:
+                            visited.add(new_st)
+                            q.append(new_st)
+                step+=<span class="token number">1</span>
+            <span class="token keyword">return</span> -<span class="token number">1</span>
+        out.append(<span class="token builtin">str</span>(bfs()))
+    sys.stdout.write(<span class="token string">&#x27;\n&#x27;</span>.join(out)+<span class="token string">&#x27;\n&#x27;</span>)  
+        
+<span class="token keyword">if</span> <span class="token builtin">__name__</span>==<span class="token string">&#x27;__main__&#x27;</span>:
+    solve()
+
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">838<br>839<br>840<br>841<br>842<br>843<br>844<br>845<br>846<br>847<br>848<br>849<br>850<br>851<br>852<br>853<br>854<br>855<br>856<br>857<br>858<br>859<br>860<br>861<br>862<br>863<br>864<br>865<br>866<br>867<br>868<br>869<br>870<br>871<br>872<br>873<br>874<br>875<br>876<br>877<br>878<br>879<br>880<br>881</div></div></article>
+</section>
+<section id="graph"><h2>图的表示与遍历</h2><p>对照矩阵和邻接表存边的方式，再看沿后继搜索时如何记录访问深度。</p>
+<div class="local-nav"><a href="#graph-沿后继搜索环">沿后继搜索环</a> · <a href="#graph-带权无向图与-DFS">带权无向图与 DFS</a></div>
+<h3 id="graph-沿后继搜索环">沿后继搜索环</h3>
+<article data-file="Tsingpigdadademoban.py" data-first="509" data-last="530"><h4>用字典记录访问深度的尝试。多个起点共用记录，跨轮次的深度差需要复核</h4><a class="source" href="originals/Tsingpigdadademoban.py">Tsingpigdadademoban.py · L509–530</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token keyword">import</span> sys
+sys.setrecursionlimit(<span class="token number">10000</span>)
+<span class="token keyword">def</span> <span class="token function">solve</span>():
+    da=<span class="token builtin">iter</span>(sys.stdin.read().split())
+    n=<span class="token builtin">int</span>(<span class="token builtin">next</span>(da))
+    arr=[<span class="token number">0</span>]+[<span class="token builtin">int</span>(<span class="token builtin">next</span>(da)) <span class="token keyword">for</span> _ <span class="token keyword">in</span> <span class="token builtin">range</span>(n)]
+    zd={}
+    res=<span class="token number">0</span>
+    <span class="token keyword">def</span> <span class="token function">dfs</span>(i,idx):
+        <span class="token keyword">nonlocal</span> res
+        <span class="token keyword">if</span> zd.get(i) <span class="token keyword">is</span> <span class="token keyword">not</span> <span class="token keyword">None</span>:
+            res=<span class="token builtin">max</span>(res,idx-zd[i])
+            <span class="token keyword">return</span>
+        zd[i]=idx
+        dfs(arr[i],idx+<span class="token number">1</span>)        
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span>(<span class="token number">1</span>,n+<span class="token number">1</span>):
+        dfs(i,<span class="token number">1</span>)
+    <span class="token builtin">print</span>(res)
+<span class="token keyword">if</span> <span class="token builtin">__name__</span>==<span class="token string">&#x27;__main__&#x27;</span>:
+    solve()
+
+
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">509<br>510<br>511<br>512<br>513<br>514<br>515<br>516<br>517<br>518<br>519<br>520<br>521<br>522<br>523<br>524<br>525<br>526<br>527<br>528<br>529<br>530</div></div></article>
+<h3 id="graph-带权无向图与-DFS">带权无向图与 DFS</h3>
+<article data-file="Tsingpigdadademoban.py" data-first="1027" data-last="1046"><h4>邻接矩阵、邻接表与遍历草稿。矩阵行初始化、DFS 形参与边的拆包顺序待核对</h4><a class="source" href="originals/Tsingpigdadademoban.py">Tsingpigdadademoban.py · L1027–1046</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code>g=[<span class="token builtin">float</span>(<span class="token string">&#x27;inf&#x27;</span>)*n <span class="token keyword">for</span> _ <span class="token keyword">in</span> <span class="token builtin">range</span>(n)]
+u,v,w
+g[u][v]=g[v][u]=w
+g[u][u]=g[v][v]=<span class="token number">0</span>
+
+e=[[] <span class="token keyword">for</span> _ <span class="token keyword">in</span> <span class="token builtin">range</span>(n)]
+u,v,w
+e[u].append((v,w))
+e[v].append((u,w))
+
+s=<span class="token builtin">set</span>()
+<span class="token keyword">def</span> <span class="token function">dfs</span>(st):
+    <span class="token builtin">print</span>(u,end=<span class="token string">&#x27; &#x27;</span>)
+    s.add(u)
+    <span class="token keyword">for</span> _ ,v <span class="token keyword">in</span> e[u]:
+        <span class="token keyword">if</span> v <span class="token keyword">not</span> <span class="token keyword">in</span> s:
+            dfs(v)
+            s.add(v)
+
+
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">1027<br>1028<br>1029<br>1030<br>1031<br>1032<br>1033<br>1034<br>1035<br>1036<br>1037<br>1038<br>1039<br>1040<br>1041<br>1042<br>1043<br>1044<br>1045<br>1046</div></div></article>
+</section>
+<section id="bits"><h2>位运算与子集</h2><p>让每一位表示是否选中一个元素，用掩码查询、修改或枚举整个集合。</p>
+<div class="local-nav"><a href="#bits-用整数表示集合">用整数表示集合</a> · <a href="#bits-按位枚举配料子集">按位枚举配料子集</a></div>
+<h3 id="bits-用整数表示集合">用整数表示集合</h3>
+<article data-file="Tsingpigdadademoban.py" data-first="1002" data-last="1026"><h4>查位、置位、清位、判空、判满与翻转的六条速记</h4><a class="source" href="originals/Tsingpigdadademoban.py">Tsingpigdadademoban.py · L1002–1026</a><div class="original-prose">技巧 1：查看第 j 个物品有没有被用过
+代码：if (S &gt;&gt; j) &amp; 1 == 1:
+    理解：把 S 的第 j 位推到最右边，然后和 1 进行“按位与”（&amp;）。
+    如果结果是 1，说明用过了。
+
+技巧 2：把第 j 个物品标记为已用（本题讲解）
+代码：S = S | (1 &lt;&lt; j)理解：强行把第 j 位置为 1。
+
+技巧 3：把第 j 个物品恢复为未用（回溯时常用）
+代码：S = S &amp; ~(1 &lt;&lt; j)
+理解：~ 是按位取反。制造一个“唯独第 j 位是 0，其他全是 1”的掩码，
+用“按位与”把第 j 位强行清零。
+
+技巧 4：判断是不是一个物品都没用过
+代码：if S == 0:
+
+技巧 5：判断是不是所有 $N$ 个物品全用完了
+代码：if S == (1 &lt;&lt; n) - 1:
+理解：比如 $N=3$，1&lt;&lt;3 是 8（二进制 1000），
+减去 1 就是 7（二进制 0111），恰好是前 3 位全为 1。
+                             
+技巧 6：改变状态
+代码：S^(1&lt;&lt;j)
+
+
+</div></article>
+<h3 id="bits-按位枚举配料子集">按位枚举配料子集</h3>
+<p>关联知识点 · <a href="#dfs-配料的酸度与苦度">配料的酸度与苦度</a></p>
+<article data-file="dfs.py" data-first="722" data-last="724"><h4>从非空子集到整数掩码的原始笔记</h4><a class="source" href="originals/dfs.py">dfs.py · L722–724</a><div class="original-prose">对于数学系学生来说，集合的子集和二进制数构成了完美的双射（Bijection）。
+$n$ 个物品的选与不选，完美对应 $0 \sim 2^n - 1$ 的每一个整数的二进制位。
+这彻底消灭了函数调用的开销，速度提升极限！
+</div></article>
+<article data-file="dfs.py" data-first="725" data-last="771"><h4>逐位累计酸度积与苦度和，和同题的 DFS 写法对读</h4><a class="source" href="originals/dfs.py">dfs.py · L725–771</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token keyword">import</span> sys
+
+<span class="token keyword">def</span> <span class="token function">solve</span>():
+    data = sys.stdin.read().split()
+    <span class="token keyword">if</span> <span class="token keyword">not</span> data: <span class="token keyword">return</span>
+    n = <span class="token builtin">int</span>(data[<span class="token number">0</span>])
+    s = [<span class="token builtin">int</span>(data[i]) <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span>(<span class="token number">1</span>, <span class="token builtin">len</span>(data), <span class="token number">2</span>)]
+    b = [<span class="token builtin">int</span>(data[i]) <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span>(<span class="token number">2</span>, <span class="token builtin">len</span>(data), <span class="token number">2</span>)]
+    
+    ans = <span class="token builtin">float</span>(<span class="token string">&#x27;inf&#x27;</span>)
+    
+    <span class="token comment"># 1 &lt;&lt; n 相当于 2 的 n 次方。例如 n=3，范围是 1 到 7 (即二进制 001 到 111)</span>
+    <span class="token comment"># 从 1 开始，天然排除了 000 (什么都不选) 的非法情况</span>
+    <span class="token keyword">for</span> mask <span class="token keyword">in</span> <span class="token builtin">range</span>(<span class="token number">1</span>, <span class="token number">1</span> &lt;&lt; n):
+        cur_s = <span class="token number">1</span>
+        cur_b = <span class="token number">0</span>
+        
+        <span class="token comment"># 检查这个整数的每一位</span>
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span>(n):
+            <span class="token comment"># 位运算：(1 &lt;&lt; i) 是制作一个掩码，&amp; 操作判断第 i 位是否为 1</span>
+            <span class="token keyword">if</span> mask &amp; (<span class="token number">1</span> &lt;&lt; i):
+                cur_s *= s[i]
+                cur_b += b[i]
+                
+        ans = <span class="token builtin">min</span>(ans, <span class="token builtin">abs</span>(cur_s - cur_b))
+        
+    <span class="token builtin">print</span>(ans)
+
+solve()
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">725<br>726<br>727<br>728<br>729<br>730<br>731<br>732<br>733<br>734<br>735<br>736<br>737<br>738<br>739<br>740<br>741<br>742<br>743<br>744<br>745<br>746<br>747<br>748<br>749<br>750<br>751<br>752<br>753<br>754<br>755<br>756<br>757<br>758<br>759<br>760<br>761<br>762<br>763<br>764<br>765<br>766<br>767<br>768<br>769<br>770<br>771</div></div></article>
+</section>
+<section id="math"><h2>数论与素数筛</h2><p>从单次试除到批量筛选，再用前缀和做区间查询、用最小质因子表做分解。</p>
+<div class="local-nav"><a href="#math-筛法与区间计数">筛法与区间计数</a> · <a href="#math-素数判定与分解">素数判定与分解</a></div>
+<h3 id="math-筛法与区间计数">筛法与区间计数</h3>
+<article data-file="Tsingpigdadademoban.py" data-first="50" data-last="76"><h4>先标记合数，再通过前缀和回答闭区间内的合数个数</h4><a class="source" href="originals/Tsingpigdadademoban.py">Tsingpigdadademoban.py · L50–76</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token keyword">import</span> sys
+<span class="token keyword">import</span> math
+<span class="token keyword">def</span> <span class="token function">solve</span>():
+    
+        
+    n=<span class="token number">10</span>**<span class="token number">7</span>
+    ip=[<span class="token keyword">False</span>]*(<span class="token number">10</span>**<span class="token number">7</span>+<span class="token number">1</span>)
+    ip[<span class="token number">0</span>]=ip[<span class="token number">1</span>]=<span class="token keyword">False</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span>(<span class="token number">2</span>,math.isqrt(n)+<span class="token number">1</span>):
+        <span class="token keyword">if</span>  <span class="token keyword">not</span> ip[i]:
+            <span class="token keyword">for</span> j <span class="token keyword">in</span> <span class="token builtin">range</span>(i**<span class="token number">2</span>,n+<span class="token number">1</span>,i):
+                ip[j]=<span class="token keyword">True</span>
+    qz=[<span class="token number">0</span>]*(n+<span class="token number">1</span>)
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span>(<span class="token number">0</span>,n):
+        qz[i+<span class="token number">1</span>]=qz[i]+ip[i+<span class="token number">1</span>]
+    out=[]
+    data=sys.stdin.read().split()
+    da=<span class="token builtin">iter</span>(data)
+    <span class="token keyword">for</span> _ <span class="token keyword">in</span> <span class="token builtin">range</span>(<span class="token builtin">len</span>(data)//<span class="token number">2</span>):
+        a,b=<span class="token builtin">int</span>(<span class="token builtin">next</span>(da)),<span class="token builtin">int</span>(<span class="token builtin">next</span>(da))
+        ans=qz[b]-qz[a-<span class="token number">1</span>]
+        out.append(<span class="token builtin">str</span>(ans))
+    sys.stdout.write(<span class="token string">&#x27;\n&#x27;</span>.join(out)+<span class="token string">&#x27;\n&#x27;</span>)
+    
+<span class="token keyword">if</span> <span class="token builtin">__name__</span>==<span class="token string">&#x27;__main__&#x27;</span>:
+    solve()    
+
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">50<br>51<br>52<br>53<br>54<br>55<br>56<br>57<br>58<br>59<br>60<br>61<br>62<br>63<br>64<br>65<br>66<br>67<br>68<br>69<br>70<br>71<br>72<br>73<br>74<br>75<br>76</div></div></article>
+<h3 id="math-素数判定与分解">素数判定与分解</h3>
+<p>关联知识点 · <a href="#dfs-选数与素数和">选数与素数和</a></p>
+<article data-file="Tsingpigdadademoban.py" data-first="80" data-last="86"><h4>用奇数试除到整数平方根，调用前需要导入 isqrt</h4><a class="source" href="originals/Tsingpigdadademoban.py">Tsingpigdadademoban.py · L80–86</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token keyword">def</span> <span class="token function">ip</span>(n):
+    <span class="token keyword">if</span> n==<span class="token number">2</span> <span class="token keyword">or</span> n==<span class="token number">3</span>:<span class="token keyword">return</span> <span class="token keyword">True</span>
+    <span class="token keyword">if</span> n&amp;<span class="token number">1</span>!=<span class="token number">1</span> <span class="token keyword">or</span> n&lt;<span class="token number">2</span>:<span class="token keyword">return</span> <span class="token keyword">False</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span>(<span class="token number">3</span>,isqrt(n)+<span class="token number">1</span>,<span class="token number">2</span>):
+        <span class="token keyword">if</span> n%i==<span class="token number">0</span>:<span class="token keyword">return</span> <span class="token keyword">False</span>
+    <span class="token keyword">return</span> <span class="token keyword">True</span><span class="token comment">#老是忘记</span>
+
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">80<br>81<br>82<br>83<br>84<br>85<br>86</div></div></article>
+<article data-file="dfs.py" data-first="168" data-last="178"><h4>选数题的三种判定需求与选型笔记</h4><a class="source" href="originals/dfs.py">dfs.py · L168–178</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token comment">##在考场上看到素数，按这个顺序在脑子里过一遍：</span>
+<span class="token comment">##</span>
+<span class="token comment">##题目只要我判断几个人是不是素数？</span>
+<span class="token comment">##👉 无脑写试除法。 （省内存，代码只有5行）</span>
+<span class="token comment">##</span>
+<span class="token comment">##题目要我求出 1 到 100 万范围内所有的素数？</span>
+<span class="token comment">##👉 无脑写 bytearray + 切片埃氏筛。 （Python 的极限跑分王）</span>
+<span class="token comment">##</span>
+<span class="token comment">##题目不仅要求素数，还让我疯狂给数字做“质因数分解”？每一个合数的“最小质因子”是什么。</span>
+<span class="token comment">##👉 被迫掏出欧拉线性筛。 （利用它的最小质因子特性）  </span>
+    
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">168<br>169<br>170<br>171<br>172<br>173<br>174<br>175<br>176<br>177<br>178</div></div></article>
+<article data-file="dfs.py" data-first="179" data-last="186"><h4>朴素埃氏筛。这里的 isp 表供选数题的 DFS 主干查询</h4><a class="source" href="originals/dfs.py">dfs.py · L179–186</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token comment">##法一：挨氏筛MLE    </span>
+    <span class="token keyword">import</span> math
+    isp=[<span class="token keyword">True</span>]*(<span class="token builtin">sum</span>(sz)+<span class="token number">1</span>)
+    isp[<span class="token number">0</span>]=isp[<span class="token number">1</span>]=<span class="token keyword">False</span>
+    <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span>(<span class="token number">2</span>,math.isqrt(<span class="token builtin">sum</span>(sz))+<span class="token number">1</span>):
+        <span class="token keyword">if</span> isp[i]:
+            <span class="token keyword">for</span> j <span class="token keyword">in</span> <span class="token builtin">range</span>(i**<span class="token number">2</span>,<span class="token builtin">sum</span>(sz)+<span class="token number">1</span>,i):
+                isp[j]=<span class="token keyword">False</span>
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">179<br>180<br>181<br>182<br>183<br>184<br>185<br>186</div></div></article>
+<article data-file="dfs.py" data-first="187" data-last="194"><h4>试除法。排除小于 2 的数与偶数，再枚举奇因子</h4><a class="source" href="originals/dfs.py">dfs.py · L187–194</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token comment">##法二：试除法</span>
+    <span class="token keyword">def</span> <span class="token function">isprime</span>(n):
+        <span class="token keyword">if</span> n==<span class="token number">2</span> <span class="token keyword">or</span> n==<span class="token number">3</span>:<span class="token keyword">return</span> <span class="token keyword">True</span>
+        <span class="token keyword">if</span> n&lt;<span class="token number">2</span> <span class="token keyword">or</span> <span class="token keyword">not</span> n&amp;<span class="token number">1</span>:<span class="token keyword">return</span> <span class="token keyword">False</span>
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span>(<span class="token number">3</span>,math.isqrt(n)+<span class="token number">1</span>,<span class="token number">2</span>):
+            <span class="token keyword">if</span> n%i ==<span class="token number">0</span>:
+                <span class="token keyword">return</span> <span class="token keyword">False</span>
+        <span class="token keyword">return</span> <span class="token keyword">True</span>
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">187<br>188<br>189<br>190<br>191<br>192<br>193<br>194</div></div></article>
+<article data-file="dfs.py" data-first="195" data-last="216"><h4>用 bytearray 做切片埃氏筛，推导替换的字节数</h4><a class="source" href="originals/dfs.py">dfs.py · L195–216</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token comment">##法三极速挨氏筛（实际比欧拉晒快）</span>
+    <span class="token keyword">def</span> <span class="token function">jsaishishai</span>(n):
+<span class="token comment">##切片长度公式：长度 = (终点 - 起点) // 步长 + 1</span>
+<span class="token comment">##即：length = (n - i * i) // i + 1</span>
+        isprime=<span class="token builtin">bytearray</span>([<span class="token number">1</span>])*(n+<span class="token number">1</span>)<span class="token comment"># 生成包含 n+1个 1 的字节数组</span>
+<span class="token comment">##bytearray它是 malloc 的化身</span>
+<span class="token comment">##1. 传入单独的整数：代表“开辟空地”;如果你写 bytearray(10)</span>
+<span class="token comment">##代表开辟 10 个字节的连续内存！因为是刚开辟的，所以默认全部填 0。</span>
+<span class="token comment">##2. 传入一个可迭代对象（如列表）：代表“填入数据”</span>
+<span class="token comment">##如果你写 bytearray([1])，它是把列表里的元素“翻译”成字节。</span>
+        isprime[<span class="token number">0</span>]=isprime[<span class="token number">1</span>]=<span class="token number">0</span>
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span>(<span class="token number">2</span>,math.isqrt(n)+<span class="token number">1</span>):
+            <span class="token keyword">if</span> isprime[i]:
+                length=(n-i*i)//i+<span class="token number">1</span>
+                isprime[i*i:n+<span class="token number">1</span>:i]=<span class="token builtin">bytearray</span>([<span class="token number">0</span>])*length
+<span class="token comment">##步长切片赋值 (is_prime[start : stop : step] = bytearray(...))</span>
+<span class="token comment">##功能： Python 高阶切片语法。</span>
+<span class="token comment">##将右侧的可迭代对象中的值，按顺序依次填入左侧按步长选出的坑位中。</span>
+<span class="token comment">##语法规则铁律： 当使用带有步长（step）的切片进行赋值时，</span>
+<span class="token comment">##等号右边的长度必须与左侧被选中的坑位数量绝对相等，</span>
+<span class="token comment">##多一个少一个都会报 ValueError。                </span>
+        <span class="token keyword">return</span> [i <span class="token keyword">for</span> i,prime <span class="token keyword">in</span> <span class="token builtin">enumerate</span>(isprime) <span class="token keyword">if</span> prime]
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">195<br>196<br>197<br>198<br>199<br>200<br>201<br>202<br>203<br>204<br>205<br>206<br>207<br>208<br>209<br>210<br>211<br>212<br>213<br>214<br>215<br>216</div></div></article>
+<article data-file="dfs.py" data-first="217" data-last="226"><h4>切片筛重写草稿。第 224 行把切片的冒号写成了逗号</h4><a class="source" href="originals/dfs.py">dfs.py · L217–226</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token comment">## prime 是我们在这行代码里“现场起的名字”，它来源于 enumerate 吐出来的数据！</span>
+    <span class="token keyword">def</span> <span class="token function">jsaishishai</span>(n):
+        isprime=<span class="token builtin">bytearray</span>([<span class="token number">1</span>])*(n+<span class="token number">1</span>)
+        isprime[<span class="token number">0</span>]=isprime[<span class="token number">1</span>]=<span class="token number">0</span>
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span>(<span class="token number">2</span>,math.isqrt(n)+<span class="token number">1</span>):
+            <span class="token keyword">if</span> isprime[i]:<span class="token comment">#######</span>
+                length=(n-i*i)//i+<span class="token number">1</span>
+                isprime[i*i,n+<span class="token number">1</span>,i]=<span class="token builtin">bytearray</span>([<span class="token number">0</span>])*length
+        <span class="token keyword">return</span> [i <span class="token keyword">for</span> i,prime <span class="token keyword">in</span> <span class="token builtin">enumerate</span>(isprime) <span class="token keyword">if</span> prime]
+    
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">217<br>218<br>219<br>220<br>221<br>222<br>223<br>224<br>225<br>226</div></div></article>
+<article data-file="dfs.py" data-first="227" data-last="254"><h4>欧拉筛与最小质因子表草稿。第 237 行判定要核对 spf 和 isp</h4><a class="source" href="originals/dfs.py">dfs.py · L227–254</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token comment">##法四：欧式筛(此版本即可马上筛查一个数是不是素数、如果是合数其最小质因子、所有素数)</span>
+<span class="token comment">##在外层枚举数字 i 的同时，内层枚举已知的质数 p，划掉它们的乘积 i * p；</span>
+<span class="token comment">##一旦发现 i 已经是 p 的倍数，立刻停止内层枚举，从而保证所有合数只被其最小质因子处理。    </span>
+    <span class="token keyword">def</span> <span class="token function">eulerwithspf</span>(n):
+        spf=<span class="token builtin">list</span>(<span class="token builtin">range</span>(n+<span class="token number">1</span>))
+        isprime=[<span class="token keyword">True</span>]*(n+<span class="token number">1</span>)
+        isprime[<span class="token number">0</span>]=isprime[<span class="token number">1</span>]=<span class="token keyword">False</span>
+        prime=[]
+        <span class="token keyword">for</span> i <span class="token keyword">in</span> <span class="token builtin">range</span>(<span class="token number">2</span>,n+<span class="token number">1</span>):
+            
+            <span class="token keyword">if</span> isp[i]==i:
+                <span class="token comment"># 即if is_prime[i]:如果 i没被划掉，那它一定是质数，收编进prime数组</span>
+                prime.append(i)
+                
+            <span class="token keyword">for</span> p <span class="token keyword">in</span> prime:
+                <span class="token keyword">if</span> i*p&gt;n:<span class="token comment"># 越界保护：如果乘积已经超过了我们要找的范围 n，直接跳出</span>
+                    <span class="token keyword">break</span>
+                
+                <span class="token comment"># 划掉合数：用最小质因子 p 乘以 i，把它们的乘积划掉</span>
+                spf[i*p]=p
+                isprime[i*p]=<span class="token keyword">False</span>
+                
+            <span class="token comment"># 【欧拉筛的灵魂核心！！！】</span>
+            <span class="token comment"># 如果 i 已经被当前的质数 p 整除，立刻打断循环！</span>
+            <span class="token comment"># 绝对不能再用后面的质数去乘这个 i 了！</span>
+                <span class="token keyword">if</span> i%p==<span class="token number">0</span>:
+                    <span class="token keyword">break</span>
+        <span class="token keyword">return</span> prime,spf<span class="token comment"># 返回收集到的所有质数,以及所有数最大质因子</span>
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">227<br>228<br>229<br>230<br>231<br>232<br>233<br>234<br>235<br>236<br>237<br>238<br>239<br>240<br>241<br>242<br>243<br>244<br>245<br>246<br>247<br>248<br>249<br>250<br>251<br>252<br>253<br>254</div></div></article>
+<article data-file="dfs.py" data-first="255" data-last="264"><h4>沿最小质因子表反复整除，得到质因数列表</h4><a class="source" href="originals/dfs.py">dfs.py · L255–264</a><div class="language-python line-numbers-mode"><pre tabindex="0"><code><span class="token comment">##spf可以拿来极限质因数分解</span>
+    <span class="token keyword">def</span> <span class="token function">factorization</span>(x,spf):
+        factors=[]
+        <span class="token keyword">while</span> x&gt;<span class="token number">1</span>:
+            minfactor=spf[x]
+            factors.append(minfactor)
+            x//=minfactor
+        <span class="token keyword">return</span> factors
+
+
+</code></pre><div class="line-numbers-wrapper" aria-hidden="true">255<br>256<br>257<br>258<br>259<br>260<br>261<br>262<br>263<br>264</div></div></article>
+</section>
+</main></body></html>

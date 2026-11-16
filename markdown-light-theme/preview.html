@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Markdown 浅色代码块</title>
+  <link rel="stylesheet" href="code-light.css">
+  <style>
+    * { box-sizing: border-box; }
+    body { margin: 0; background: #f3f5f8; color: #24292f; font-family: system-ui, "Microsoft YaHei", sans-serif; }
+    main { max-width: 840px; margin: 40px auto; padding: 44px 52px; background: #fff; border: 1px solid #e4e8ee; border-radius: 16px; }
+    .eyebrow { margin: 0 0 10px; color: #58708d; font-size: 12px; font-weight: 600; letter-spacing: 0.08em; }
+    h1 { margin: 0 0 12px; font-size: 28px; letter-spacing: -0.03em; }
+    .intro { margin: 0; color: #596579; font-size: 14px; line-height: 1.8; }
+    h2 { margin: 28px 0 0; font-size: 16px; font-weight: 600; }
+    .footnote { margin: 20px 0 0; color: #667085; font-size: 12px; }
+    @media (max-width: 600px) {
+      body { background: #fff; }
+      main { margin: 0; padding: 28px 18px; border: 0; border-radius: 0; }
+      h1 { font-size: 24px; }
+    }
+  </style>
+</head>
+<body>
+  <main class="theme-default-content">
+    <p class="eyebrow">MARKDOWN · LIGHT</p>
+    <h1>浅色代码块</h1>
+    <p class="intro">浅灰底色，清晰行号，柔和的语法高亮。<br>以二分查找为例：寻找第一个大于或等于 <code>target</code> 的位置。</p>
+    <h2>C++</h2>
+    <div class="language-cpp line-numbers-mode">
+      <pre class="language-cpp" tabindex="0" aria-label="C++ 二分查找代码"><code><span class="token comment">// 左闭右开区间 [left, right)</span>
+<span class="token keyword">int</span> <span class="token function">lowerBound</span>(<span class="token keyword">const</span> vector&lt;<span class="token keyword">int</span>&gt;&amp; nums, <span class="token keyword">int</span> target) {
+    <span class="token keyword">int</span> left = <span class="token number">0</span>, right = nums.<span class="token function">size</span>();
+
+    <span class="token keyword">while</span> (left &lt; right) {
+        <span class="token keyword">int</span> mid = left + (right - left) / <span class="token number">2</span>;
+        <span class="token keyword">if</span> (nums[mid] &lt; target) {
+            left = mid + <span class="token number">1</span>;
+        } <span class="token keyword">else</span> {
+            right = mid;
+        }
+    }
+    <span class="token keyword">return</span> left;
+}
+</code></pre>
+      <div class="line-numbers-wrapper" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br><span class="line-number">11</span><br><span class="line-number">12</span><br><span class="line-number">13</span><br><span class="line-number">14</span><br></div>
+    </div>
+    <h2>Python</h2>
+    <div class="language-python line-numbers-mode">
+      <pre class="language-python" tabindex="0" aria-label="Python 二分查找代码"><code><span class="token keyword">def</span> <span class="token function">lower_bound</span>(nums, target):
+    <span class="token string">"""返回第一个大于或等于 target 的位置。"""</span>
+    left, right = <span class="token number">0</span>, <span class="token builtin">len</span>(nums)
+    <span class="token keyword">while</span> left &lt; right:
+        mid = (left + right) // <span class="token number">2</span>
+        <span class="token keyword">if</span> nums[mid] &lt; target:
+            left = mid + <span class="token number">1</span>
+        <span class="token keyword">else</span>:
+            right = mid
+    <span class="token keyword">return</span> left
+</code></pre>
+      <div class="line-numbers-wrapper" aria-hidden="true"><span class="line-number">1</span><br><span class="line-number">2</span><br><span class="line-number">3</span><br><span class="line-number">4</span><br><span class="line-number">5</span><br><span class="line-number">6</span><br><span class="line-number">7</span><br><span class="line-number">8</span><br><span class="line-number">9</span><br><span class="line-number">10</span><br></div>
+    </div>
+    <p class="footnote">VuePress 1 / Prism · 本地字体 · 无需联网预览</p>
+  </main>
+</body>
+</html>
