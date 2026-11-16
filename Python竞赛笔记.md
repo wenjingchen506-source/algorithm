@@ -32,8 +32,6 @@
 
 首次出现的位置、矩阵展平与 find
 
-原稿 · Tsingpigdadademoban.py · L7–13
-
 ```python
 # 返回 string 指定范围中 str 首次出现的位置
 list(map(s.index,s))  # 返回字符索引数组，返回的是第一次出现的索引！如 "abcba"-> [0,1,2,1,0]
@@ -46,8 +44,6 @@ s.find(obj)#找不到返回-1，不会报错
 
 对两个序列逐项求和
 
-原稿 · Tsingpigdadademoban.py · L31–32
-
 ```python
 map(lambda x,y :x+y,[1,2],[3,4])
 
@@ -59,8 +55,6 @@ map(lambda x,y :x+y,[1,2],[3,4])
 ### 字典与频次统计
 
 默认值、字符权重与频次草稿。dict.get 的默认值应以位置参数传入，Couter 是原稿的拼写
-
-原稿 · Tsingpigdadademoban.py · L14–30
 
 ```python
 d.get(key,default_value=None)# 返回 key 对应的 value，不存在则返回 default_value
@@ -89,8 +83,6 @@ print(c.most_common(2))
 
 range 长度与按条件调用 lambda 的速记
 
-原稿 · Tsingpigdadademoban.py · L39–42
-
 ```python
 length=[(end-start)//step]针对range(start,end,step)
 
@@ -99,8 +91,6 @@ length=[(end-start)//step]针对range(start,end,step)
 ```
 
 过滤含 4 的数和 4 的倍数。此行的 map 与 filter 括号仍是草稿
-
-原稿 · Tsingpigdadademoban.py · L77–79
 
 ```python
 a='\n'.join(map(str(x),filter(lambda x: x%4!=0 and '4' not in str(x)),range(1,n+1)))
@@ -114,8 +104,6 @@ a='\n'.join(map(str(x),filter(lambda x: x%4!=0 and '4' not in str(x)),range(1,n+
 ### 字符串赋值与循环
 
 变量重新绑定与持续输出实验。原稿的 while True 会一直打印
-
-原稿 · rthsrth.py · L1–6
 
 ```python
 a='abc'
@@ -142,8 +130,6 @@ while True:
 
 读入整数的入口
 
-原稿 · Tsingpigdadademoban.py · L1–6
-
 ```python
 import sys
 def solve():
@@ -155,8 +141,6 @@ if __name__=='__main__':
 
 依次读取网格元素与批量输出
 
-原稿 · Tsingpigdadademoban.py · L33–36
-
 ```python
 grid=[int(next(da)) for _ in range(m) for _ in range(n)]
 
@@ -165,8 +149,6 @@ sys.stdout.write('\n'.join(out)+'\n')
 ```
 
 逐行读取与 strip 的两次练习
-
-原稿 · Tsingpigdadademoban.py · L43–49
 
 ```python
 import sys
@@ -179,8 +161,6 @@ for line in sys.stdin:
 ```
 
 DFS 练习文件中的输入骨架
-
-原稿 · dfs.py · L1–8
 
 ```python
 import sys
@@ -199,8 +179,6 @@ if __name__=='__main__':
 ### 本地文件与标准流切换
 
 检测 in.txt 后重定向输入、输出
-
-原稿 · Tsingpigdadademoban.py · L882–907
 
 ```python
 import sys
@@ -233,8 +211,6 @@ if __name__ == '__main__':
 
 精简写法与文件名字符串的提醒
 
-原稿 · Tsingpigdadademoban.py · L908–919
-
 ```python
 import sys
 import os
@@ -256,8 +232,6 @@ if __name__ =='__main__':
 ### 文件题的读写方式
 
 用 with 同时管理输入输出，保留两种写答案的方法
-
-原稿 · Tsingpigdadademoban.py · L920–953
 
 ```python
 def solve():
@@ -298,8 +272,6 @@ if __name__ == '__main__':
 
 从文件读入并在终端输出
 
-原稿 · Tsingpigdadademoban.py · L954–972
-
 ```python
 # 模式一：读取文件，处理数据，最后print输出
 def solve():
@@ -324,8 +296,6 @@ if __name__ == '__main__':
 
 逐行处理并写到 out.txt
 
-原稿 · Tsingpigdadademoban.py · L973–986
-
 ```python
 # 模式二：读取 in.txt，处理后写入 out.txt
 def solve():
@@ -344,8 +314,6 @@ if __name__ == '__main__':
 ```
 
 按逗号拆字段，末尾保留未完成的 with 语句
-
-原稿 · Tsingpigdadademoban.py · L987–1001
 
 ```python
 # 模式三：结构化解析
@@ -381,14 +349,10 @@ with open('in.txt','r',encoding='utf-8') as fin,\
 
 复杂度笔记
 
-原稿 · Tsingpigdadademoban.py · L95–96
-
 > 这道题的官方名字叫摩尔投票法。它把时间和空间复杂度压榨到了人类的物理极限：
 > O(N)时间，O(1)空间。
 
 计数抵消法，前提是多数元素存在。原稿缩进使用了全角空格
-
-原稿 · Tsingpigdadademoban.py · L97–111
 
 ```python
 def majorityElement(nums):
@@ -414,8 +378,6 @@ def majorityElement(nums):
 ### 哈希集合与连续序列
 
 从未处理的数向两侧扩展，删除属于同一段的元素
-
-原稿 · Tsingpigdadademoban.py · L245–262
 
 ```python
 def longestConsecutive(self, nums: List[int]) -> int:
@@ -445,8 +407,6 @@ def longestConsecutive(self, nums: List[int]) -> int:
 
 排序后二分寻找一半，逐对移除
 
-原稿 · Tsingpigdadademoban.py · L263–281
-
 ```python
 from bisect import *
 class Solution:
@@ -470,8 +430,6 @@ class Solution:
 ```
 
 用 Counter 沿倍数链扣除配对次数，单独处理零
-
-原稿 · Tsingpigdadademoban.py · L282–312
 
 ```python
 from bisect import *
@@ -528,8 +486,6 @@ class Solution:
 
 按身高降序、同身高按 k 升序重建队列
 
-原稿 · Tsingpigdadademoban.py · L87–94
-
 ```python
 class Solution:
     def reconstructQueue(self, people: List[List[int]]) -> List[List[int]]:
@@ -547,8 +503,6 @@ class Solution:
 ### 区间任务调度
 
 按结束时间排序，优先把开机时段安排在区间右端
-
-原稿 · Tsingpigdadademoban.py · L112–128
 
 ```python
 class Solution:
@@ -576,8 +530,6 @@ class Solution:
 ### 分段计算训练成本
 
 按所需次数分组，每段比较集训价格与剩余单价总和
-
-原稿 · Tsingpigdadademoban.py · L129–154
 
 ```python
 import sys
@@ -615,8 +567,6 @@ if __name__=='__main__':
 
 原稿记下的 LeetCode 1834 与 218
 
-原稿 · Tsingpigdadademoban.py · L155–157
-
 ```python
 ##LeetCode 1834
 ##LeetCode 218
@@ -629,8 +579,6 @@ if __name__=='__main__':
 ### 反悔贪心与堆
 
 课程安排。超过截止时间时撤回耗时最长的课
-
-原稿 · Tsingpigdadademoban.py · L158–169
 
 ```python
 class Solution:
@@ -648,8 +596,6 @@ class Solution:
 ```
 
 魔塔。生命值不足时推迟已经遇到的伤害最大的一项
-
-原稿 · Tsingpigdadademoban.py · L170–187
 
 ```python
 from heapq import *
@@ -673,8 +619,6 @@ class Solution:
 ```
 
 加油站。燃料不足时从已经过的站中补选油量最多的
-
-原稿 · Tsingpigdadademoban.py · L188–207
 
 ```python
 from heapq import *
@@ -706,8 +650,6 @@ class Solution:
 
 先选利润最高的 k 项，再用新类别替换重复类别
 
-原稿 · Tsingpigdadademoban.py · L208–227
-
 ```python
 class Solution:
     def findMaximumElegance(self, items: List[List[int]], k: int) -> int:
@@ -738,8 +680,6 @@ class Solution:
 
 按工资质量比排序，用堆维护 k 人的质量总和
 
-原稿 · Tsingpigdadademoban.py · L228–244
-
 ```python
 from heapq import *
 class Solution:
@@ -766,8 +706,6 @@ class Solution:
 ### 双指针配对
 
 救生艇。让最重的人尝试与最轻的人同船
-
-原稿 · Tsingpigdadademoban.py · L336–349
 
 ```python
 class Solution:
@@ -801,8 +739,6 @@ class Solution:
 
 把每个数可调整的范围视为区间，用差分求最大重叠数
 
-原稿 · Tsingpigdadademoban.py · L350–365
-
 ```python
 class Solution:
     def maximumBeauty(self, nums: List[int], k: int) -> int:
@@ -828,8 +764,6 @@ class Solution:
 ### 二分定位与差分计数
 
 百度之星热身赛。用左右二分定位闭区间，再按覆盖次数模 4 分组，含手写输入样例
-
-原稿 · reshensaibaiduzhixing.py · L1–46
 
 ```python
 ##import sys
@@ -895,8 +829,6 @@ if __name__=='__main__':
 
 初稿。两处二分调用的括号未闭合
 
-原稿 · Tsingpigdadademoban.py · L366–389
-
 ```python
 import sys
 def solve():
@@ -925,8 +857,6 @@ if __name__=='__main__':
 ```
 
 带判定方向讲解的左右边界模板
-
-原稿 · Tsingpigdadademoban.py · L390–434
 
 ```python
 import sys
@@ -978,8 +908,6 @@ print(m, M)
 
 快读版本，对比两个判定函数与返回边界
 
-原稿 · Tsingpigdadademoban.py · L435–465
-
 ```python
 import sys
 def solve():
@@ -1021,8 +949,6 @@ if __name__=='__main__':
 
 枚举每人份量，按各堆能提供的份数判断可行性
 
-原稿 · Tsingpigdadademoban.py · L466–479
-
 ```python
 class Solution:
     def maximumCandies(self, candies: List[int], k: int) -> int:
@@ -1054,14 +980,10 @@ class Solution:
 
 题目与第一种思路
 
-原稿 · dfs.py · L9–10
-
 > ##跳台阶https://www.acwing.com/problem/content/823/
 > 法一
 
 递归求 f(n−1) 与 f(n−2) 的和
-
-原稿 · dfs.py · L11–23
 
 ```python
 import sys
@@ -1081,14 +1003,10 @@ if __name__=='__main__':
 
 特征方程与迭代法的过渡笔记
 
-原稿 · dfs.py · L24–25
-
 > 法二：特征方程求解（c1+c2*n）*r^n或c1*r1^n+c2*r2^n
 > 法三
 
 用两个变量滚动更新相邻项
-
-原稿 · dfs.py · L26–35
 
 ```python
 import sys
@@ -1104,8 +1022,6 @@ if __name__=='__main__':
 ```
 
 按走两级台阶的次数，枚举步序中的位置
-
-原稿 · dfs.py · L36–38
 
 > 法四：设走k个2级台阶，则走了2k步，剩下走n-2k个一级台阶，总共k+n-2k=n-k种选法，
 > c(k,n-k)且k<=[n/2]
@@ -1137,16 +1053,12 @@ if __name__=='__main__':
 
 调整解释器的递归上限
 
-原稿 · Tsingpigdadademoban.py · L37–38
-
 ```python
 sys.setrecursionlimit(1000000)
 
 ```
 
 记忆化装饰器片段
-
-原稿 · Tsingpigdadademoban.py · L1047–1050
 
 ```python
 @lru_cache(maxsize=None)
@@ -1161,8 +1073,6 @@ sys.setrecursionlimit(1000000)
 ### 装箱与最少工作时段
 
 任务从大到小放入已有时段，或新开时段并回溯
-
-原稿 · Tsingpigdadademoban.py · L313–335
 
 ```python
 class Solution:
@@ -1196,8 +1106,6 @@ class Solution:
 ### 逐位搜索最大数
 
 记录当前数位和两类剩余操作次数，探索各分支
-
-原稿 · Tsingpigdadademoban.py · L480–508
 
 ```python
 import sys
@@ -1238,16 +1146,12 @@ if __name__=='__main__':
 
 为什么可变路径要保存快照
 
-原稿 · Tsingpigdadademoban.py · L531–534
-
 > 带着 [1, 2] 进入下一层，立刻记录 [1, 2]。
 > 只要是把一个“会随着时间变化的数据容器（列表、字典、集合）”塞进结果集里，
 > 绝对、必须、永远要加上 .copy()！
 > 否则你塞进去的，只是一个会随时爆炸的定时炸弹。
 
 列表引用的实验
-
-原稿 · Tsingpigdadademoban.py · L535–540
 
 ```python
 path = [1]         # 第一步：我有一个列表，里面装了 1
@@ -1259,8 +1163,6 @@ print(ans)         # 请问，现在打印 ans，结果是什么？
 ```
 
 列表引用、递归返回与 pop 的原始笔记
-
-原稿 · Tsingpigdadademoban.py · L541–557
 
 > 按照人类的直觉，第三步塞进去的时候 path 是 [1]，所以最后 ans 应该是 [[1]]。
 > 
@@ -1282,8 +1184,6 @@ print(ans)         # 请问，现在打印 ans，结果是什么？
 
 把路径用 join 存成字符串的例子
 
-原稿 · dfs.py · L110–123
-
 > 回想一下我们之前聊过的“连线”灾难：
 > 如果你写的是 out.append(arr)，
 > 那你就是往 out 里塞了一根指向 arr 这个木箱子的红线（内存引用）。
@@ -1301,8 +1201,6 @@ print(ans)         # 请问，现在打印 ans，结果是什么？
 
 何时把当前路径记入答案
 
-原稿 · dfs.py · L149–157
-
 > 当你以后在考场上面对一道回溯题，不知道 res.append 该写在哪里时，
 > 你只需要问自己一个问题：
 > 
@@ -1319,8 +1217,6 @@ print(ans)         # 请问，现在打印 ans，结果是什么？
 ### 组合枚举
 
 固定选 k 个数，按每个数选或不选递归
-
-原稿 · Tsingpigdadademoban.py · L558–573
 
 ```python
 class Solution:
@@ -1342,8 +1238,6 @@ class Solution:
 ```
 
 洛谷 P1157。从 start 向后选数，避免产生重复组合
-
-原稿 · dfs.py · L124–148
 
 ```python
 ##递归实现组合型枚举https://www.luogu.com.cn/problem/P1157
@@ -1380,8 +1274,6 @@ if __name__=='__main__':
 
 排序后从当前下标继续选，允许重复使用候选数
 
-原稿 · Tsingpigdadademoban.py · L574–594
-
 ```python
 class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
@@ -1412,8 +1304,6 @@ class Solution:
 ### 子集枚举
 
 指数型枚举。对照原稿中的递归树跟踪选与不选
-
-原稿 · dfs.py · L39–78
 
 ```python
 ##指数型https://www.acwing.com/problem/content/94/
@@ -1465,8 +1355,6 @@ if __name__=='__main__':
 
 洛谷 P1706。用访问标记与路径生成排列
 
-原稿 · dfs.py · L79–109
-
 ```python
 ####排列型https://www.luogu.com.cn/problem/P1706
 ##排列型
@@ -1510,8 +1398,6 @@ if __name__=='__main__':
 
 洛谷 P1036。读入 n、k，准备结果与路径
 
-原稿 · dfs.py · L158–167
-
 ```python
 ####选数https://www.luogu.com.cn/problem/P1036
 import sys
@@ -1526,8 +1412,6 @@ def solve():
 ```
 
 DFS 主干。到达 k 个数后按上面的素数表累计，保留 nonlocal 注解
-
-原稿 · dfs.py · L265–293
 
 ```python
 ##    主干dfs
@@ -1568,8 +1452,6 @@ if __name__=='__main__':
 
 洛谷 P2089。十种配料的取值范围与方案总数
 
-原稿 · dfs.py · L294–301
-
 > 烤鸡https://www.luogu.com.cn/problem/P2089
 > 这道题的本质是把一个数字n拆分成10个数字的和，且每个数字只能取1,2,3。
 > 第一重识破（数学陷阱）：10种配料，每种最少1克，最多3克。
@@ -1580,8 +1462,6 @@ if __name__=='__main__':
 > 区区不到6万种状态，连给计算机塞牙缝都不够，直接无脑枚举！
 
 用 itertools.product 枚举十个位置
-
-原稿 · dfs.py · L302–317
 
 ```python
 ##法一：itertools.product 是处理“定长、多选一”组合问题的绝对真神
@@ -1603,8 +1483,6 @@ if __name__=='__main__':
 ```
 
 用 DFS 枚举，并按剩余坑位剪枝
-
-原稿 · dfs.py · L318–355
 
 ```python
 ##法二
@@ -1654,8 +1532,6 @@ if __name__=='__main__':
 
 洛谷 P1088。交换升序断点并反转后缀，逐次得到下一排列
 
-原稿 · dfs.py · L356–378
-
 ```python
 ####火星人https://www.luogu.com.cn/problem/P1088
 import sys
@@ -1683,8 +1559,6 @@ if __name__=='__main__':
 ```
 
 带讲解的 DFS，贴着目标排列确定起点
-
-原稿 · dfs.py · L379–444
 
 ```python
 ##dfs版
@@ -1756,8 +1630,6 @@ if __name__=='__main__':
 ```
 
 纠错笔记，重点检查贴边状态、递归终点和 visited 的恢复时机
-
-原稿 · dfs.py · L445–522
 
 ```python
 ##纯享dfs:1
@@ -1842,8 +1714,6 @@ if __name__=='__main__':
 
 精简 DFS，保留注释掉的输入样例
 
-原稿 · dfs.py · L523–560
-
 ```python
 import sys
 sys.setrecursionlimit(20000)
@@ -1891,8 +1761,6 @@ if __name__=='__main__':
 ### 火柴加法
 
 洛谷 P1149。预计算数字的火柴数，枚举加数并检查等式
-
-原稿 · dfs.py · L561–609
 
 ```python
 ##火柴加法https://www.luogu.com.cn/problem/P1149
@@ -1954,8 +1822,6 @@ if __name__=='__main__':
 关联知识点 · [按位枚举配料子集](#note-dfs-722)
 
 带 haschosen、参数与作用域讨论的调试草稿，保留报错写法
-
-原稿 · dfs.py · L610–677
 
 ```python
 import sys
@@ -2030,8 +1896,6 @@ if __name__=='__main__':
 
 用路径标记选取哪些配料，叶节点计算酸苦差
 
-原稿 · dfs.py · L678–721
-
 ```python
 import sys
 
@@ -2094,8 +1958,6 @@ solve()
 
 起点、分层、入队标记与边界检查
 
-原稿 · Tsingpigdadademoban.py · L595–614
-
 > 二、 遇到 BFS，脑子里必须过电的 4 个考量要素
 > 以后只要题目里出现“最短路径”、“最少步数”、“层层扩散”、
 > “几天后蔓延到全图”这种字眼，立刻条件反射呼叫 BFS。
@@ -2118,8 +1980,6 @@ solve()
 >     立刻检查是否越过了长宽边界，是否是墙壁。        
 
 长草初稿。源点坐标、边界判断和输出括号都有待修处
-
-原稿 · Tsingpigdadademoban.py · L615–647
 
 ```python
 import sys
@@ -2158,8 +2018,6 @@ if __name__=='__main__':
 ```
 
 长草修订版。收集所有初始草格，同时扩展 k 层
-
-原稿 · Tsingpigdadademoban.py · L648–704
 
 ```python
 import sys
@@ -2230,8 +2088,6 @@ if __name__ == '__main__':
 
 用异或产生下一状态，入队前判重
 
-原稿 · Tsingpigdadademoban.py · L705–709
-
 ```python
 for mask in unique_effects:
     next_state = curr_state ^ mask
@@ -2241,8 +2097,6 @@ for mask in unique_effects:
 ```
 
 逐行推演开关动作与异或结果
-
-原稿 · Tsingpigdadademoban.py · L710–757
 
 > 第一句：for mask in unique_effects:
 > 物理映射：你面前的桌子上，
@@ -2295,8 +2149,6 @@ for mask in unique_effects:
 
 原稿对照表：网格上的坐标与灯光的位掩码
 
-原稿 · Tsingpigdadademoban.py · L758–770
-
 > 概念            长草问题（物理网格 BFS）	开关谜题（状态空间 BFS）	         它的物理意义是什么？
 > 当前位置        x, y = q.popleft()	curr_state = q.popleft()	我现在站在哪里？（现在的局面是什么）
 >                   
@@ -2312,8 +2164,6 @@ for mask in unique_effects:
 >           
 
 完整讲解版，按层搜索最少按键次数
-
-原稿 · Tsingpigdadademoban.py · L771–837
 
 ```python
 import sys
@@ -2387,8 +2237,6 @@ if __name__ == '__main__':
 
 再写一遍。保留 op 的缩进与重复灯位的纠错记录
 
-原稿 · Tsingpigdadademoban.py · L838–881
-
 ```python
 import sys
 from collections import deque
@@ -2451,8 +2299,6 @@ if __name__=='__main__':
 
 用字典记录访问深度的尝试。多个起点共用记录，跨轮次的深度差需要复核
 
-原稿 · Tsingpigdadademoban.py · L509–530
-
 ```python
 import sys
 sys.setrecursionlimit(10000)
@@ -2484,8 +2330,6 @@ if __name__=='__main__':
 ### 带权无向图与 DFS
 
 邻接矩阵、邻接表与遍历草稿。矩阵行初始化、DFS 形参与边的拆包顺序待核对
-
-原稿 · Tsingpigdadademoban.py · L1027–1046
 
 ```python
 g=[float('inf')*n for _ in range(n)]
@@ -2525,8 +2369,6 @@ def dfs(st):
 
 查位、置位、清位、判空、判满与翻转的六条速记
 
-原稿 · Tsingpigdadademoban.py · L1002–1026
-
 > 技巧 1：查看第 j 个物品有没有被用过
 > 代码：if (S >> j) & 1 == 1:
 >     理解：把 S 的第 j 位推到最右边，然后和 1 进行“按位与”（&）。
@@ -2562,15 +2404,11 @@ def dfs(st):
 
 从非空子集到整数掩码的原始笔记
 
-原稿 · dfs.py · L722–724
-
 > 对于数学系学生来说，集合的子集和二进制数构成了完美的双射（Bijection）。
 > $n$ 个物品的选与不选，完美对应 $0 \sim 2^n - 1$ 的每一个整数的二进制位。
 > 这彻底消灭了函数调用的开销，速度提升极限！
 
 逐位累计酸度积与苦度和，和同题的 DFS 写法对读
-
-原稿 · dfs.py · L725–771
 
 ```python
 import sys
@@ -2637,8 +2475,6 @@ solve()
 
 先标记合数，再通过前缀和回答闭区间内的合数个数
 
-原稿 · Tsingpigdadademoban.py · L50–76
-
 ```python
 import sys
 import math
@@ -2678,8 +2514,6 @@ if __name__=='__main__':
 
 用奇数试除到整数平方根，调用前需要导入 isqrt
 
-原稿 · Tsingpigdadademoban.py · L80–86
-
 ```python
 def ip(n):
     if n==2 or n==3:return True
@@ -2691,8 +2525,6 @@ def ip(n):
 ```
 
 选数题的三种判定需求与选型笔记
-
-原稿 · dfs.py · L168–178
 
 ```python
 ##在考场上看到素数，按这个顺序在脑子里过一遍：
@@ -2710,8 +2542,6 @@ def ip(n):
 
 朴素埃氏筛。这里的 isp 表供选数题的 DFS 主干查询
 
-原稿 · dfs.py · L179–186
-
 ```python
 ##法一：挨氏筛MLE    
     import math
@@ -2725,8 +2555,6 @@ def ip(n):
 
 试除法。排除小于 2 的数与偶数，再枚举奇因子
 
-原稿 · dfs.py · L187–194
-
 ```python
 ##法二：试除法
     def isprime(n):
@@ -2739,8 +2567,6 @@ def ip(n):
 ```
 
 用 bytearray 做切片埃氏筛，推导替换的字节数
-
-原稿 · dfs.py · L195–216
 
 ```python
 ##法三极速挨氏筛（实际比欧拉晒快）
@@ -2769,8 +2595,6 @@ def ip(n):
 
 切片筛重写草稿。第 224 行把切片的冒号写成了逗号
 
-原稿 · dfs.py · L217–226
-
 ```python
 ## prime 是我们在这行代码里“现场起的名字”，它来源于 enumerate 吐出来的数据！
     def jsaishishai(n):
@@ -2785,8 +2609,6 @@ def ip(n):
 ```
 
 欧拉筛与最小质因子表草稿。第 237 行判定要核对 spf 和 isp
-
-原稿 · dfs.py · L227–254
 
 ```python
 ##法四：欧式筛(此版本即可马上筛查一个数是不是素数、如果是合数其最小质因子、所有素数)
@@ -2820,8 +2642,6 @@ def ip(n):
 ```
 
 沿最小质因子表反复整除，得到质因数列表
-
-原稿 · dfs.py · L255–264
 
 ```python
 ##spf可以拿来极限质因数分解
