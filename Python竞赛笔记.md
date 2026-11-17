@@ -58,6 +58,8 @@ map(lambda x,y :x+y,[1,2],[3,4])
 
 反向切片与起止位置
 
+题目 · [牛客 · 反向输出一个四位数](https://www.nowcoder.com/practice/1f7c1d67446e4361bf4af67c08e0b8b0)
+
 ```python
 #反向输出################################################################
 a=input()
@@ -69,6 +71,8 @@ print(a[::-1])
 ```
 
 去掉末尾的 0，再倒序输出
+
+题目 · [牛客 · 神秘石像的镜像序列](https://www.nowcoder.com/practice/fa34eea974234610b6d3d81790cb2949)
 
 ```python
 ##41一行数除去最后一0其余倒序输出
@@ -103,6 +107,8 @@ for i in range(100000):
 
 把指定字符替换成星号
 
+题目 · [牛客 · 年轻人不讲5的](https://www.nowcoder.com/practice/504e04804610463facbedaad9a8c742e)
+
 ```python
 print(input().replace('5','*'))
 ```
@@ -116,6 +122,8 @@ print(s.find(Bob))
 
 取各单词的首字母并转大写
 
+题目 · [牛客 · 简写单词](https://www.nowcoder.com/practice/0cfa856bf0d649b88f6260d878f35bb4)
+
 ```python
 n = list(input().split())
 for i in range(len(n)):
@@ -128,6 +136,8 @@ print(''.join(ans))
 ```
 
 对指定闭区间做替换，对照初稿与切片拼接版本
+
+题目 · [牛客 · 字符串操作](https://www.nowcoder.com/practice/06a5336b64e3481fbbcc1f7d5cba548d)
 
 > 错答
 
@@ -160,6 +170,8 @@ print(a)
 
 默认值、字符权重与频次草稿。dict.get 的默认值应以位置参数传入，Couter 是原稿的拼写
 
+题目 · [力扣 · 2606 找到最大开销的子字符串（字符赋值部分）](https://leetcode.cn/problems/find-the-substring-with-maximum-cost/)
+
 ```python
 d.get(key,default_value=None)# 返回 key 对应的 value，不存在则返回 default_value
 d.values()
@@ -184,6 +196,8 @@ print(c.most_common(2))
 
 根据四个选项的长度与极值出现次数作选择
 
+题目 · [牛客 · 牛牛的考试](https://www.nowcoder.com/practice/1a7a7c8d721547a29107cf02330ffe72)
+
 ```python
 T=int(input())
 se={0:'A',1:'B',2:'C',3:'D'}
@@ -200,6 +214,8 @@ for _ in range(T):
 ```
 
 字典查询旧值、写入新值并累计加权结果
+
+题目 · [牛客 · 大整数哈希](https://www.nowcoder.com/practice/29f0cff8a69b4ab6a2f63fb7386defa3)
 
 ```python
 import sys
@@ -224,6 +240,8 @@ if __name__ == "__main__":
 
 用 Counter 判断两串的字符频次是否一致
 
+题目 · [牛客 · 字母异位词的长度](https://www.nowcoder.com/practice/59426f49136349b0901cc1b70447bf4b)
+
 ```python
 class Solution:
     def isCongruent(self , s: str, c: str) -> int:
@@ -243,6 +261,8 @@ class Solution:
 
 按字符需求比较可用数量的草稿
 
+题目 · [牛客 · 字符串构造判定](https://www.nowcoder.com/practice/8d6a87b1e5314c0387dad5728dcc05be)
+
 ```python
 class Solution:
     def canConstruct(self , ransomNote: str, magazine: str) -> bool:
@@ -259,6 +279,8 @@ class Solution:
 ```
 
 枚举年、月日和时间，将三同一异的数字排序后匹配
+
+题目 · [蓝桥云课 · 特殊时间](https://www.lanqiao.cn/problems/2119/learning/)
 
 ```python
 ##八、年、月日、时间均为三同一异，例如：2022 0222 2220
@@ -327,11 +349,15 @@ length=[(end-start)//step]针对range(start,end,step)
 
 过滤含 4 的数和 4 的倍数。此行的 map 与 filter 括号仍是草稿
 
+题目 · [牛客 · 牛牛数数](https://www.nowcoder.com/practice/03a3cc96fa4847b387bf58bb800d67cf)
+
 ```python
 a='\n'.join(map(str(x),filter(lambda x: x%4!=0 and '4' not in str(x)),range(1,n+1)))
 ```
 
 按平均分选择输出，比较条件表达式与 lambda
+
+题目 · [牛客 · 牛牛是否被叫家长](https://www.nowcoder.com/practice/cc896ffd90d34c7faa318b04e87adf11)
 
 ```python
 ##牛牛是否被叫家长
@@ -352,6 +378,8 @@ l=list(map(int,input().split()))
 ```
 
 过滤含 4 的数与 4 的倍数，比较循环与 filter
+
+题目 · [牛客 · 牛牛数数](https://www.nowcoder.com/practice/03a3cc96fa4847b387bf58bb800d67cf)
 
 ```python
 ##牛牛数数
@@ -390,6 +418,8 @@ print(type(map(int,s[:2])))
 > 👉 map /filter/zip /enumerate/reversed / 生成器表达式
 
 用字典映射和差值判断胜平负
+
+题目 · [牛客 · 斗兽棋](https://www.nowcoder.com/practice/0b5afb815f6848d9a7f9c1b0ce514b95)
 
 ```python
 a = {'elephant': 4, 'tiger': 3, 'cat': 2, 'mouse': 1}
@@ -444,6 +474,8 @@ op[key](a,b)
 
 从输入中取出月份，判断对应季节
 
+题目 · [牛客 · 四季](https://www.nowcoder.com/practice/eaf21203b61b4a689987fdc165d00dfc)
+
 ```python
 ## 四季
 ##法一
@@ -469,6 +501,8 @@ elif 1<=(num%12)<=2:
 
 按列输出矩阵转置，并记录运行时间
 
+题目 · [牛客 · 矩阵转置](https://www.nowcoder.com/practice/351b3d03e410496ab5a407b7ca3fd841)
+
 ```python
 import sys
 import time
@@ -492,6 +526,8 @@ if __name__ == '__main__':
 ```
 
 检查主对角线下方是否全为零
+
+题目 · [牛客 · 上三角矩阵判定](https://www.nowcoder.com/practice/f5a29bacfc514e5a935723857e1245e4)
 
 ```python
 import sys
@@ -518,6 +554,8 @@ if __name__ =='__main__':
 ```
 
 扫雷：填充边界后统计八邻域
+
+题目 · [牛客 · 扫雷](https://www.nowcoder.com/practice/d5f277427d9a4cd3ae60ea6c276dddfd)
 
 ```python
 import sys
@@ -551,6 +589,8 @@ if __name__ =='__main__':
 ### 字母表循环移位
 
 字典映射的错误尝试
+
+题目 · [牛客 · 凯撒加密](https://www.nowcoder.com/practice/006b7917d3784371a43cfbae01a9313d)
 
 > 错误
 
@@ -622,6 +662,8 @@ print(str(s).strip('[]').replace(', ',','))
 
 第 6 题：排序后比较数值与原下标差的草稿
 
+题目 · [洛谷 · P12175 园艺](https://www.luogu.com.cn/problem/P12175)
+
 ```python
 ##6
 import sys
@@ -662,6 +704,8 @@ if __name__ =='__main__':
 
 NC218867：收集 mocha 的起点，再取连续 k 次出现的最短覆盖长度
 
+题目 · [牛客 · NC218867](https://ac.nowcoder.com/acm/problem/218867)
+
 ```python
 ##题号：NC218867
 n,k=map(int,input().split())
@@ -676,6 +720,8 @@ else:
 ```
 
 第 4 题：窗口匹配 l、q、b 的排列，命中后跳过三位
+
+题目 · [洛谷 · P12173 最多次数](https://www.luogu.com.cn/problem/P12173)
 
 ```python
 ####4
@@ -709,6 +755,8 @@ else:
 
 逐日遍历与生成器两种写法，统计指定日期范围的星期一
 
+题目 · [蓝桥云课 · 星期一](https://www.lanqiao.cn/problems/611/learning/)
+
 ```python
 ##六、1901.1.1-2000.12.31有多少周一
 import datetime
@@ -731,6 +779,8 @@ print(ans)
 ```
 
 把日期格式化为年月日，检查是否包含顺子
+
+题目 · [蓝桥云课 · 顺子日期](https://www.lanqiao.cn/problems/2096/learning/)
 
 ```python
 ##七、2022年有几个顺子，比如：20220123
@@ -802,6 +852,8 @@ for k,g in groupby(s):
 ### 按轮次模拟状态变化
 
 按轮次的奇偶和模 3 余数更新剩余量
+
+题目 · [洛谷 · P12170 攻击次数](https://www.luogu.com.cn/problem/P12170)
 
 ```python
 ####1tiankong
@@ -933,6 +985,8 @@ for _ in range(t):
 
 读入 T 组数据，用游标取出每组的整数
 
+题目 · [牛客 · NC18208 A+B(5)](https://ac.nowcoder.com/acm/problem/18208)
+
 ```python
 ##快速模板    
 import sys
@@ -979,6 +1033,8 @@ if __name__=='__main__':
 
 持续按两个数一组读到输入末尾的草稿
 
+题目 · [牛客 · NC22165 多组输入 a+b](https://ac.nowcoder.com/acm/problem/22165)
+
 ```python
 import sys
 def solve():
@@ -998,6 +1054,8 @@ if __name__ =='__main__':
 ```
 
 按行读取矩阵并累计元素和
+
+题目 · [牛客 · 单组_二维数组](https://www.nowcoder.com/practice/4df606b6c3764d9c969f8759c8a4807b)
 
 ```python
 import sys
@@ -1198,6 +1256,8 @@ print(format(d3, ".9f"))
 
 保留三位小数的三种写法
 
+题目 · [牛客 · 牛牛学说话之-浮点数](https://www.nowcoder.com/practice/7c3bf58fac1a4eb69fa32c2d2c379bac)
+
 ```python
 ##浮点数###################################################################
 x=float(input())
@@ -1213,6 +1273,8 @@ print("{:.3f}".format(x))
 
 复读机练习
 
+题目 · [牛客 · 复读机](https://www.nowcoder.com/practice/9d381551b6ab40c4b5c3c8d60fe4066e)
+
 ```python
 ##复读机#######################################################################
 for i in range(5):
@@ -1224,6 +1286,8 @@ for i in range(5):
 ```
 
 手动插入千分位逗号与格式说明符
+
+题目 · [牛客 · 添加逗号](https://www.nowcoder.com/practice/f51c317e745649c0900996fd3f683aed)
 
 ```python
 N=list(input())
@@ -1238,6 +1302,8 @@ print(f'{N:,}')
 ```
 
 第 3 题：按宽和高拼出两段 Q 图案
+
+题目 · [洛谷 · P12172 LQ 图形](https://www.luogu.com.cn/problem/P12172)
 
 ```python
 ####3
@@ -1289,6 +1355,8 @@ print(f'{N:,}')
 
 复杂度笔记
 
+题目 · [力扣 · 169 多数元素](https://leetcode.cn/problems/majority-element/)
+
 > 这道题的官方名字叫摩尔投票法。它把时间和空间复杂度压榨到了人类的物理极限：
 > O(N)时间，O(1)空间。
 
@@ -1317,6 +1385,8 @@ def majorityElement(nums):
 
 从未处理的数向两侧扩展，删除属于同一段的元素
 
+题目 · [力扣 · 128 最长连续序列](https://leetcode.cn/problems/longest-consecutive-sequence/)
+
 ```python
 def longestConsecutive(self, nums: List[int]) -> int:
     s = set(nums)
@@ -1342,6 +1412,8 @@ def longestConsecutive(self, nums: List[int]) -> int:
 ### 从双倍数组还原
 
 排序后二分寻找一半，逐对移除
+
+题目 · [力扣 · 2007 从双倍数组中还原原数组](https://leetcode.cn/problems/find-original-array-from-doubled-array/)
 
 ```python
 from bisect import *
@@ -1455,6 +1527,8 @@ def solve():
 
 用列表移除当前下标对应的元素
 
+题目 · [牛客 · 约瑟夫环](https://www.nowcoder.com/practice/e417cfe32c74416ca38247f619ddb322)
+
 ```python
 n,k,m=map(int,input().split())
 s=[i for i in range(n)]
@@ -1486,6 +1560,8 @@ print(s[0])
 ```
 
 按当前位置的步长循环跳转
+
+题目 · [牛客 · 旺仔哥哥转圈圈](https://www.nowcoder.com/practice/739afacabadd463d9b73b23514bb6d5d)
 
 ```python
 s=list(map(int,input().split()))
@@ -1519,6 +1595,8 @@ for target in qlist:
 
 用集合统计不同字符串的个数
 
+题目 · [牛客 · 字符串哈希](https://www.nowcoder.com/practice/dadbd37fee7c43f0ae407db11b16b4bf)
+
 ```python
 import sys
 from collections import Counter
@@ -1535,6 +1613,8 @@ if __name__ == "__main__":
 
 求两个数组的交集并排序
 
+题目 · [牛客 · 两个数组的交集](https://www.nowcoder.com/practice/f31371f27dcd4c90a8fd2902d3e4592c)
+
 ```python
 class Solution:
     def intersection(self , nums1: List[int], nums2: List[int]) -> List[int]:
@@ -1546,6 +1626,8 @@ class Solution:
 ```
 
 再写一遍字符串去重计数
+
+题目 · [牛客 · 字符串哈希](https://www.nowcoder.com/practice/dadbd37fee7c43f0ae407db11b16b4bf)
 
 ```python
 import sys
@@ -1582,6 +1664,8 @@ if __name__ == "__main__":
 ```
 
 逐词扫描，用集合记录字母；检查末位之前的字母，更新最长候选词
+
+题目 · [洛谷 · P12171 最长字符串](https://www.luogu.com.cn/problem/P12171)
 
 ```python
     di=set()
@@ -51655,6 +51739,8 @@ if __name__ =='__main__':
 
 预分配数组和栈顶指针处理 push、pop、query、size
 
+题目 · [牛客 · 【模板】栈的操作](https://www.nowcoder.com/practice/cdf02ea916454957b575585634e5773a)
+
 ```python
 import sys
 def main() -> None:
@@ -51695,6 +51781,8 @@ if __name__ == "__main__":
 ```
 
 用 deque 实现队列命令与空队列提示
+
+题目 · [牛客 · 【模板】队列操作](https://www.nowcoder.com/practice/1137c8f6ffac4d5d94cc1b0cb08723f9)
 
 ```python
 import sys
@@ -51806,6 +51894,8 @@ print(top3_min)  # 输出: [-4, 1, 2]
 
 按右括号分别判断圆括号与方括号
 
+题目 · [牛客 · 括号配对问题](https://www.nowcoder.com/practice/57260c08eaa44feababd05b328b897d7)
+
 ```python
 s=input()
 st=[]
@@ -51860,6 +51950,8 @@ else:
 
 把字典配对扩展到三种括号
 
+题目 · [牛客 · 有效括号序列](https://www.nowcoder.com/practice/37548e94a270412c8b9fb85643c8ccc2)
+
 ```python
 s=input()
 st=[]
@@ -51883,6 +51975,8 @@ else:
 ### 栈顶合并与字符消除
 
 字符 o 与 O 的消除初稿
+
+题目 · [牛客 · 吐泡泡](https://www.nowcoder.com/practice/f86fa2221c094b3d8d1fc79bae450d96)
 
 > 错误
 
@@ -51933,6 +52027,8 @@ print(*st,end='')
 
 后缀表达式求值的初稿
 
+题目 · [牛客 · 牛牛与后缀表达式](https://www.nowcoder.com/practice/a1a4f178f6ff4188890e51da1cc8ce10)
+
 ```python
 ##错误
 s=input()
@@ -51974,6 +52070,8 @@ return st[0]
 
 加减乘和括号的计算器速记
 
+题目 · [牛客 · 表达式求值](https://www.nowcoder.com/practice/c215ba61c8b1443b996351df929dc4d4)
+
 ```python
 ##应对包含 + - * 和括号的计算器
 ##“只把加法入栈，遇到乘法就吃掉栈顶，遇到括号就丢给递归！”
@@ -51985,6 +52083,8 @@ print(eval(s))
 ### 进栈与出栈顺序
 
 用后缀最大值决定何时弹出栈顶
+
+题目 · [牛客 · 栈和排序](https://www.nowcoder.com/practice/b10a7ac681e9429e89a6a510e5799647)
 
 ```python
 ##只要我手里的牌（栈顶），
@@ -52012,6 +52112,8 @@ if __name__ =='__main__':
 ```
 
 给定入栈序列，模拟并验证出栈序列
+
+题目 · [牛客 · 验证栈序列](https://www.nowcoder.com/practice/d3178fe362dd4810b577c77c9e128fc5)
 
 ```python
 import sys
@@ -52054,6 +52156,8 @@ if __name__ =='__main__':
 
 学生与三明治：队列轮转
 
+题目 · [牛客 · 无法吃午餐的学生数量](https://www.nowcoder.com/practice/2dac3d7567f741a88ec551caf907934d)
+
 ```python
 class Solution:
     def countStudents(self , students: List[int], sandwiches: List[int]) -> int:
@@ -52087,6 +52191,8 @@ class Solution:
 ```
 
 买票耗时：队列记录位置与剩余票数
+
+题目 · [力扣 · 2073 买票需要的时间](https://leetcode.cn/problems/time-needed-to-buy-tickets/)
 
 ```python
 class Solution:
@@ -52159,6 +52265,8 @@ class Solution:
 
 按阵营人数推演胜负的草稿
 
+题目 · [牛客 · 参议院投票](https://www.nowcoder.com/practice/f334a81b22654efc8d7a67e31f60de50)
+
 ```python
 class Solution:
     def predictVictory(self , s: str) -> str:
@@ -52179,6 +52287,8 @@ class Solution:
 ### 先进先出缓存
 
 有限容量队列中统计缺失次数
+
+题目 · [牛客 · 机器翻译](https://www.nowcoder.com/practice/45ecfecd83104f37a685016361be504c)
 
 ```python
 import sys
@@ -52211,6 +52321,8 @@ if __name__ =='__main__':
 
 用频次乘积统计差值等于 C 的数对
 
+题目 · [牛客 · 数对计数](https://www.nowcoder.com/practice/7d05171e7e0e4c6086be233769e01d94)
+
 ```python
 import sys
 from collections import Counter
@@ -52236,6 +52348,8 @@ if __name__ == "__main__":
 ```
 
 两数之和：查找补数并返回下标
+
+题目 · [牛客 · 两数之和](https://www.nowcoder.com/practice/c4a4f030ca374d9bb9df5c0bdf388626)
 
 ```python
 class Solution:
@@ -52270,6 +52384,8 @@ class Solution:
 
 按身高降序、同身高按 k 升序重建队列
 
+题目 · [力扣 · 406 根据身高重建队列](https://leetcode.cn/problems/queue-reconstruction-by-height/)
+
 ```python
 class Solution:
     def reconstructQueue(self, people: List[List[int]]) -> List[List[int]]:
@@ -52285,6 +52401,8 @@ class Solution:
 ### 区间任务调度
 
 按结束时间排序，优先把开机时段安排在区间右端
+
+题目 · [力扣 · 2589 完成所有任务的最少时间](https://leetcode.cn/problems/minimum-time-to-complete-all-tasks/)
 
 ```python
 class Solution:
@@ -52310,6 +52428,8 @@ class Solution:
 ### 分段计算训练成本
 
 按所需次数分组，每段比较集训价格与剩余单价总和
+
+题目 · [洛谷 · P10387 训练士兵](https://www.luogu.com.cn/problem/P10387)
 
 ```python
 import sys
@@ -52345,6 +52465,8 @@ if __name__=='__main__':
 
 原稿记下的 LeetCode 1834 与 218
 
+题目 · [力扣 · 1834 单线程 CPU](https://leetcode.cn/problems/single-threaded-cpu/) · [力扣 · 218 天际线问题](https://leetcode.cn/problems/the-skyline-problem/)
+
 ```python
 ##LeetCode 1834
 ##LeetCode 218
@@ -52355,6 +52477,8 @@ if __name__=='__main__':
 ### 反悔贪心与堆
 
 课程安排。超过截止时间时撤回耗时最长的课
+
+题目 · [力扣 · 630 课程表 III](https://leetcode.cn/problems/course-schedule-iii/)
 
 ```python
 class Solution:
@@ -52371,6 +52495,8 @@ class Solution:
 ```
 
 魔塔。生命值不足时推迟已经遇到的伤害最大的一项
+
+题目 · [力扣 · LCP 30 魔塔游戏](https://leetcode.cn/problems/p0NxJO/)
 
 ```python
 from heapq import *
@@ -52393,6 +52519,8 @@ class Solution:
 ```
 
 加油站。燃料不足时从已经过的站中补选油量最多的
+
+题目 · [力扣 · 871 最低加油次数](https://leetcode.cn/problems/minimum-number-of-refueling-stops/)
 
 ```python
 from heapq import *
@@ -52423,6 +52551,8 @@ class Solution:
 
 先选利润最高的 k 项，再用新类别替换重复类别
 
+题目 · [力扣 · 2813 子序列最大优雅度](https://leetcode.cn/problems/maximum-elegance-of-a-k-length-subsequence/)
+
 ```python
 class Solution:
     def findMaximumElegance(self, items: List[List[int]], k: int) -> int:
@@ -52451,6 +52581,8 @@ class Solution:
 
 按工资质量比排序，用堆维护 k 人的质量总和
 
+题目 · [力扣 · 857 雇佣 K 名工人的最低成本](https://leetcode.cn/problems/minimum-cost-to-hire-k-workers/)
+
 ```python
 from heapq import *
 class Solution:
@@ -52475,6 +52607,8 @@ class Solution:
 ### 双指针配对
 
 救生艇。让最重的人尝试与最轻的人同船
+
+题目 · [力扣 · 881 救生艇](https://leetcode.cn/problems/boats-to-save-people/)
 
 ```python
 class Solution:
@@ -52509,6 +52643,8 @@ class Solution:
 ### 区间覆盖与前缀和
 
 把每个数可调整的范围视为区间，用差分求最大重叠数
+
+题目 · [力扣 · 2779 数组的最大美丽值](https://leetcode.cn/problems/maximum-beauty-of-an-array-after-applying-operation/)
 
 ```python
 class Solution:
@@ -52589,6 +52725,8 @@ if __name__=='__main__':
 
 生成器、前缀数组、求和公式与 accumulate 的四种写法
 
+题目 · [牛客 · 牛牛学数列4](https://www.nowcoder.com/practice/586b114f52034688879342ba45779081)
+
 ```python
 ##牛牛学数列4
 ##法一：第一层用生成器
@@ -52619,6 +52757,8 @@ ans=sum(accumulate(range(1,n+1)))
 ### 闭区间覆盖与剩余点数
 
 方法一：集合记录被覆盖的点
+
+题目 · [牛客 · 校门外的树](https://www.nowcoder.com/practice/0e8cfc82936048769af45967f3c4ef7e)
 
 ```python
 ##法一：离散化点集合去重        
@@ -52767,6 +52907,8 @@ for i in range(1,n-k+1):
 
 初稿。两处二分调用的括号未闭合
 
+题目 · [蓝桥云课 · 冶炼金属](https://www.lanqiao.cn/problems/3510/learning/)
+
 ```python
 import sys
 def solve():
@@ -52880,6 +53022,8 @@ if __name__=='__main__':
 
 枚举每人份量，按各堆能提供的份数判断可行性
 
+题目 · [力扣 · 2226 每个小孩最多能分到多少糖果](https://leetcode.cn/problems/maximum-candies-allocated-to-k-children/)
+
 ```python
 class Solution:
     def maximumCandies(self, candies: List[int], k: int) -> int:
@@ -52919,6 +53063,8 @@ def bisect(a,x,lo=0,hi=None,check=lambda x:x):
 ### 有序集合的前驱与后继
 
 集合负责判重，有序列表负责定位邻居
+
+题目 · [牛客 · 【模板】集合操作](https://www.nowcoder.com/practice/a37b91f84cdf490b8d8b990794211135)
 
 ```python
 import bisect
@@ -52989,6 +53135,8 @@ if __name__ == "__main__":
 ```
 
 允许重复值的有序列表及计数接口
+
+题目 · [牛客 · 【模板】多重集合操作](https://www.nowcoder.com/practice/aaf8b53f6ea74ad6beabed77bb275725)
 
 ```python
 import bisect
@@ -53064,6 +53212,8 @@ if __name__ == "__main__":
 ### 查找并删除最近元素
 
 初稿：插入、寻找相邻值与删除
+
+题目 · [牛客 · 动态整数集最近值提取](https://www.nowcoder.com/practice/c8615a370bb24ce6b110c3d7151c3dfc)
 
 ```python
 ##错误
@@ -53187,6 +53337,8 @@ if __name__ == "__main__":
 
 题目与第一种思路
 
+题目 · [AcWing · 821 跳台阶](https://www.acwing.com/problem/content/823/)
+
 > ##跳台阶https://www.acwing.com/problem/content/823/
 > 法一
 
@@ -53239,6 +53391,8 @@ if __name__=='__main__':
 
 三阶递推，比较递归与滑动更新
 
+题目 · [牛客 · 牛牛学数列6](https://www.nowcoder.com/practice/b6321648517247b2ac2e2f80cbc63ae1)
+
 ```python
 ##牛牛学数列6
 n=int(input())
@@ -53264,6 +53418,8 @@ print(c)
 
 网格路径的组合数与一维滚动数组
 
+题目 · [牛客 · 二维斐波那契数列](https://www.nowcoder.com/practice/a1951ca9431646ff8f9bc6f6d24d1e0a)
+
 ```python
 ##二维斐波那契数列
 n,m=map(int,input().split())
@@ -53285,6 +53441,8 @@ print(dp[-1]%1000000007)
 ### 杨辉三角
 
 逐行递推并打印杨辉三角
+
+题目 · [牛客 · 杨辉三角](https://www.nowcoder.com/practice/8c6984f3dc664ef0a305c24e1473729e)
 
 ```python
 import sys
@@ -53383,6 +53541,8 @@ from functools import *
 
 任务从大到小放入已有时段，或新开时段并回溯
 
+题目 · [力扣 · 1986 完成任务的最少工作时间段](https://leetcode.cn/problems/minimum-number-of-work-sessions-to-finish-the-tasks/)
+
 ```python
 class Solution:
     def minSessions(self, tasks: List[int], sessionTime: int) -> int:
@@ -53413,6 +53573,8 @@ class Solution:
 ### 逐位搜索最大数
 
 记录当前数位和两类剩余操作次数，探索各分支
+
+题目 · [蓝桥云课 · 最大数字](https://www.lanqiao.cn/problems/2193/learning/)
 
 ```python
 import sys
@@ -53539,6 +53701,8 @@ print(ans)         # 请问，现在打印 ans，结果是什么？
 
 固定选 k 个数，按每个数选或不选递归
 
+题目 · [力扣 · 77 组合](https://leetcode.cn/problems/combinations/)
+
 ```python
 class Solution:
     def combine(self, n: int, k: int) -> List[List[int]]:
@@ -53558,6 +53722,8 @@ class Solution:
 ```
 
 洛谷 P1157。从 start 向后选数，避免产生重复组合
+
+题目 · [洛谷 · P1157 组合的输出](https://www.luogu.com.cn/problem/P1157)
 
 ```python
 ##递归实现组合型枚举https://www.luogu.com.cn/problem/P1157
@@ -53592,6 +53758,8 @@ if __name__=='__main__':
 
 排序后从当前下标继续选，允许重复使用候选数
 
+题目 · [力扣 · 39 组合总和](https://leetcode.cn/problems/combination-sum/)
+
 ```python
 class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
@@ -53621,6 +53789,8 @@ class Solution:
 ### 子集枚举
 
 指数型枚举。对照原稿中的递归树跟踪选与不选
+
+题目 · [AcWing · 92 递归实现指数型枚举](https://www.acwing.com/problem/content/94/)
 
 ```python
 ##指数型https://www.acwing.com/problem/content/94/
@@ -53669,6 +53839,8 @@ if __name__=='__main__':
 
 洛谷 P1706。用访问标记与路径生成排列
 
+题目 · [洛谷 · P1706 全排列问题](https://www.luogu.com.cn/problem/P1706)
+
 ```python
 ####排列型https://www.luogu.com.cn/problem/P1706
 ##排列型
@@ -53710,6 +53882,8 @@ if __name__=='__main__':
 关联知识点 · [素数判定与分解](#note-tsingpigdadademoban-80)
 
 洛谷 P1036。读入 n、k，准备结果与路径
+
+题目 · [洛谷 · P1036 选数](https://www.luogu.com.cn/problem/P1036)
 
 ```python
 ####选数https://www.luogu.com.cn/problem/P1036
@@ -53761,6 +53935,8 @@ if __name__=='__main__':
 ### 烤鸡的定长枚举
 
 洛谷 P2089。十种配料的取值范围与方案总数
+
+题目 · [洛谷 · P2089 烤鸡](https://www.luogu.com.cn/problem/P2089)
 
 > 烤鸡https://www.luogu.com.cn/problem/P2089
 > 这道题的本质是把一个数字n拆分成10个数字的和，且每个数字只能取1,2,3。
@@ -53838,6 +54014,8 @@ if __name__=='__main__':
 ### 火星人与字典序后继
 
 洛谷 P1088。交换升序断点并反转后缀，逐次得到下一排列
+
+题目 · [洛谷 · P1088 火星人](https://www.luogu.com.cn/problem/P1088)
 
 ```python
 ####火星人https://www.luogu.com.cn/problem/P1088
@@ -54061,6 +54239,8 @@ if __name__=='__main__':
 
 洛谷 P1149。预计算数字的火柴数，枚举加数并检查等式
 
+题目 · [洛谷 · P1149 火柴棒等式](https://www.luogu.com.cn/problem/P1149)
+
 ```python
 ##火柴加法https://www.luogu.com.cn/problem/P1149
 import sys
@@ -54118,6 +54298,8 @@ if __name__=='__main__':
 关联知识点 · [按位枚举配料子集](#note-dfs-722)
 
 带 haschosen、参数与作用域讨论的调试草稿，保留报错写法
+
+题目 · [洛谷 · P2036 PERKET](https://www.luogu.com.cn/problem/P2036)
 
 ```python
 import sys
@@ -54300,6 +54482,8 @@ print(ans)
 
 长草初稿。源点坐标、边界判断和输出括号都有待修处
 
+题目 · [蓝桥云课 · 长草](https://www.lanqiao.cn/problems/149/learning/)
+
 ```python
 import sys
 from collections import deque
@@ -54430,6 +54614,8 @@ def solve():
 关联知识点 · [用整数表示集合](#note-tsingpigdadademoban-1002)
 
 用异或产生下一状态，入队前判重
+
+题目 · [洛谷 · P16263 密室逃脱开关谜题](https://www.luogu.com.cn/problem/P16263)
 
 ```python
 for mask in unique_effects:
@@ -54675,6 +54861,8 @@ if __name__=='__main__':
 
 四邻域搜索，统计每个连通块的面积
 
+题目 · [力扣 · 695 岛屿的最大面积](https://leetcode.cn/problems/max-area-of-island/)
+
 ```python
 def solve(g):
     n,m=len(g),len(g[0])
@@ -54705,6 +54893,8 @@ def solve(g):
 ### 七段码的连通性
 
 位掩码枚举亮灯子集，用邻接矩阵做 BFS
+
+题目 · [蓝桥云课 · 七段码](https://www.lanqiao.cn/problems/595/learning/)
 
 ```python
 ##四、二极管7段，a开始到g，问多少种发光相连
@@ -54803,6 +54993,8 @@ print(ans)
 
 用字典记录访问深度的尝试。多个起点共用记录，跨轮次的深度差需要复核
 
+题目 · [蓝桥云课 · 小朋友崇拜圈](https://www.lanqiao.cn/problems/182/learning/)
+
 ```python
 import sys
 sys.setrecursionlimit(10000)
@@ -54867,6 +55059,8 @@ def solve():
 ```
 
 按方向逐格移动，用当前路径区分出界和遇环
+
+题目 · [蓝桥云课 · 迷宫（2017 年省赛）](https://www.lanqiao.cn/problems/641/learning/)
 
 ```python
 ##三、走迷宫
@@ -55024,6 +55218,8 @@ def dfs(st):
 
 逐位累计酸度积与苦度和，和同题的 DFS 写法对读
 
+题目 · [洛谷 · P2036 PERKET](https://www.luogu.com.cn/problem/P2036)
+
 ```python
 import sys
 
@@ -55145,6 +55341,8 @@ def ip(n):
 ```
 
 选数题的三种判定需求与选型笔记
+
+题目 · [洛谷 · P1036 选数](https://www.luogu.com.cn/problem/P1036)
 
 ```python
 ##在考场上看到素数，按这个顺序在脑子里过一遍：
@@ -55315,6 +55513,8 @@ for i in range(2,n+1):
 
 用取余和整除提取个位、十位
 
+题目 · [牛客 · 整数的个位](https://www.nowcoder.com/practice/1c0ce3c9134f45edbcd4343f9d5e320a) · [牛客 · 整数的十位](https://www.nowcoder.com/practice/031db23916904f4fad72198fe491b47b)
+
 ```python
 ##带余除法####################################################################
 a=int(input())
@@ -55331,6 +55531,8 @@ else:
 
 对字符串中的各位求和
 
+题目 · [牛客 · 求四位数各个数位之和](https://www.nowcoder.com/practice/91fd90931d2847b5855075c11cf90d08)
+
 ```python
 #####位数和################################################################
 a=input()
@@ -55339,6 +55541,8 @@ print(s)
 ```
 
 把秒数拆为时、分、秒
+
+题目 · [牛客 · 时间转换](https://www.nowcoder.com/practice/c4ae7bcac7f9491b8be82ee516a94899)
 
 ```python
 #####时间转换################################################################
@@ -55355,6 +55559,8 @@ print("%d %d %d"%(a//3600, a%3600//60, a%60))#除余的概念
 
 通过索引遍历数位并求和
 
+题目 · [牛客 · 数位之和](https://www.nowcoder.com/practice/5e85cc26475449648e668aa98e92d05b)
+
 ```python
 ##数位之和
 n=input()
@@ -55366,6 +55572,8 @@ print(sum(int(n[i]) for i in range(len(n))))
 ### 整数平方根
 
 开平方并向下取整
+
+题目 · [牛客 · 平方根](https://www.nowcoder.com/practice/cd21e09482f24b03842f02ae3d403cad)
 
 ```python
 ##平方根################################################################
@@ -55380,6 +55588,8 @@ print(floor(sqrt(a)))#a=int(n**0.5)orprint(int(sqrt(n)))
 
 欧氏距离、曼哈顿距离及其差值
 
+题目 · [牛客 · 绕距](https://www.nowcoder.com/practice/7a245fc6284f4139b4fb21de58e68483)
+
 ```python
 ###绕距################################################################
 from math import sqrt,fabs
@@ -55392,6 +55602,8 @@ print(format(d3,".9f"))
 
 用叉积表示三角形面积
 
+题目 · [牛客 · 三角形面积](https://www.nowcoder.com/practice/52992a1ac2b842cc84d3fd3813b9566d)
+
 > 三角形已知三点坐标求面积：叉积绝对值的一半
 
 <a name="knowledge-series"></a>
@@ -55399,6 +55611,8 @@ print(format(d3,".9f"))
 ### 交错和与调和和
 
 交替加减与倒数求和
+
+题目 · [牛客 · 牛牛学数列](https://www.nowcoder.com/practice/0b97367cd2184c12a0e02f7c223aee11) · [牛客 · 牛牛学数列2](https://www.nowcoder.com/practice/fc72951f52984f3abd286d82eeffacba)
 
 ```python
 ##牛牛学数列
@@ -55418,6 +55632,8 @@ print(f"{s:.6f}")
 ### 数位出现次数
 
 用 Counter、字符串拼接或逐数扫描统计出现次数
+
+题目 · [牛客 · 记数问题](https://www.nowcoder.com/practice/28b2d9f2bf2c48de94a1297ed90e1732)
 
 ```python
 from collections import Counter
@@ -55492,6 +55708,8 @@ print(ans)
 
 1 到 2020 中数字 2 的出现次数：从列表、字符串计数到逐位拆数
 
+题目 · [蓝桥云课 · 门牌制作](https://www.lanqiao.cn/problems/592/learning/)
+
 ```python
 ##一、1-2020多少2
 s=[]
@@ -55520,6 +55738,8 @@ print(s)
 ```
 
 数字卡片的消耗：两次用数字 1 的出现次数更新余量
+
+题目 · [蓝桥云课 · 卡片](https://www.lanqiao.cn/problems/1443/learning/)
 
 ```python
 ##二、0——9各2021张，从1到多少
@@ -55553,6 +55773,8 @@ print(i-1)
 ### 拼接整数序列的第 n 位
 
 按位数划分区间的初稿
+
+题目 · [牛客 · 无限长正整数排列字符串](https://www.nowcoder.com/practice/82c92d2321bb4220a3006d52a95a8bdd)
 
 ```python
 n=int(input())
@@ -55609,6 +55831,8 @@ print(s[n-1])
 
 用移位构造等比和的分子与分母
 
+题目 · [蓝桥云课 · 分数](https://www.lanqiao.cn/problems/610/learning/)
+
 ```python
 ##五、1/1+...+1/20
 ##等比数列求和：1-q分之a1乘1-q的n次方
@@ -55620,6 +55844,8 @@ print(f'{(1<<20)-1}/{1<<19}')
 ### 单调回文数与镜像构造
 
 按单调的半边构造回文数
+
+题目 · [蓝桥云课 · 山](https://www.lanqiao.cn/problems/2141/learning/)
 
 ```python
 ##九、回文数：单调不减且对称
@@ -55736,6 +55962,8 @@ print(ans)
 ### 拆分整数与因数对计数
 
 第 5 题：枚举拆分、缓存因数对个数并累加答案
+
+题目 · [洛谷 · P12174 A · B Problem](https://www.luogu.com.cn/problem/P12174)
 
 ```python
 ####5
